@@ -1,0 +1,374 @@
+---
+slug : admin/styleguide/loader
+layout_name: admin/insites_empty
+---
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: transparent;
+    }
+    h2.section-title {
+      font-family: "Open Sans", sans-serif;
+      padding-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-bottom: solid 1px #eee;
+      margin: 40px 0 0px;
+      color: #2C3148;
+    }
+    .opacity-trigger > div {
+            opacity: 0;
+        }
+  </style>
+        <div>
+            <h2 class="section-title">Complete Example</h2>
+            {% assign state-title = "Success!"%}
+            {% assign state-message = "Your order has been placed and is being processed."%}
+            {% assign state-icon = "success"%}
+            <ins-styleguide>
+              <ins-styleguide-actual slot="actual">
+                <ins-loader state-title="{{ state-title }}" 
+                            state-message="{{ state-message }}" 
+                            state-icon="{{ state-icon }}">          
+                </ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+              <p><strong>HTML: </strong></p>
+              <script type="text/plain" class="language-markup">
+<ins-loader state-title="Success!" 
+            state-message="Your order has been placed and is being processed." 
+            state-icon="success">          
+</ins-loader></script>       
+<br /> <p><strong>Liquid: </strong></p>
+<script type="text/plain" class="language-markup">{% raw %}
+{% assign state-title = "Success!"%}
+{% assign state-message = "Your order has been placed and is being processed."%}
+{% assign state-icon = "success"%}
+
+<ins-loader state-title="{{ state-title }}" 
+            state-message="{{ state-message }}" 
+            state-icon="{{ state-icon }}">          
+</ins-loader>
+{% endraw %}</script></div>
+            </ins-styleguide-code>
+            </ins-styleguide>
+            
+            <h2 class="section-title">States</h2>
+            <ins-styleguide label="Direct Set Data">
+              <ins-styleguide-actual slot="actual">
+                <ins-loader id="directSetDataLoader"></ins-loader>
+              </ins-styleguide-actual>
+              <script>
+                {% assign title = "Error"%}
+                {% assign message = "A problem has occurred while submitting your data."%}
+                {% assign icon = "error"%}
+                setTimeout(function(){
+                  ins('#directSetDataLoader').val('stateTitle', "{{ title }}" );
+                  ins('#directSetDataLoader').val('stateMessage', "{{message}}");
+                  ins('#directSetDataLoader').val('stateIcon', "{{icon}}");
+                }, 500);
+              </script>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-loader id="directSetDataLoader"></ins-loader>
+
+  <script src="/admin/scripts/web_components/ins.js">&lt;/script&gt;
+  <script>
+    var title = 'Error!',
+        message = 'A problem has occurred while submitting your data.',
+        icon = 'error';
+
+    // setTimeout is used to avoid race conditions
+    setTimeout(function(){
+        ins('#directSetDataLoader').val('stateTitle', title);
+        ins('#directSetDataLoader').val('stateMessage', message);
+        ins('#directSetDataLoader').val('stateIcon', icon);
+        // update `stateTitle`, `stateMessage` and `stateIcon` attributes of the component
+    }, 500);
+  &lt;/script&gt;
+                  </script>
+                <br /> <p><strong>Liquid: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+<ins-loader id="directSetDataLoader"></ins-loader>
+
+<script>
+{% assign title = "Error"%}
+{% assign message = "A problem has occurred while submitting your data."%}
+{% assign icon = "error"%}
+
+// setTimeout is used to avoid race conditions
+  setTimeout(function(){
+    ins('#directSetDataLoader').val('stateTitle', "{{ title }}" );
+    ins('#directSetDataLoader').val('stateMessage', "{{message}}");
+    ins('#directSetDataLoader').val('stateIcon', "{{icon}}");
+    // update `stateTitle`, `stateMessage` and `stateIcon` attributes of the component
+}, 500);
+&lt;/script&gt;
+{% endraw %}
+                  </script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Static Data Source">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title = "Success!"%}
+              {% assign state-message = "You message has been sent succesfully."%}
+              {% assign state-icon = "success"%}
+                <ins-loader state-title="{{ state-title }}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-loader state-title="Success!" 
+              state-message="You message has been sent succesfully." 
+              state-icon="success">
+  </ins-loader>
+                </script>
+                  <br /> <p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+  {% assign state-title = "Success!"%}
+  {% assign state-message = "You message has been sent succesfully."%}
+  {% assign state-icon = "success"%}
+
+  <ins-loader state-title="{{ state-title }}" 
+              state-message="{{state-message}}" 
+              state-icon="{{state-icon}}">
+  </ins-loader>{% endraw %}
+                  </script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+        
+            <h2 class="section-title">Types</h2>
+      
+            <ins-styleguide label="Processing">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title = "Processing" %}
+              {% assign state-message="Please wait, we're already processing your data."%}
+              {% assign state-icon="processing"%}
+                <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-loader state-title="Processing" 
+              state-message="Please wait, we're already processing your data."
+              state-icon="processing">
+  </ins-loader>
+                  </script>
+                  <br /> <p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+  {% assign state-title="Processing" %}
+  {% assign state-message="Please wait, we're already processing your data."%}
+  {% assign state-icon="processing"%}
+
+  <ins-loader state-title="{{state-title}}" 
+              state-message="{{state-message}}" 
+              state-icon="{{state-icon}}">
+  </ins-loader>
+                  {% endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+        
+            <ins-styleguide label="Warning">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title="Warning!"%}
+              {% assign state-message="There was a problem with your network connection."%}
+              {% assign state-icon="warning"%}
+                <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div><p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-loader state-title="Warning!" 
+            state-message="There was a problem with your network connection." 
+            state-icon="warning">
+</ins-loader>
+                </script>
+                <br /> <p><strong>Liquid: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign state-title="Warning!"%}
+{% assign state-message="There was a problem with your network connection."%}
+{% assign state-icon="warning"%}
+
+<ins-loader state-title="{{state-title}}" 
+            state-message="{{state-message}}" 
+            state-icon="{{state-icon}}">
+</ins-loader>
+{% endraw%}</script></div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+        
+            <ins-styleguide label="Help">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title="Need help?"%}
+              {% assign state-message="Contact our online support +12 3456 789."%}
+              {% assign state-icon="help"%}
+                <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML:</strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-loader state-title="Need help?" 
+            state-message="Contact our online support +12 3456 789." 
+            state-icon="help">
+</ins-loader>
+                  </script>
+                  <br /><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign state-title="Need help?"%}
+{% assign state-message="Contact our online support +12 3456 789."%}
+{% assign state-icon="help"%}
+
+<ins-loader state-title="{{state-title}}" 
+            state-message="{{state-message}}" 
+            state-icon="{{state-icon}}">
+</ins-loader> {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+        
+            <ins-styleguide label="Error">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title="Error!"%}
+              {% assign state-message="A problem has occurred while submitting your data."%}
+              {% assign state-icon="error"%}
+                <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML:</strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-loader state-title="Error!" 
+            state-message="A problem has occurred while submitting your data." 
+            state-icon="error">
+</ins-loader>
+                  </script>
+                  <br /><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign state-title="Error!"%}
+{% assign state-message="A problem has occurred while submitting your data."%}
+{% assign state-icon="error"%}
+
+<ins-loader state-title="{{state-title}}" 
+            state-message="{{state-message}}" 
+            state-icon="{{state-icon}}">
+</ins-loader>
+{% endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+        
+            <div>
+            <ins-styleguide label="Success">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title="Success!"%}
+              {% assign state-message="You message has been sent succesfully."%}
+              {% assign state-icon="success"%}
+                  <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML:</strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-loader state-title="Success!" 
+              state-message="You message has been sent succesfully." 
+              state-icon="success">
+  </ins-loader>
+                  </script>
+                  <br /><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign state-title="Success!"%}
+{% assign state-message="You message has been sent succesfully."%}
+{% assign state-icon="success"%}
+<ins-loader state-title="{{state-title}}" 
+            state-message="{{state-message}}" 
+            state-icon="{{state-icon}}"></ins-loader>
+{% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            </div>
+        
+            <div>
+            <ins-styleguide label="Downloading">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title="Downloading"%}
+              {% assign state-message="The file is now being downloaded."%}
+              {% assign state-icon="downloading"%}
+                  <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML:</strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-loader state-title="Downloading" 
+              state-message="The file is now being downloaded." 
+              state-icon="downloading">
+  </ins-loader>
+                  </script>
+                  <br /><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+  {% assign state-title="Downloading"%}
+  {% assign state-message="The file is now being downloaded."%}
+  {% assign state-icon="downloading"%}
+
+  <ins-loader state-title="{{state-title}}" 
+              state-message="{{state-message}}" 
+              state-icon="{{state-icon}}">
+  </ins-loader>
+                  {%endraw%}</script>
+                </div>       
+              </ins-styleguide-code>
+            </ins-styleguide>
+            </div>
+        
+            <div>
+             <ins-styleguide label="Uploading">
+              <ins-styleguide-actual slot="actual">
+              {% assign state-title="Uploading"%}
+              {% assign state-message="The file is now being uploaded."%}
+              {% assign state-icon="uploading"%}
+                  <ins-loader state-title="{{state-title}}" state-message="{{state-message}}" state-icon="{{state-icon}}"></ins-loader>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML:</strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-loader state-title="Uploading" 
+              state-message="The file is now being uploaded." 
+              state-icon="uploading">
+  </ins-loader>
+                  </script>
+                  <br /><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+  {% assign state-title="Uploading"%}
+  {% assign state-message="The file is now being uploaded."%}
+  {% assign state-icon="uploading"%}
+
+  <ins-loader state-title="{{state-title}}" 
+              state-message="{{state-message}}" 
+              state-icon="{{state-icon}}">
+  </ins-loader>{%endraw%}
+                  </script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            </div>  
+          </div>
+      <script src="../../../assets/js/ins.js"></script>
+<script>
+  setTimeout(() => {
+    $('ins-styleguide-code').removeClass('opacity-trigger');
+  }, 500);
+</script>

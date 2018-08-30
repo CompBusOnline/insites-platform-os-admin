@@ -1,0 +1,2 @@
+/*! Built with http://stenciljs.com */
+const{h:t}=window.insites;class e{render(){return null}static get is(){return"ins-backdrop"}static get style(){return"ins-backdrop{width:100%;height:100%;background:rgba(0,0,0,.25);position:fixed;top:0;left:0;z-index:9998}"}}export{e as InsBackdrop};

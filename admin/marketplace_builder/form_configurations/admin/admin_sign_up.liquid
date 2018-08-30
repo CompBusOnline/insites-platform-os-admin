@@ -1,0 +1,52 @@
+---
+name: admin_sign_up
+resource: User
+resource_owner: anyone
+redirect_to: /admin/sessions/new
+configuration:
+  email:
+  password:
+  name:
+    validation: { presence: true }
+  profiles:
+    administrator:
+      enabled:
+        property_options:
+          default: true
+          readonly: true
+      validation:
+        presence: true
+    validation:
+      presence: true
+---
+
+{% form url: '/api/users', method: 'post' %}
+<div class="grid-container">
+  <div class="grid-x grid-padding-x">
+    <div class="large-12 cell">
+      <label class="form-label">Name
+        {% input 'name' %}
+      </label>
+    </div>
+    <div class="large-12 cell">
+      <label class="form-label">Email
+        {% input 'email' %}
+      </label>
+    </div>
+    <div class="large-12 cell">
+      <label class="form-label">Password
+        {% input 'password', as: 'password' %}
+      </label>
+    </div>
+
+    {% fields_for 'profiles' %}
+      {% fields_for 'administrator', form: 'profiles' %}
+        {% input 'enabled', as: 'hidden', form: 'administrator' %}
+      {% endfields_for %}
+    {% endfields_for %}
+    <div class="large-12 cell submit-btn-wrap">
+        {% submit 'Create' class: 'ripple-effects' %}
+    </div>
+  </div>
+</div>
+{% endform %}

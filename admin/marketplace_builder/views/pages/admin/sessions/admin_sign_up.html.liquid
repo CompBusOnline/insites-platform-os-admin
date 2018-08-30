@@ -1,0 +1,9 @@
+---
+slug: admin/sessions/sign-up
+format: html
+layout_name: admin/insites_session
+---
+{%- assign name = 'Admin Sign Up' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+{% render_form 'admin_sign_up' %}

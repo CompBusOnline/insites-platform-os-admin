@@ -1,0 +1,8 @@
+{
+  current_user {
+    id
+    slug
+    name
+    email
+  }
+}

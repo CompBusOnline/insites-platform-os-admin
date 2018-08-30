@@ -1,0 +1,5 @@
+mutation log($type: LogEntryType = debug, $message: Any!) {
+  log(type: $type, message: $message) {
+    id
+  }
+}

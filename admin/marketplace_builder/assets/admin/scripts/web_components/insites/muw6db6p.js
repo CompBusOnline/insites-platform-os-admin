@@ -1,0 +1,2 @@
+/*! Built with http://stenciljs.com */
+const{h:e}=window.insites;class t{componentDidLoad(){let e=this.InsSidebarFooter.querySelectorAll(".ins-sidebar-footer-item-wrap");for(let t=0;t<e.length;t++)e[t].style.width=`${100/e.length}%`}render(){return e("div",{class:"ins-sidebar-footer-wrap"},e("slot",null))}static get is(){return"ins-sidebar-footer"}static get properties(){return{InsSidebarFooter:{elementRef:!0}}}static get style(){return".ins-sidebar-footer-wrap{background-color:#e4e6ec;width:100%;position:absolute;bottom:0}"}}export{t as InsSidebarFooter};

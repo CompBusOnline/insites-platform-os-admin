@@ -1,0 +1,7 @@
+---
+name: only_allow_if_no_session
+redirect_to: /admin/insites
+flash_alert: You are still login
+---
+{% query_graph 'current_user', result_name: 'g' %}
+{% if g.current_user == nil %}true{% endif %}

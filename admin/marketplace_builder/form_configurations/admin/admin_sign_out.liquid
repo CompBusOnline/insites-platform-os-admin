@@ -1,0 +1,12 @@
+---
+name: admin_sign_out
+resource: Session
+redirect_to: admin/login
+flash_notice: You have been logged out securely.
+---
+
+{% form method: 'delete' %}
+  <div class="hide">
+    {% submit 'Log Out' id="logoutButton" %}
+  </div>
+{% endform %}

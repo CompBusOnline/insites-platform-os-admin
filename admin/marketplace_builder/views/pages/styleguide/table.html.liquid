@@ -1,0 +1,173 @@
+---
+slug: admin/styleguide/tables
+layout_name: admin/insites_empty
+format: html
+---
+<style>
+    body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        background-color: transparent;
+    }
+
+    h2.section-title {
+        font-family: "Open Sans", sans-serif;
+        padding-bottom: 10px;
+        font-weight: 600;
+        font-size: 18px;
+        border-bottom: solid 1px #eee;
+        margin: 40px 0 0px;
+        color: #2C3148;
+    }
+
+    .padding-1 {
+        padding: 1em 0;
+    }
+    
+  /* DASHBOARD SWAL STYLES */
+  .swal2-container.swal2-shown {
+    background-color: transparent;
+  }
+
+  .swal2-show {
+    box-shadow: 0px 6px 20px #aaa;
+    border-radius: 1px;
+    top: -120px;
+    width: 21em;
+  }
+
+  .swal2-popup #swal2-content {
+    font-size: .85rem;
+    margin-bottom: 20px;
+  }
+
+  .swal2-popup .swal2-actions {
+    margin-top: 0;
+    display: block !important;
+  }
+
+  .swal2-popup .swal2-styled.swal2-cancel,
+  .swal2-popup .swal2-styled.swal2-confirm {
+    background-color: transparent;
+    border: 1px solid #1e86e3 !important;
+    color: #1e86e3;
+    width: auto;
+    height: auto;
+    margin: 0 10px;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    float: left;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .swal2-popup .swal2-styled.swal2-confirm {
+    float: right;
+    background-color: #1e86e3;
+    color: #fff;
+  }
+
+  .swal2-popup .swal2-styled.swal2-cancel:hover {/*,
+  .swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {*/
+    background-image: none !important;
+    background-color: #e3eef9;
+  }
+
+  /* ripple sweet alert */
+  .swal2-popup .swal2-styled.swal2-confirm,
+  .swal2-popup .swal2-styled.swal2-cancel {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .swal2-popup .swal2-styled.swal2-confirm:after,
+  .swal2-popup .swal2-styled.swal2-cancel:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #000 10%, transparent 5.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+
+  .swal2-popup .swal2-styled.swal2-confirm:active:after,
+  .swal2-popup .swal2-styled.swal2-cancel:active::after {
+    transform: scale(0, 0);
+    opacity: .2;
+    transition: 0s;
+  }
+
+  .swal2-popup .ins-loader-wrap .ins-loader-title-wrap {
+    margin-top: 18px;
+    color: #2c3148;
+  }
+
+  .swal2-popup .ins-loader-wrap .ins-loader-message-wrap {
+    margin-top: 10px;
+    margin-bottom: 32px;
+    color: #8694a4;
+  }
+</style>
+
+
+<body>
+<div>
+    <h2 class="section-title">Complete Example</h2>
+    <ins-card steady no-padding>
+        {% assign tabledata="/styleguide/data/default-table.json"%}
+        {% assign table-title="Table"%}
+        <ins-table
+            data-src="{{tabledata}}"
+            table-title="{{table-title}}"></ins-table>
+    </ins-card>
+    <div class="padding-1">
+    <div>
+        <p><strong>HTML: </strong></p>
+        <script type="text/plain" class="language-markup">
+<ins-table data-src="<source url>/insites-dummy-get-table"
+    table-title="Table">
+</ins-table>
+        </script>
+        <br /><p><strong>LIQUID: </strong></p>
+        <script type="text/plain" class="language-markup">{%raw%}
+{% assign tabledata="<source url>/default-table.json"%}
+
+<ins-table
+    data-src="{{tabledata}}"
+    table-title="{{table-title}}>
+</ins-table>
+        {%endraw%}</script>
+        <br /><p><strong>default-table.json: </strong></p>
+        <script type="text/plain" class="language-markup">{%raw%}
+---
+slug: styleguide/data/default-table.json
+format: json
+layout_name: ''
+---
+{% query_graph 'get-data', result_name: 'data' %}
+        {%endraw%}</script>
+        <br /><p><strong>GrahpQL get-data: </strong></p>
+        <script type="text/plain" class="language-markup">{%raw%}
+query get-data {
+    ....
+}
+        {%endraw%}</script>
+    </div>
+    </div>
+</div>
+</body>
+

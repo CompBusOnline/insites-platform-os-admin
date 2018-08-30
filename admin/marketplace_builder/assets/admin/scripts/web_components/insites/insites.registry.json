@@ -1,0 +1,193 @@
+{
+  "namespace": "insites",
+  "fsNamespace": "insites",
+  "loader": "../insites.js",
+  "global": "insites.global.js",
+  "core": "insites.losrxvrf.js",
+  "corePolyfilled": "insites.yvw7qbce.js",
+  "components": {
+    "ins-action": {
+      "$": "dzdfphto"
+    },
+    "ins-action-item": {
+      "$": "omstglif"
+    },
+    "ins-admin": {
+      "$": "cydsdrfn"
+    },
+    "ins-backdrop": {
+      "$": "0vkegbe6"
+    },
+    "ins-bar-chart": {
+      "$": "hj4ewbg2"
+    },
+    "ins-base-table": {
+      "$": "kvcg5lnn"
+    },
+    "ins-breadcrumbs": {
+      "$": "r8sbnmk9"
+    },
+    "ins-button": {
+      "$": "zyed0fkw"
+    },
+    "ins-card": {
+      "$": "eg7ckuf5"
+    },
+    "ins-checkbox": {
+      "$": "kvcg5lnn"
+    },
+    "ins-confirm-modal": {
+      "$": "ddj7lryv"
+    },
+    "ins-content": {
+      "$": "690hfpgm"
+    },
+    "ins-datepicker": {
+      "$": "g2eqajvi"
+    },
+    "ins-dropdown": {
+      "$": "kvcg5lnn"
+    },
+    "ins-duration": {
+      "$": "ago7eome"
+    },
+    "ins-fav-icon": {
+      "$": "hnyzg1ip"
+    },
+    "ins-filter": {
+      "$": "kvush15a"
+    },
+    "ins-filter-item": {
+      "$": "kvush15a"
+    },
+    "ins-form": {
+      "$": "daenr2bi"
+    },
+    "ins-header": {
+      "$": "rqipn9ci"
+    },
+    "ins-header-user": {
+      "$": "w5evt4ap"
+    },
+    "ins-image-picker": {
+      "$": "r9u9xmrm"
+    },
+    "ins-input": {
+      "$": "dzdfphto"
+    },
+    "ins-input-tel": {
+      "$": "tea6fqnd"
+    },
+    "ins-instances": {
+      "$": "jj4nhnqu"
+    },
+    "ins-instances-item": {
+      "$": "hiwehrof"
+    },
+    "ins-instances-sub-item": {
+      "$": "kdhbio4v"
+    },
+    "ins-line-chart": {
+      "$": "3nodnvhl"
+    },
+    "ins-loader": {
+      "$": "kvcg5lnn"
+    },
+    "ins-logo": {
+      "$": "ql2u0gvs"
+    },
+    "ins-notifications": {
+      "$": "zetxqqcs"
+    },
+    "ins-notifications-item": {
+      "$": "ab2robta"
+    },
+    "ins-open-table": {
+      "$": "3shtmqxu"
+    },
+    "ins-radio": {
+      "$": "nhritv67"
+    },
+    "ins-renderer": {
+      "$": "r8sbnmk9"
+    },
+    "ins-searchbar": {
+      "$": "mkn4iymq"
+    },
+    "ins-select": {
+      "$": "kvcg5lnn"
+    },
+    "ins-select-option": {
+      "$": "kvcg5lnn"
+    },
+    "ins-select2": {
+      "$": "k5bfos9a"
+    },
+    "ins-sidebar": {
+      "$": "js1ehzlb"
+    },
+    "ins-sidebar-footer": {
+      "$": "muw6db6p"
+    },
+    "ins-sidebar-footer-button": {
+      "$": "ihundcz3"
+    },
+    "ins-sidebar-footer-menu": {
+      "$": "ytkpiell"
+    },
+    "ins-sidebar-item": {
+      "$": "rtrnsxdg"
+    },
+    "ins-sparkline": {
+      "$": "lgqisepg"
+    },
+    "ins-styleguide": {
+      "$": "q9qyh01x"
+    },
+    "ins-styleguide-actual": {
+      "$": "xojtzy0j"
+    },
+    "ins-styleguide-code": {
+      "$": "t7v1gkav"
+    },
+    "ins-table": {
+      "$": "dzdfphto"
+    },
+    "ins-tagging-input": {
+      "$": "q034xvep"
+    },
+    "ins-tags-button": {
+      "$": "ulgwa8jz"
+    },
+    "ins-td": {
+      "$": "dzdfphto"
+    },
+    "ins-td-checkbox": {
+      "$": "omstglif"
+    },
+    "ins-textarea": {
+      "$": "ua0344ge"
+    },
+    "ins-th": {
+      "$": "omstglif"
+    },
+    "ins-th-checkbox": {
+      "$": "omstglif"
+    },
+    "ins-timepicker": {
+      "$": "0rw7qvon"
+    },
+    "ins-timezone": {
+      "$": "x8qxiar9"
+    },
+    "ins-title": {
+      "$": "ilz6rrut"
+    },
+    "ins-toggle-switch": {
+      "$": "invwarx5"
+    },
+    "ins-tr": {
+      "$": "omstglif"
+    }
+  }
+}

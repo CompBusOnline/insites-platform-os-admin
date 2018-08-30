@@ -1,0 +1,887 @@
+---
+slug: admin/styleguide/buttons
+layout_name: admin/insites_empty
+format: html
+---
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+    h2.section-title {
+      font-family: "Open Sans", sans-serif;
+      padding-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-bottom: solid 1px #eee;
+      margin: 20px 0 0px;
+      color: #2C3148;
+    }
+    .opacity-trigger > div {
+      opacity: 0;
+    }
+    ins-styleguide-actual ins-button {
+      float: left;
+    }
+  </style>
+
+        <div>
+            <h2 class="section-title">Complete Example</h2>
+            <ins-styleguide>
+              <ins-styleguide-actual slot="actual">
+              {% assign label="NORMAL"%}
+              {% assign icon="icon-email-1"%}
+              {% assign color="blue"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" icon="{{icon}}" solid color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+              <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="NORMAL" icon="icon-email-1" solid color="blue" size="normal"></ins-button>
+                </script>
+                <br /> <p><strong>Liquid: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="NORMAL"%}
+{% assign icon="icon-email-1"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            icon="{{icon}}" 
+            solid 
+            color="{{color}}" 
+            size="{{size}}">
+</ins-button>
+                {%endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div>
+          <div>
+            <h2 class="section-title">States</h2>
+            <ins-styleguide label="Default State">
+              <ins-styleguide-actual slot="actual">
+                <ins-button></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-button></ins-button>
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Direct Set Data">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="Direct Set Data"%}
+                <ins-button id="dsv"></ins-button>
+                <script>
+                  setTimeout(function () {
+                    ins('#dsv').val('label', '{{label}}');
+                  }, 500);
+
+                </script>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button id="dsv"></ins-button>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(function() {
+      ins('#dsv').val('label', 'Direct Set Data');
+      // update `label` attribute of the component
+    }, 100)
+&lt;/script&gt;
+                  </script>
+                  <br /><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="Direct Set Data"%}
+<ins-button id="dsv"></ins-button>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(function() {
+      ins('#dsv').val('label', '{{label}}');
+      // update `label` attribute of the component
+    }, 100)
+&lt;/script&gt;
+                  {%endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Static Data Source">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="Open"%}
+              {% assign color="positive"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" solid color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML:</strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-button label="Open" solid color="positive" size="normal"></ins-button>
+                  </script>
+                  <br /><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="Open"%}
+{% assign color="positive"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            solid 
+            color="{{color}}" 
+            size="{{size}}">
+</ins-button>
+{%endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Disabled State">
+              <ins-styleguide-actual slot="actual">
+              {% assign color="negative"%}
+              {% assign label="Delete"%}
+                <ins-button disabled solid color="{{color}}" label="{{label}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-button disabled solid color="negative" label="Delete"></ins-button>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign color="negative"%}
+{% assign label="Delete"%}
+<ins-button disabled 
+            solid 
+            color="{{color}}" 
+            label="{{label}}">
+</ins-button>
+                  {%endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Label Attribute">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="Label Change"%}
+                <ins-button label="{{label}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="Label Change"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="Label Change"%}
+
+<ins-button label="{{label}}"></ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Color Attribute">
+              <ins-styleguide-actual slot="actual">
+              {% assign color="positive"%}
+                <ins-button color="{{color}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button color="positive"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign color="positive"%}
+
+<ins-button color="{{color}}"></ins-button>
+{%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Size Attribute">
+              <ins-styleguide-actual slot="actual">
+              {% assign size="large"%}
+                <ins-button size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button size="large"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign size="large"%}
+
+<ins-button size="{{size}}"></ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+          </div>
+
+
+          <div>
+
+            <h2 class="section-title">Types</h2>
+            <ins-styleguide label="Default">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="TEXT"%}
+              {% assign color="blue"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="blue" size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="TEXT"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            color="{{color}}" 
+            size="{{size}}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+      
+            <ins-styleguide label="Normal">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="NORMAL"%}
+              {% assign color="blue"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" solid color="{[color]}" size="{[size]}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="NORMAL" solid color="blue" size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="NORMAL"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            solid 
+            color="{[color]}" 
+            size="{[size]}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+            <ins-styleguide label="Outlined">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="OUTLINED"%}
+              {% assign color="blue"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" color="{{color}}" outlined size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                 <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="OUTLINED" color="blue" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="OUTLINED"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            color="{{color}}" 
+            outlined 
+            size="{{size}}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+            <ins-styleguide label="Default with Icon">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="TEXT"%}
+              {% assign icon="icon-email-1"%}
+              {% assign color="blue"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" icon="{{icon}}" color="{{color}}" size="{[size]}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" icon="icon-email-1" color="blue" size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="TEXT"%}
+{% assign icon="icon-email-1"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            icon="{{icon}}" 
+            color="{{color}}" 
+            size="{[size]}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+
+            <ins-styleguide label="Normal with Icon">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="NORMAL" %}
+              {% assign icon="icon-email-1"%}
+              {% assign color="blue"%}
+              {% assign size="normal"%}
+                <ins-button label="{{label}}" icon="{{icon}}" solid color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger"slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="NORMAL" icon="icon-email-1" solid color="blue" size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="NORMAL" %}
+{% assign icon="icon-email-1"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            icon="{{icon}}" 
+            solid 
+            color="{{color}}" 
+            size="{{size}}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+           <div>
+            <ins-styleguide label="Outlined with Icon">
+              <ins-styleguide-actual slot="actual">
+                {% assign label="OUTLINED"%}
+                {% assign icon="icon-email-1"%}
+                {% assign color="blue"%}
+                {% assign size="normal"%}
+                <ins-button label="{{label}}" icon="{{icon}}" color="{{color}}" outlined size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="OUTLINED" icon="icon-email-1" color="blue" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="OUTLINED"%}
+{% assign icon="icon-email-1"%}
+{% assign color="blue"%}
+{% assign size="normal"%}
+
+<ins-button label="{{label}}" 
+            icon="{{icon}}" 
+            color="{{color}}" 
+            outlined 
+            size="{{size}}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            </div> 
+            
+            <div>
+            <ins-styleguide label="Action Button">
+              <ins-styleguide-actual slot="actual">
+              {% assign icon="icon-delete"%}
+              {% assign color="grey"%}
+              {% assign size="normal"%}
+              {% assign label=""%}
+                <ins-button icon="{{icon}}" color="{{color}}" size="{{size}}" label="{{label}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button icon="icon-delete" color="grey" size="normal" label=""></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign icon="icon-delete"%}
+{% assign color="grey"%}
+{% assign size="normal"%}
+{% assign label=""%}
+
+<ins-button icon="{{icon}}" 
+            color="{{color}}" 
+            size="{{size}}" 
+            label="{{label}}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div> 
+        </div>
+
+          <div>
+            <h2 class="section-title">Sizes</h2>
+            <ins-styleguide label="Small">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="SMALL"%}
+              {% assign color="blue"%}
+              {% assign size="small"%}
+                <ins-button label="{{label}}" solid color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger"slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="SMALL" solid color="blue" size="small"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>{%raw%}
+                <script type="text/plain" class="language-markup">
+{% assign label="SMALL"%}
+{% assign color="blue"%}
+{% assign size="small"%}
+
+<ins-button label="{{label}}" 
+            solid color="{{color}}" 
+            size="{{size}}">
+</ins-button>
+                 {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          
+
+          
+            <ins-styleguide label="Large">
+              <ins-styleguide-actual slot="actual">
+                {% assign label="LARGE"%}
+                {% assign color="blue"%}
+                {% assign size="large"%}
+                <ins-button label="{{label}}" solid color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="LARGE" solid color="blue" size="large"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="LARGE"%}
+{% assign color="blue"%}
+{% assign size="large"%}
+
+<ins-button label="{{label}}" 
+            solid 
+            color="{{color}}" 
+            size="{{size}}">
+</ins-button>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+          </div>
+          <div>
+
+            <h2 class="section-title">Colours</h2>
+            <ins-styleguide label="Primary">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                {% assign label="TEXT"%} {% assign color="primary"%} {% assign size="normal"%}
+                {% assign label1="NORMAL"%} {% assign color1="primary"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="primary"%} {% assign size2="normal"%}
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="primary" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="primary" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="primary" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="primary"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="primary"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="primary"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            
+
+
+             <ins-styleguide label="Positive">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                {% assign label1="NORMAL"%} {% assign color1="positive"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="positive"%} {% assign size2="normal"%}
+                {% assign label="TEXT"%} {% assign color="positive"%} {% assign size="normal"%}
+
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="positive" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="positive" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="positive" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+  {% assign label="TEXT"%} {% assign color="positive"%} {% assign size="normal"%}
+  {% assign label1="NORMAL"%} {% assign color1="positive"%} {% assign size1="normal"%}
+  {% assign label2="OUTLINED"%} {% assign color2="positive"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Secondary">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                {% assign label1="NORMAL"%} {% assign color1="secondary"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="secondary"%} {% assign size2="normal"%}
+                {% assign label="TEXT"%} {% assign color="secondary"%} {% assign size="normal"%}
+
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="secondary" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="secondary" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="secondary" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="secondary"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="secondary"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="secondary"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+             <ins-styleguide label="Negative">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                {% assign label1="NORMAL"%} {% assign color1="negative"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="negative"%} {% assign size2="normal"%}
+                {% assign label="TEXT"%} {% assign color="negative"%} {% assign size="normal"%}
+               
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="negative" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="negative" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="negative" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="negative"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="negative"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="negative"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+            <ins-styleguide label="Warning">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+              <div>
+                {% assign label1="NORMAL"%} {% assign color1="warning"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="warning"%} {% assign size2="normal"%}
+                {% assign label="TEXT"%} {% assign color="warning"%} {% assign size="normal"%}
+
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </div>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="warning" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="warning" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="warning" outlined size="normal"></ins-button>
+                </script>
+                 <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="warning"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="warning"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="warning"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+             <ins-styleguide label="Information 1">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                {% assign label1="NORMAL"%} {% assign color1="information-1"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="information-1"%} {% assign size2="normal"%}
+                {% assign label="TEXT"%} {% assign color="information-1"%} {% assign size="normal"%}
+                
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="information-1" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="information-1" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="information-1" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="information-1"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="information-1"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="information-1"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+             <ins-styleguide label="Information 2">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                {% assign label1="NORMAL"%} {% assign color1="information-2"%} {% assign size1="normal"%}
+                {% assign label2="OUTLINED"%} {% assign color2="information-2"%} {% assign size2="normal"%}
+                {% assign label="TEXT"%} {% assign color="information-2"%} {% assign size="normal"%}
+
+                
+                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="information-2" size="normal"></ins-button>
+<ins-button label="NORMAL" solid color="information-2" size="normal"></ins-button>
+<ins-button label="OUTLINED" color="information-2" outlined size="normal"></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="information-2"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="information-2"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="information-2"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide> 
+
+          </div>
+          <div>
+
+           <div>
+            <h2 class="section-title">Loading State</h2>
+            <ins-styleguide>
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+              {% assign label="TEXT"%} {% assign color="blue"%} {% assign size="normal"%}
+              {% assign label1="NORMAL"%} {% assign color1="blue"%} {% assign size1="normal"%}
+              {% assign label2="OUTLINED"%} {% assign color2="blue"%} {% assign size2="normal"%}
+                <ins-button label="NORMAL" solid color="blue" size="normal" loading></ins-button>
+                <ins-button label="OUTLINED" color="blue" outlined size="normal"></ins-button>
+                <ins-button label="TEXT" color="blue" size="normal" loading></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-button label="TEXT" color="blue" size="normal" loading></ins-button>
+<ins-button label="NORMAL" solid color="blue" size="normal" loading></ins-button>
+<ins-button label="OUTLINED" color="blue" outlined size="normal" loading></ins-button>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="TEXT"%} {% assign color="blue"%} {% assign size="normal"%}
+{% assign label1="NORMAL"%} {% assign color1="blue"%} {% assign size1="normal"%}
+{% assign label2="OUTLINED"%} {% assign color2="blue"%} {% assign size2="normal"%}
+
+<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
+<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+                {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div> 
+
+          <div>
+            <h2 class="section-title">Bullet</h2>
+            <ins-styleguide>
+              <ins-styleguide-actual slot="actual">
+              {% assign name="radio"%} {% assign label="Radio"%} {% assign value="radio"%}
+              {% assign name1="radio"%} {% assign label1="Television"%} {% assign value1="television"%}
+              {% assign name2="radio"%} {% assign label2="Newspaper"%} {% assign value2="newspaper"%}
+                <ins-radio name="{{name}}" label="{{label}}" value="{{value}}"></ins-radio>
+                <ins-radio name="{{name1}}" label="{{label1}}" value="{{value1}}" checked></ins-radio>
+                <ins-radio name="{{name2}}" label="{{label2}}" value="{{value2}}"></ins-radio>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-radio name="radio" label="Radio" value="radio"></ins-radio>
+<ins-radio name="radio" label="Television" value="television" checked></ins-radio>
+<ins-radio name="radio" label="Newspaper" value="newspaper"></ins-radio>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign name="radio"%} {% assign label="Radio"%} {% assign value="radio"%}
+{% assign name1="radio"%} {% assign label1="Television"%} {% assign value1="television"%}
+{% assign name2="radio"%} {% assign label2="Newspaper"%} {% assign value2="newspaper"%}
+
+<ins-radio name="{{name}}" label="{{label}}" value="{{value}}"></ins-radio>
+<ins-radio name="{{name1}}" label="{{label1}}" value="{{value1}}" checked></ins-radio>
+<ins-radio name="{{name2}}" label="{{label2}}" value="{{value2}}"></ins-radio>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div>
+
+          <div>
+            <h2 class="section-title">Check boxes</h2>
+            <ins-styleguide>
+              <ins-styleguide-actual slot="actual">
+              {% assign label="Windows"%} {% assign value="Windows"%}
+              {% assign checked_label="Linux"%} {% assign value1="Windows"%}
+                <ins-checkbox label="{{label}}" value="{{value}}"></ins-checkbox>
+                <ins-checkbox checked label="{{checked_label}}" value="{{value1}}"></ins-checkbox>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-checkbox checked label="Linux" value="Linux"></ins-checkbox>
+<ins-checkbox label="Windows" value="Windows"></ins-checkbox>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="Windows"%} 
+{% assign value="Windows"%}
+{% assign checked_label="Linux"%} 
+{% assign value1="Windows"%}
+
+<ins-checkbox label="{{label}}" value="{{value}}"></ins-checkbox>
+<ins-checkbox checked label="{{checked_label}}" value="{{value1}}"></ins-checkbox>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div>
+
+          <div>
+            <h2 class="section-title">Toggle switch</h2>
+            <ins-styleguide>
+              <ins-styleguide-actual slot="actual">
+              {% assign value=""%} {% assign label="Off"%} {% assign label1="On"%}
+                <ins-toggle-switch value="" label="Off"></ins-toggle-switch>
+                <ins-toggle-switch value="" label="On" checked></ins-toggle-switch>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-toggle-switch value="" checked></ins-toggle-switch>
+<ins-toggle-switch value=""></ins-toggle-switch>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign value=""%} 
+{% assign label="Off"%} 
+{% assign label1="On"%}
+
+<ins-toggle-switch value="" label="{{ label }}"></ins-toggle-switch>
+<ins-toggle-switch value="" label="{{ label1 }}" checked></ins-toggle-switch>
+                {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+</div>
+<script>
+  setTimeout(() => {
+    $('ins-styleguide-code').removeClass('opacity-trigger');
+  }, 500);
+</script>
+

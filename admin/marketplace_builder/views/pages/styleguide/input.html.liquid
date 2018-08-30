@@ -1,0 +1,549 @@
+---
+slug : admin/styleguide/input
+layout_name: admin/insites_empty
+---
+{% query_graph 'current_user', result_name: 'g' %}
+ <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: transparent;
+    }
+    h2.section-title {
+      font-family: "Open Sans", sans-serif;
+      padding-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-bottom: solid 1px #eee;
+      margin: 40px 0 0px;
+      color: #2C3148;
+    }
+    .ins-input-tel-wrap .col-container.column-2 {
+      width: 78px;
+    }
+    .ins-input-tel-wrap .col-container.column-3 {
+      width: calc(100% - 188px);
+    }
+    .opacity-trigger > div {
+      opacity: 0;
+    }
+  </style>
+        <div>
+          <h2 class="section-title">Complete Example</h2>
+          <ins-styleguide label="Default Field">
+            <ins-styleguide-actual slot="actual">
+            <ins-input name="FirstName" placeholder="Name" value="{{ g.current_user.name }}" label="Name" field="text" icon="icon-person"></ins-input>
+            </ins-styleguide-actual>
+            <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup"><ins-input name="FirstName" placeholder="Name" value="John" label="Name" field="text" icon="icon-person"></ins-input></script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
+  }
+}
+
+......
+
+{% query_graph 'current_user', result_name: 'g' %}
+<ins-input 
+  name="FirstName" 
+  placeholder="Name" 
+  value="{{ g.current_user.name }}" 
+  label="Name" 
+  field="text" 
+  icon="icon-user-1">
+</ins-input>{% endraw %}</script>
+              </div>
+            </ins-styleguide-code>
+
+          </ins-styleguide>
+
+        </div>
+          <div>
+            <h2 class="section-title">States</h2>
+            <ins-styleguide label="Default State">
+              <ins-styleguide-actual slot="actual">
+                <ins-input></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-input></ins-input></script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Direct Set Data">
+              <ins-styleguide-actual slot="actual">
+                <ins-input id="dsv"></ins-input>
+                {% assign PlaceHolder = "Direct Set Value" %}
+                <script>
+                  setTimeout(function(){
+                    ins('#dsv').val('placeholder', '{{ PlaceHolder }}');
+                  }, 500);
+                </script>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">{% raw %}
+<ins-input id="dsv"></ins-input>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    {% assign PlaceHolder = "Direct Set Value" %}
+    // setTimeout is used to avoid race conditions
+    setTimeout(function(){
+      ins('#dsv').val('placeholder', '{{ PlaceHolder }}');
+      // update `placeholder` attribute of the component
+    }, 500);
+&lt;/script&gt;{% endraw %}
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Static Data Source">
+                <ins-styleguide-actual slot="actual">
+                    <ins-input value="John Smith" label="Name"></ins-input>
+                </ins-styleguide-actual>
+                <ins-styleguide-code class="opacity-trigger" slot="code">
+                      <div>
+                        <p><strong>HTML: </strong></p>
+                        <script type="text/plain" class="language-markup"><ins-input value="John Smith" label="Name"></ins-input></script>
+                        <br /><p><strong>Liquid: </strong></p>
+                        <script type="text/plain" class="language-markup">{% raw %}{% assign FullName = 'John Smith' %}
+<ins-input value="{{ FullName }}" label="Name"></ins-input>{% endraw %}</script>
+                      </div>
+                </ins-styleguide-code>
+              </ins-styleguide>
+
+            <ins-styleguide label="Disabled State">
+                <ins-styleguide-actual slot="actual">
+                  <ins-input value="samplepassword123" label="Password" disabled field="password"></ins-input>
+                </ins-styleguide-actual>
+                <ins-styleguide-code class="opacity-trigger" slot="code">
+                      <div>
+                        <p><strong>HTML: </strong></p>                     
+                        <script type="text/plain" class="language-markup"><ins-input value="samplepassword123" label="Password" disabled type="password"></ins-input></script>
+                        <br /><p><strong>Liquid:</strong></p>
+                        <script type="text/plain" class="language-markup">{% raw %}{% assign password = 'samplepassword123' %}
+<ins-input value="{{ password }}" label="Password" disabled type="password"></ins-input>{% endraw %}</script>
+                      </div>
+                </ins-styleguide-code>
+              </ins-styleguide>
+
+            <ins-styleguide label="Read Only State">
+              <ins-styleguide-actual slot="actual">
+                <ins-input value="samplepassword123" label="Password" readonly field="password"></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML:</strong></p>
+                  <script type="text/plain" class="language-markup"><ins-input value="samplepassword123" label="Password" readonly field="password"></ins-input></script>
+                  <br/><p><strong>Liquid:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}{% assign password = 'samplepassword123' %}
+<ins-input value="{{ password }}" label="Password" readonly type="password"></ins-input>{% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Error State">
+              <ins-styleguide-actual slot="actual">
+                <ins-input placeholder="Email" value="a sample text" label="Email" field="email" error-message="Please provide valid email address." has-error></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup"><ins-input placeholder="Type anything..." 
+          value="a sample text" 
+          label="Email" 
+          field="email" 
+          error-message="Please provide valid email address." has-error>
+</ins-input></script>
+                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}---
+ # ... form properties
+ flash_alert: 'Please provide valid email address.'
+ ---
+<ins-input placeholder="Type anything..." 
+          value="a sample text" 
+          label="Email" 
+          field="email" 
+          error-message="{{ flash_alert }}" has-error>
+</ins-input>{% endraw %}</script>
+                </div>
+                
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Value Attribute">
+              <ins-styleguide-actual slot="actual">
+                {% assign Value = "Value Change" %}
+                <ins-input value="{{ Value }}"></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup"><ins-input value="Value Change"></ins-input></script>
+                  <br/><p><strong>Liquid:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}{% assign Value = 'Value Change' %}
+<ins-input value="{{ Value }}"></ins-input>{% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Placeholder Attribute">
+              <ins-styleguide-actual slot="actual">
+                {% assign Placeholder = "Placeholder Attribute" %}
+                <ins-input placeholder="{{ PlaceHolder }}"></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup"><ins-input placeholder="Placeholder Attribute"></ins-input></script>
+                  <br/><p><strong>Liquid:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}{% assign PlaceHolder = 'Placeholder Attribute' %}
+<ins-input placeholder="{{ PlaceHolder }}"></ins-input>{% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Icon Attribute">
+                <ins-styleguide-actual slot="actual">
+                  {% assign IconEmail = "icon-email-1" %}
+                  <ins-input icon="{{ IconEmail }}"></ins-input>
+                </ins-styleguide-actual>
+                <ins-styleguide-code class="opacity-trigger" slot="code">
+                  <div>
+                    <p><strong>HTML: </strong></p>
+                    <script type="text/plain" class="language-markup"><ins-input icon="icon-email-1"></ins-input></script>
+                    <br/><p><strong>Liquid:</strong></p>
+                    <script type="text/plain" class="language-markup">{% raw %}{% assign IconEmail = 'icon-email-1' %}
+<ins-input icon="{{ IconEmail }}"></ins-input>{% endraw %}</script>
+                  </div>
+                </ins-styleguide-code>
+              </ins-styleguide>
+
+            <ins-styleguide label="Label Attribute">
+              <ins-styleguide-actual slot="actual">
+                {% assign Label = "Name" %}
+                <ins-input label="{{ Label }}"></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup"><ins-input label="Name"></ins-input></script>
+                  <br/><p><strong>Liquid:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}{% assign Label = 'Name' %}
+<ins-input label="{{ Label }}"></ins-input>{% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Field Attribute">
+              <ins-styleguide-actual slot="actual">
+                {% assign Field = "password" %}
+                <ins-input field="{{ Field }}"></ins-input>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup"><ins-input field="password"></ins-input></script>
+                  <br/><p><strong>Liquid:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}{% assign Field = 'password' %}
+<ins-input field="{{ Field }}"></ins-input>{% endraw %}</script>
+                </div> 
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+          </div>
+
+          <div>
+            <h2 class="section-title">Search Field</h2>
+            <ins-styleguide label="Search Field">
+            <ins-styleguide-actual slot="actual">
+              <ins-searchbar placeholder="Search..."></ins-searchbar>
+            </ins-styleguide-actual>
+            <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                      <script type="text/plain" class="language-markup"><ins-searchbar name="FirstName" placeholder="Search..."></ins-searchbar></script>
+                  <br /><p><strong>Liquid: </strong></p>
+<script type="text/plain" class="language-markup">{% raw %}
+<ins-searchbar 
+  name="{{ form_builder.fields.first_name.name }}" 
+  placeholder="Search...">
+</ins-searchbar>
+{% endraw %}</script>
+                </div>
+            </ins-styleguide-code>
+          </ins-styleguide>
+            <ins-styleguide label="Default State">
+              <ins-styleguide-actual slot="actual">
+                <ins-searchbar></ins-searchbar>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-searchbar></ins-searchbar></script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            <ins-styleguide label="Direct Set Data">
+              <ins-styleguide-actual slot="actual">
+                <ins-searchbar id="directSetDataSearch"></ins-searchbar>
+                {% assign PlaceHolderSearch = "Type anything..." %}
+                <script>
+                  var placeholder_search = '{{ PlaceHolderSearch }}';
+                  setTimeout(()=>{
+                    ins('#directSetDataSearch').val('placeholder', placeholder_search);
+                  }, 500);
+                </script>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">{% raw %}
+<ins-searchbar id="directSetDataSearch"></ins-searchbar>
+{% assign PlaceHolderSearch = "Type anything..." %}
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    var placeholder_search = '{{ PlaceHolderSearch }}';
+
+    // setTimeout is used to avoid race conditions
+    setTimeout(function(){
+      ins('#directSetDataSearch').val('placeholder', placeholder_search);
+      // update `placeholder` attribute of the component
+    }, 500);
+&lt;/script&gt;{% endraw %}
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            <ins-styleguide label="Static Data Source">
+              <ins-styleguide-actual slot="actual">
+                <ins-searchbar placeholder="Search here..."></ins-searchbar>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-searchbar placeholder="Search here..."></ins-searchbar></script>              
+              </ins-styleguide-code>
+            </ins-styleguide>
+            <ins-styleguide label="Searching State">
+              <ins-styleguide-actual slot="actual">
+                <ins-searchbar placeholder="Search here..." is-searching value="Australia"></ins-searchbar>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-searchbar placeholder="Search here..." 
+                value="Australia"
+                is-searching>
+</ins-searchbar>
+                  </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div>
+
+          <div style="padding: 0 20px;">
+            <h2 class="section-title">Phone Number Field</h2>
+            <ins-styleguide label="Default Field">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel label="Phone" areacode-placeholder="Area Code" areacode-value="1300" phonenum-placeholder="Phone Number"
+                  phonenum-value="12345">
+                </ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-input-tel 
+    label="Phone" 
+    areacode-placeholder="Area Code" 
+    areacode-value="1300" 
+    phonenum-placeholder="Phone Number"
+    phonenum-value="12345">
+  </ins-input-tel>
+                  </script>
+                  <br /><p><strong>Liquid: </strong></p>
+<script type="text/plain" class="language-markup">{% raw %}
+{% assign LabelTel = 'Phone' %}
+{% assign AreaCodePlaceholder = 'Area Code' %}
+{% assign AreaCodeValue = '1300' %}
+{% assign PhoneNumPlaceholder = 'Phone Number' %}
+{% assign PhoneNumValue = '12345' %}
+
+<ins-input-tel 
+  label="{{ LabelTel }}" 
+  areacode-placeholder="{{ AreaCodePlaceholder }}"
+  areacode-value="{{ AreaCodeValue }}"
+  phonenum-placeholder="{{ PhoneNumPlaceholder }}"
+  phonenum-value="{{ PhoneNumValue }}">
+</ins-input-tel>
+{% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+            <ins-styleguide label="Default State">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-input-tel></ins-input-tel>
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Direct Set Data">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel id="directSetDataInputtel"></ins-input-tel>
+                <script>
+                  var label_inputtel = 'Telephone',
+                      areaCode = '14143',
+                      phoneNum = '5190724671';
+
+                  setTimeout(() => {
+                    ins('#directSetDataInputtel').val('label', label_inputtel);
+                    ins('#directSetDataInputtel').val('areacodeValue', areaCode);
+                    ins('#directSetDataInputtel').val('phonenumValue', phoneNum);
+                  }, 500);
+                </script>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-input-tel id="directSetDataInputtel"></ins-input-tel>
+<script>
+    // setTimeout is used to avoid race conditions
+    var label_inputtel = 'Telephone',
+        areaCode = '14143',
+        phoneNum = '5190724671';
+
+    setTimeout(() => {
+      // update `label` attribute of the element
+      ins('#directSetDataInputtel').val('label', label_inputtel);
+
+      // update `areacodeValue` attribute of the element
+      ins('#directSetDataInputtel').val('areacodeValue', areaCode);
+      
+      // update `phonenumValue` attribute of the element
+      ins('#directSetDataInputtel').val('phonenumValue', phoneNum);
+    }, 500);
+&lt;/script&gt;
+                  </script>
+                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+<ins-input-tel id="directSetDataInputtel"></ins-input-tel>
+{% assign LabelInputTel = 'Telephone' %}
+{% assign AreaCode = '14143' %}
+{% assign PhoneNum = '5190724671' %}
+
+<script>
+    // setTimeout is used to avoid race conditions
+    var label_inputtel = '{{ LabelInputTel }}',
+        areaCode = '{{ AreaCode }}',
+        phoneNum = '{{ PhoneNum }}';
+
+    setTimeout(() => {
+      // update `label` attribute of the element
+      ins('#directSetDataInputtel').val('label', label_inputtel);
+
+      // update `areacodeValue` attribute of the element
+      ins('#directSetDataInputtel').val('areacodeValue', areaCode);
+      
+      // update `phonenumValue` attribute of the element
+      ins('#directSetDataInputtel').val('phonenumValue', phoneNum);
+    }, 500);
+&lt;/script&gt;{% endraw %}
+                  </script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Static Data Source">
+              <ins-styleguide-actual slot="actual">
+              <ins-input-tel label="Phone" areacode-value="1300" phonenum-value="12345"></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-input-tel label="Phone" areacode-value="1300" phonenum-value="12345"></ins-input-tel>
+                  </script>
+                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign Label = 'Phone' %}
+{% assign AreaCode = '1300' %}
+{% assign PhoneNum = '12345' %}
+<ins-input-tel 
+  label="{{ Label }}" 
+  areacode-value="{{ AreaCode }}" 
+  phonenum-value="{{ PhoneNum }}">
+</ins-input-tel> {% endraw %}
+                  </script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Label Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel label="Phone"></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-input-tel label="Phone"></ins-input-tel>
+                  </script>
+                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign Label = 'Phone' %}
+<ins-input-tel label="{{ Label }}"></ins-input-tel>{% endraw %}
+                  </script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Area Code Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel areacode-value="1300"></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-input-tel areacode-value="1300"></ins-input-tel>
+                  </script>
+                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign AreaCodeValue = '1300' %}
+<ins-input-tel areacode-value="{{ AreaCodeValue }}"></ins-input-tel>{% endraw %}
+                  </script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Phone Number Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel phonenum-value="12345"></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-input-tel phonenum-value="12345"></ins-input-tel>
+                  </script>
+                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign PhoneNumValue = '12345' %}
+<ins-input-tel phonenum-value="{{ PhoneNumValue }}"></ins-input-tel>{% endraw %}
+                  </script>
+                </div>  
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+
+          </div>
+      <script src="../../../assets/js/ins.js"></script>
+          <script>
+            setTimeout(() => {
+              $('ins-styleguide-code').removeClass('opacity-trigger');
+            }, 500);
+          </script>

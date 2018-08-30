@@ -1,0 +1,540 @@
+---
+slug : admin/styleguide/select
+layout_name: admin/insites_empty
+---
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: transparent;
+    }
+    h2.section-title {
+      font-family: "Open Sans", sans-serif;
+      padding-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-bottom: solid 1px #eee;
+      margin: 40px 0 0px;
+      color: #2C3148;
+    }
+    .opacity-trigger > div {
+            opacity: 0;
+        }
+  </style>
+  
+        <div>
+            <h2 class="section-title">Complete Examples</h2>
+            <ins-styleguide label="Default Dropdown">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="Operating System"%} 
+              {% assign label1="Windows"%} {% assign value="Windows"%}
+              {% assign label2="macOS"%} {% assign value1="macOS"%}
+              {% assign label3="Linux"%} {% assign value2="Linux"%}
+                <ins-select label="{{label}}">
+                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                </ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-select label="Operating System">
+  <ins-select-option label="Windows" value="Windows" default></ins-select-option>
+  <ins-select-option label="macOS" value="macOS"></ins-select-option>
+  <ins-select-option label="Linux" value="Linux"></ins-select-option>
+</ins-select>
+              </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="Operating System"%} 
+{% assign label1="Windows"%} {% assign value="Windows"%}
+{% assign label2="macOS"%} {% assign value1="macOS"%}
+{% assign label3="Linux"%} {% assign value2="Linux"%}
+
+<ins-select label="{{label}}">
+  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+</ins-select>
+              {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+          </ins-styleguide>
+
+            <ins-styleguide label="Searchable Dropdown">
+                <ins-styleguide-actual slot="actual">
+                  {% assign label="Operating System"%} 
+                  {% assign label1="Windows"%} {% assign value="Windows"%}
+                  {% assign label2="macOS"%} {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} {% assign value2="Linux"%}
+                <ins-select label="{{label}}" searchable>
+                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                </ins-select>
+                </ins-styleguide-actual>
+                <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-select label="Operating System" searchable>
+  <ins-select-option label="Windows" value="Windows" default></ins-select-option>
+  <ins-select-option label="Linux" value="Linux"></ins-select-option>
+  <ins-select-option label="macOS" value="macOS"></ins-select-option>
+</ins-select>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="Operating System"%} 
+{% assign label1="Windows"%} {% assign value="Windows"%}
+{% assign label2="macOS"%} {% assign value1="macOS"%}
+{% assign label3="Linux"%} {% assign value2="Linux"%}
+
+<ins-select label="{{label}} searchable">
+  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+</ins-select>
+              {% endraw %}</script>
+              </div>
+                </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Multiselect Dropdown">
+                <ins-styleguide-actual slot="actual">
+                  {% assign label="Operating System"%} 
+                  {% assign label1="Windows"%} {% assign value="Windows"%}
+                  {% assign label2="macOS"%} {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} {% assign value2="Linux"%}
+                <ins-select label="{{label}}" multiple>
+                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                </ins-select>
+                </ins-styleguide-actual>
+                <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-select label="Operating System" multiple>
+  <ins-select-option label="Windows" value="Windows" default></ins-select-option>
+  <ins-select-option label="Linux" value="Linux"></ins-select-option>
+  <ins-select-option label="macOS" value="macOS"></ins-select-option>
+</ins-select>
+                </script>
+                 <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="Operating System"%} 
+{% assign label1="Windows"%} {% assign value="Windows"%}
+{% assign label2="macOS"%} {% assign value1="macOS"%}
+{% assign label3="Linux"%} {% assign value2="Linux"%}
+
+<ins-select label="{{label}} multiple">
+  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+</ins-select>
+              {% endraw %}</script>
+                </div>
+                </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Dropdown Button with Search Bar">
+                <ins-styleguide-actual slot="actual">
+                  {% assign label="Operating System"%} 
+                  {% assign label1="Windows"%} {% assign value="Windows"%}
+                  {% assign label2="macOS"%} {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} {% assign value2="Linux"%}
+                <ins-select label="{{label}}" searchable button>
+                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                </ins-select>
+                </ins-styleguide-actual>
+                <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-select label="Operating System" searchable button>
+  <ins-select-option label="Windows" value="Windows" default></ins-select-option>
+  <ins-select-option label="Linux" value="Linux"></ins-select-option>
+  <ins-select-option label="macOS" value="macOS"></ins-select-option>
+</ins-select>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="Operating System"%} 
+{% assign label1="Windows"%} {% assign value="Windows"%}
+{% assign label2="macOS"%} {% assign value1="macOS"%}
+{% assign label3="Linux"%} {% assign value2="Linux"%}
+
+<ins-select label="{{label}} searchable button">
+  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+</ins-select>
+                {% endraw %}</script>
+              </div>
+                </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Small Dropdown Button">
+              <ins-styleguide-actual slot="actual">
+                  {% assign label="Operating System"%} 
+                  {% assign label1="Windows"%} {% assign value="Windows"%}
+                  {% assign label2="macOS"%} {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} {% assign value2="Linux"%}
+                <ins-select label="{{label}}" small button>
+                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                </ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-select label="Operating System" small button>
+    <ins-select-option label="Windows" value="Windows" default></ins-select-option>
+    <ins-select-option label="Linux" value="Linux"></ins-select-option>
+    <ins-select-option label="macOS" value="macOS"></ins-select-option>
+  </ins-select>
+                </script>
+                   <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign label="Operating System"%} 
+{% assign label1="Windows"%} {% assign value="Windows"%}
+{% assign label2="macOS"%} {% assign value1="macOS"%}
+{% assign label3="Linux"%} {% assign value2="Linux"%}
+
+<ins-select label="{{label}} small button">
+  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+</ins-select>
+                {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <h2 class="section-title">ins-select</h2>
+            <ins-styleguide label="Default State">
+              <ins-styleguide-actual slot="actual">
+                <ins-select></ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-select></ins-select></script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Direct Set Data">
+              <ins-styleguide-actual slot="actual">
+                <ins-select id="dsv" label="name"></ins-select>
+                {% assign label="Direct Set Value"%}
+                <script>
+                  // setTimeout is used to avoid race conditions
+                  setTimeout (function(){
+                    ins('#dsv').val('label', '{{label}}')
+                  }, 100)
+                </script>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-select id="dsv"></ins-select>
+
+  <script>
+    // setTimeout is used to avoid race conditions
+    setTimeout (function() {
+      ins('#dsv').val('label', 'Direct Set Value')
+      // update `label` attribute of the component
+    }, 100)
+  &lt;/script&gt;
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+  <ins-select id="dsv"></ins-select>
+{% assign label="Direct Set Value"%}
+  <script>
+    // setTimeout is used to avoid race conditions
+    setTimeout (function() {
+      ins('#dsv').val('label', '{{label}}')
+      // update `label` attribute of the component
+    }, 100)
+  &lt;/script&gt;
+                {% endraw %}</script>
+                </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Static Data Source">
+              <ins-styleguide-actual slot="actual">
+              {% assign label="select"%}
+                <ins-select label="{{label}}" searchable></ins-select>
+                </ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup"><ins-select label="select" searchable></ins-select></script>
+                <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="select"%}
+
+<ins-select label="{{label}}" searchable></ins-select>
+                  {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Placeholder Attribute">
+              <ins-styleguide-actual slot="actual">
+              {% assign placeholder="Value Change"%}
+                <ins-select placeholder="{{placeholder}}"></ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup"><ins-select placeholder="Value Change"></ins-select></script>
+                <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign placeholder="Value Change"%}
+
+<ins-select placeholder="{{placeholder}}"></ins-select>
+                  {% endraw %}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Disabled Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-select disabled></ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-select disabled></ins-select></script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="ReadOnly Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-select readonly></ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-select readonly></ins-select></script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Button Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-select button></ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup"><ins-select button></ins-select></script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Small Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-select small button></ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<!-- The 'button' attribute must be added for the 'small' attribute to work -->
+<ins-select small button></ins-select>
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <h2 class="section-title">ins-select-option</h2>
+            <ins-styleguide label="Default State" class="min-height-220">
+              <ins-styleguide-actual slot="actual">
+                <ins-select>
+                  <ins-select-option></ins-select-option>
+                </ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-select>
+  <ins-select-option></ins-select-option>
+</ins-select>
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Direct Set Data" class="min-height-220">
+              <ins-styleguide-actual slot="actual">
+                <ins-select id="directSetDataSelect"></ins-select>
+              </ins-styleguide-actual>
+              <script>
+                var insSelectOptionEl = document.createElement("ins-select-option");
+
+                function setInsSelectOptions(id, options){
+                  var insSelectEl = ins(id);
+                  var newInsSelectEl = document.createElement('ins-select');
+                  var insSelectElParent = insSelectEl.parentElement;
+
+                  options.forEach(function(option, index){
+                      // generate ins-select-option tags
+                      var insSelectOptionEl = document.createElement("ins-select-option");
+                      insSelectOptionEl.classList.add('dsd-option');
+                      // setTimeout is used to avoid race conditions
+                      setTimeout(function(){
+                        ins('.dsd-option')[index].val('label', option.label);
+                        ins('.dsd-option')[index].val('value', option.value);
+                        // update the label and value attributes of the current ins-select-option element
+                      }, 500);
+                      // add the newly generated ins-select-option to the new ins-select element
+                      newInsSelectEl.appendChild(insSelectOptionEl);
+                  });
+                  // set the id of the new ins-select element to the old ins-select's id name
+                  newInsSelectEl.setAttribute('id', id);
+                  // remove the old ins-select element
+                  insSelectElParent.removeChild(insSelectEl);
+                  // add the new ins-select element
+                  insSelectElParent.appendChild(newInsSelectEl);
+                }
+
+                function successHandler (response) {
+                  var options = JSON.parse(response);
+                  setInsSelectOptions('#directSetDataSelect', options);
+                }
+
+                function errorHandler (error) {
+                  console.log(error);
+                }
+
+                var xmlhttp = new XMLHttpRequest();
+                // javascript ajax call
+                xmlhttp.onreadystatechange = function() {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+                      if (xmlhttp.status == 200) {
+                        successHandler(JSON.parse(this.responseText));
+                      }
+                      else if (xmlhttp.status == 400) {
+                        errorHandler();
+                      }
+                      else {
+                          console.log('something else other than 200 was returned');
+                      }
+                    }
+                };
+
+                xmlhttp.open("GET", "https://gngyishvwl.execute-api.ap-southeast-2.amazonaws.com/insitesDummyStage/insites-dummy-api", true);
+                xmlhttp.send();
+              </script>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-select>
+  <ins-select-option></ins-select-option>
+</ins-select>
+
+<script>
+  var insSelectOptionEl = document.createElement("ins-select-option");
+
+  function setInsSelectOptions(id, options){
+    var insSelectEl = ins(id);
+    var newInsSelectEl = document.createElement('ins-select');
+    var insSelectElParent = insSelectEl.parentElement;
+
+    options.forEach(function(option, index){
+        // generate ins-select-option tags
+        var insSelectOptionEl = document.createElement("ins-select-option");
+        // add a class in each ins-select-option element
+        insSelectOptionEl.classList.add('dsd-option');
+        // setTimeout is used to avoid race conditions
+        setTimeout(function(){
+          // update the label and value attributes of the current ins-select-option element
+          ins('.dsd-option')[index].val('label', option.label);
+          ins('.dsd-option')[index].val('value', option.value);
+        }, 500);
+        // add the newly generated ins-select-option element to the new ins-select element
+        newInsSelectEl.appendChild(insSelectOptionEl);
+    });
+    // set the id of the new ins-select element to the old ins-select's id name
+    newInsSelectEl.setAttribute('id', id);
+    // remove the old ins-select element
+    insSelectElParent.removeChild(insSelectEl);
+    // add the new ins-select element
+    insSelectElParent.appendChild(newInsSelectEl);
+  }
+
+  function successHandler (response) {
+    var options = JSON.parse(response);
+    setInsSelectOptions('#directSetDataSelect', options);
+  }
+
+  function errorHandler (error) {
+    console.log(error);
+  }
+
+  var xmlhttp = new XMLHttpRequest();
+  // Javascript ajax call
+  xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+        if (xmlhttp.status == 200) {
+          successHandler(JSON.parse(this.responseText));
+        }
+        else if (xmlhttp.status == 400) {
+          errorHandler();
+        }
+        else {
+            console.log('something else other than 200 was returned');
+        }
+      }
+  };
+
+  xmlhttp.open("GET", "https://gngyishvwl.execute-api.ap-southeast-2.amazonaws.com/insitesDummyStage/insites-dummy-api", true);
+  xmlhttp.send();
+&lt;/script&gt;
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Static Data Source" class="min-height-220">
+              <ins-styleguide-actual slot="actual">
+              {% assign label1="Android"%} {% assign value="Android"%}
+              {% assign label2="macOS"%} {% assign value1="macOS"%}
+              {% assign label3="Windows"%} {% assign value2="Windows"%}
+              <ins-select>
+                <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+                <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+                <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+              </ins-select>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+              <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-select>
+  <ins-select-option label="Android" value="Android" default></ins-select-option>
+  <ins-select-option label="iOS" value="iOS"></ins-select-option>
+  <ins-select-option label="Windows" value="Windows"></ins-select-option>
+</ins-select>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign label1="Android"%} {% assign value="Android"%}
+{% assign label2="macOS"%} {% assign value1="macOS"%}
+{% assign label3="Windows"%} {% assign value2="Windows"%}
+
+<ins-select>
+  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
+  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
+  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+</ins-select>
+                {%endraw%}</script>
+              </div>
+              </ins-styleguide-code>
+            </ins-styleguide>
+          </div>
+      <script src="../../../assets/js/ins.js"></script>
+<script>
+  setTimeout(() => {
+    // var insStyleGuideCode = document.querySelectorAll('ins-styleguide-code');
+
+    $('ins-styleguide-code').removeClass('opacity-trigger');
+  }, 500);
+</script>
