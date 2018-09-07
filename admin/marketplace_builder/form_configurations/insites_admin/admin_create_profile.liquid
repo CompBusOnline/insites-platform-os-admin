@@ -1,0 +1,214 @@
+---
+name: admin_create_profile
+resource: User
+resource_owner: anyone
+redirect_to: #
+configuration:
+  email:
+    property_options:
+      readonly: true
+  password:
+  name:
+    validation: { presence: true }
+  first_name:
+    validation: { presence: true }
+  last_name:
+    validation: { presence: true }
+  profiles:
+    administrator:
+      properties:
+        company:
+      enabled:
+        property_options:
+          default: true
+          readonly: true
+      validation:
+        presence: true
+    validation:
+      presence: true
+authorization_policies:
+  - only_allowed_by_administrators
+---
+<pre id="formConfig" style="display:none">
+  {{ form_builder.system_fields.authenticity_token | json}}
+</pre>
+
+<!--
+<form id="userFormId" name="userForm"
+  action="{{ form_builder.action }}" method="POST"
+  data-abide
+  data-live-validate="true"
+  novalidate onsubmit="event.preventDefault(); checkForm(this)">
+
+  <ins-card steady>
+    <div class="grid-container-full">
+      <div class="grid-x grid-padding-x">
+
+        <div class="large-6 medium-6 small-12 cell">
+          <div class="grid-x grid-padding-x">
+
+            <div class="large-12 cell">
+              <label class="form-label" for="userNameField">Name*
+                <input type="text"
+                  id="userNameField"
+                  name="userNameField"
+                  autocomplete="off"
+                  required
+                  onkeypress="checkKey" />
+
+                  <span class="form-error">
+                    Name is required.
+                  </span>
+              </label>
+            </div>
+          
+            <div class="large-12 cell">
+              <label class="form-label" for="userEmailField">Email*
+                <input type="email"
+                  id="userEmailField"
+                  name="userEmailField"
+                  autocomplete="off"
+                  required />
+                  <span class="form-error">
+                    Email is required.
+                  </span>
+              </label>
+            </div>
+          
+            <div class="large-12 cell">
+              <label class="form-label" for="userPasswordField">Password*
+                <input type="password"
+                  id="userPasswordField"
+                  name="userPasswordField"
+                  autocomplete="off" />
+              </label>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="large-6 medium-6 small-12 cell">
+          <div class="grid-x grid-padding-x">
+                <div class="large-12 cell">
+                  <label class="form-label" for="userCompanyField">Company
+                    <input type="tel"
+                      id="userCompanyField"
+                      name="userCompanyField"
+                      autocomplete="off" />
+                  </label>
+                </div>
+
+                <div class="large-12 cell">
+                  <label class="form-label" for="userPhoneField">Phone
+                    <input type="text"
+                      id="userPhoneField"
+                      name="userPhoneField"
+                      autocomplete="off"
+                      pattern="number"
+                      onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                  </label>
+                </div>
+
+                <div class="large-12 cell">
+                    <label class="form-label" for="userConfirmPasswordField">
+                      Confirm Password*
+                      <input type="password"
+                        id="userConfirmPasswordField"
+                        name="userConfirmPasswordField"
+                        autocomplete="off"
+                        data-equalto="userPasswordField" />
+                        
+                      <span class="form-error">
+                        Password does not match.
+                      </span>
+                    </label>
+                  </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </ins-card>
+
+  <div class="grid-container-full">
+    <div class="grid-x">
+      <div class="large-12 text-right cell submit-btn-wrap inline">
+        <input type="submit" id="submitButton" name="ADD" value="ADD" class="ripple-effects">
+      </div>
+    </div>
+  </div>
+  <script>
+    var formConfig = JSON.parse(document.getElementById('formConfig').innerHTML);
+    var headers = {
+      "X-CSRF-Token": formConfig.system_fields.authenticity_token,
+      "X-Requested-With": "XMLHttpRequest",
+      "Content-Type": "application/json"
+    }
+
+    function checkKey(event) {
+      var regex = new RegExp("^[a-zA-Z ]+$");
+      var key = String.fromCharCode(
+        !event.charCode ? event.which : event.charCode
+      );
+      if (!regex.test(key)) {
+        event.preventDefault();
+        return false;
+      }
+    }
+
+    function successHandler(res){
+      console.log('res', res);
+      $("#submitButton").attr("disabled", false);
+      swal('', 'User has been added.', 'success');
+    }
+
+    function errorHandler(err){
+      console.log('err', err);
+      $("#submitButton").attr("disabled", false);
+    }
+
+    function submitForm(formModel){
+      var options = {
+        headers: headers,
+        method: 'POST',
+        data: JSON.stringify(formModel),
+        success: successHandler,
+        error: errorHandler
+      };
+      $.ajax(formConfig.action, options);
+    }
+
+    function bindValues() {
+      var formModel = {
+        form_configuration_name: 'admin_update_profile',
+        form: {
+          email: $('#userEmailField').val(),
+          name: $('#userNameField').val(),
+          password: $('#userPasswordField').val(),
+          profiles_attributes: {
+            administrator_attributes: {
+              properties_attributes: {
+                company: $('#userCompanyField').val(),
+                phone: $('#userPhoneField').val()
+              }
+            }
+          }
+        }
+      }
+      if ($('#userPasswordField').val() === ''){
+        delete formModel.form.password;
+      }
+      submitForm(formModel);
+    }
+
+    function checkForm(form) {
+      $("#submitButton").attr("disabled", true);
+      if (!$("#userFormId .form-label").hasClass("is-invalid-label")) {
+        bindValues();
+      } else {
+        $("#submitButton").attr("disabled", false);
+      }
+    }
+  </script>
+  -->

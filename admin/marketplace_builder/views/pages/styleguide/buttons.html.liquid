@@ -20,8 +20,42 @@ format: html
     .opacity-trigger > div {
       opacity: 0;
     }
+    .button-container {
+        width: 171px;
+    }
+    .button-container ins-button button {
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        width: 171px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+    .button-container ins-button button.is-loading {
+        width: 56px;
+        -webkit-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    .button-container ins-button button.is-loading .spinner {
+        margin: 0 auto;
+    }
     ins-styleguide-actual ins-button {
       float: left;
+    }
+    .multiple-button ins-button:first-of-type {
+        padding-left: 0;
+    }
+    .multiple-button ins-button:last-of-type {
+        padding-right: 0;
+    }
+    .multiple-button ins-button {
+        padding: 0 5px;
+    }
+    @media only screen and (max-width: 320px) {
+      .content-wrap {
+        padding: 0;
+      }
     }
   </style>
 
@@ -33,7 +67,7 @@ format: html
               {% assign icon="icon-email-1"%}
               {% assign color="blue"%}
               {% assign size="normal"%}
-                <ins-button label="{{label}}" icon="{{icon}}" solid color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" icon="{{ icon }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -48,11 +82,11 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
-            icon="{{icon}}" 
+<ins-button label="{{ label }}" 
+            icon="{{ icon }}" 
             solid 
-            color="{{color}}" 
-            size="{{size}}">
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
                 </div>
@@ -75,10 +109,11 @@ format: html
             <ins-styleguide label="Direct Set Data">
               <ins-styleguide-actual slot="actual">
               {% assign label="Direct Set Data"%}
+
                 <ins-button id="dsv"></ins-button>
                 <script>
                   setTimeout(function () {
-                    ins('#dsv').val('label', '{{label}}');
+                    ins('#dsv').val('label', '{{ label }}');
                   }, 500);
 
                 </script>
@@ -100,12 +135,13 @@ format: html
                   <br /><p><strong>LIQUID:</strong></p>
                   <script type="text/plain" class="language-markup">{%raw%}
 {% assign label="Direct Set Data"%}
+
 <ins-button id="dsv"></ins-button>
 
 <script src="/assets/js/ins.js">&lt;/script&gt;
 <script>
     setTimeout(function() {
-      ins('#dsv').val('label', '{{label}}');
+      ins('#dsv').val('label', '{{ label }}');
       // update `label` attribute of the component
     }, 100)
 &lt;/script&gt;
@@ -119,7 +155,7 @@ format: html
               {% assign label="Open"%}
               {% assign color="positive"%}
               {% assign size="normal"%}
-                <ins-button label="{{label}}" solid color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -133,10 +169,10 @@ format: html
 {% assign color="positive"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
+<ins-button label="{{ label }}" 
             solid 
-            color="{{color}}" 
-            size="{{size}}">
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
 {%endraw%}</script>
                 </div>
@@ -147,7 +183,7 @@ format: html
               <ins-styleguide-actual slot="actual">
               {% assign color="negative"%}
               {% assign label="Delete"%}
-                <ins-button disabled solid color="{{color}}" label="{{label}}"></ins-button>
+                <ins-button disabled solid color="{{ color }}" label="{{ label }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
@@ -159,10 +195,11 @@ format: html
                   <script type="text/plain" class="language-markup">{%raw%}
 {% assign color="negative"%}
 {% assign label="Delete"%}
+
 <ins-button disabled 
             solid 
-            color="{{color}}" 
-            label="{{label}}">
+            color="{{ color }}" 
+            label="{{ label }}">
 </ins-button>
                   {%endraw%}</script>
                 </div>
@@ -172,7 +209,7 @@ format: html
             <ins-styleguide label="Label Attribute">
               <ins-styleguide-actual slot="actual">
               {% assign label="Label Change"%}
-                <ins-button label="{{label}}"></ins-button>
+                <ins-button label="{{ label }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -184,7 +221,7 @@ format: html
                 <script type="text/plain" class="language-markup">{%raw%}
 {% assign label="Label Change"%}
 
-<ins-button label="{{label}}"></ins-button>
+<ins-button label="{{ label }}"></ins-button>
                 {%endraw%}</script>
               </div>
               </ins-styleguide-code>
@@ -193,7 +230,7 @@ format: html
             <ins-styleguide label="Color Attribute">
               <ins-styleguide-actual slot="actual">
               {% assign color="positive"%}
-                <ins-button color="{{color}}"></ins-button>
+                <ins-button color="{{ color }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -205,7 +242,7 @@ format: html
                 <script type="text/plain" class="language-markup">{%raw%}
 {% assign color="positive"%}
 
-<ins-button color="{{color}}"></ins-button>
+<ins-button color="{{ color }}"></ins-button>
 {%endraw%}</script>
               </div>
               </ins-styleguide-code>
@@ -214,7 +251,7 @@ format: html
             <ins-styleguide label="Size Attribute">
               <ins-styleguide-actual slot="actual">
               {% assign size="large"%}
-                <ins-button size="{{size}}"></ins-button>
+                <ins-button size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -226,12 +263,11 @@ format: html
                 <script type="text/plain" class="language-markup">{%raw%}
 {% assign size="large"%}
 
-<ins-button size="{{size}}"></ins-button>
+<ins-button size="{{ size }}"></ins-button>
                 {%endraw%}</script>
               </div>
               </ins-styleguide-code>
             </ins-styleguide>
-
           </div>
 
 
@@ -257,9 +293,9 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
-            color="{{color}}" 
-            size="{{size}}">
+<ins-button label="{{ label }}" 
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -271,7 +307,7 @@ format: html
               {% assign label="NORMAL"%}
               {% assign color="blue"%}
               {% assign size="normal"%}
-                <ins-button label="{{label}}" solid color="{[color]}" size="{[size]}"></ins-button>
+                <ins-button label="{{ label }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -285,10 +321,10 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
+<ins-button label="{{ label }}" 
             solid 
-            color="{[color]}" 
-            size="{[size]}">
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -300,7 +336,7 @@ format: html
               {% assign label="OUTLINED"%}
               {% assign color="blue"%}
               {% assign size="normal"%}
-                <ins-button label="{{label}}" color="{{color}}" outlined size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -314,10 +350,10 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
-            color="{{color}}" 
+<ins-button label="{{ label }}" 
+            color="{{ color }}" 
             outlined 
-            size="{{size}}">
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -330,7 +366,7 @@ format: html
               {% assign icon="icon-email-1"%}
               {% assign color="blue"%}
               {% assign size="normal"%}
-                <ins-button label="{{label}}" icon="{{icon}}" color="{{color}}" size="{[size]}"></ins-button>
+                <ins-button label="{{ label }}" icon="{{ icon }}" color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -345,10 +381,10 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
-            icon="{{icon}}" 
-            color="{{color}}" 
-            size="{[size]}">
+<ins-button label="{{ label }}" 
+            icon="{{ icon }}" 
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -362,7 +398,7 @@ format: html
               {% assign icon="icon-email-1"%}
               {% assign color="blue"%}
               {% assign size="normal"%}
-                <ins-button label="{{label}}" icon="{{icon}}" solid color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" icon="{{ icon }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger"slot="code">
               <div>
@@ -377,11 +413,11 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
-            icon="{{icon}}" 
+<ins-button label="{{ label }}" 
+            icon="{{ icon }}" 
             solid 
-            color="{{color}}" 
-            size="{{size}}">
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -395,7 +431,7 @@ format: html
                 {% assign icon="icon-email-1"%}
                 {% assign color="blue"%}
                 {% assign size="normal"%}
-                <ins-button label="{{label}}" icon="{{icon}}" color="{{color}}" outlined size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" icon="{{ icon }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -410,11 +446,11 @@ format: html
 {% assign color="blue"%}
 {% assign size="normal"%}
 
-<ins-button label="{{label}}" 
-            icon="{{icon}}" 
-            color="{{color}}" 
+<ins-button label="{{ label }}" 
+            icon="{{ icon }}" 
+            color="{{ color }}" 
             outlined 
-            size="{{size}}">
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -429,7 +465,7 @@ format: html
               {% assign color="grey"%}
               {% assign size="normal"%}
               {% assign label=""%}
-                <ins-button icon="{{icon}}" color="{{color}}" size="{{size}}" label="{{label}}"></ins-button>
+                <ins-button icon="{{ icon }}" color="{{ color }}" size="{{ size }}" label="{{ label }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -444,10 +480,10 @@ format: html
 {% assign size="normal"%}
 {% assign label=""%}
 
-<ins-button icon="{{icon}}" 
-            color="{{color}}" 
-            size="{{size}}" 
-            label="{{label}}">
+<ins-button icon="{{ icon }}" 
+            color="{{ color }}" 
+            size="{{ size }}" 
+            label="{{ label }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -463,7 +499,7 @@ format: html
               {% assign label="SMALL"%}
               {% assign color="blue"%}
               {% assign size="small"%}
-                <ins-button label="{{label}}" solid color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger"slot="code">
               <div>
@@ -477,9 +513,9 @@ format: html
 {% assign color="blue"%}
 {% assign size="small"%}
 
-<ins-button label="{{label}}" 
-            solid color="{{color}}" 
-            size="{{size}}">
+<ins-button label="{{ label }}" 
+            solid color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                  {%endraw%}</script>
               </div>
@@ -493,7 +529,7 @@ format: html
                 {% assign label="LARGE"%}
                 {% assign color="blue"%}
                 {% assign size="large"%}
-                <ins-button label="{{label}}" solid color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -507,10 +543,10 @@ format: html
 {% assign color="blue"%}
 {% assign size="large"%}
 
-<ins-button label="{{label}}" 
+<ins-button label="{{ label }}" 
             solid 
-            color="{{color}}" 
-            size="{{size}}">
+            color="{{ color }}" 
+            size="{{ size }}">
 </ins-button>
                 {%endraw%}</script>
               </div>
@@ -523,12 +559,17 @@ format: html
             <h2 class="section-title">Colours</h2>
             <ins-styleguide label="Primary">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-                {% assign label="TEXT"%} {% assign color="primary"%} {% assign size="normal"%}
-                {% assign label1="NORMAL"%} {% assign color1="primary"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="primary"%} {% assign size2="normal"%}
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              <div>
+                {% assign label="TEXT"%} 
+                {% assign color="primary"%} 
+                {% assign size="normal"%}
+                {% assign label1="NORMAL"%} 
+                {% assign label2="OUTLINED"%} 
+                
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -540,13 +581,15 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign label="TEXT"%} {% assign color="primary"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="primary"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="primary"%} {% assign size2="normal"%}
+{% assign label="TEXT"%} 
+{% assign color="primary"%} 
+{% assign size="normal"%}
+{% assign label1="NORMAL"%} 
+{% assign label2="OUTLINED"%} 
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
                 {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -556,13 +599,17 @@ format: html
 
              <ins-styleguide label="Positive">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-                {% assign label1="NORMAL"%} {% assign color1="positive"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="positive"%} {% assign size2="normal"%}
-                {% assign label="TEXT"%} {% assign color="positive"%} {% assign size="normal"%}
-
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              <div>
+                {% assign label="TEXT"%} 
+                {% assign color="positive"%} 
+                {% assign size="normal"%}
+                {% assign label1="NORMAL"%}
+                {% assign label2="OUTLINED"%} 
+                
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -574,13 +621,15 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-  {% assign label="TEXT"%} {% assign color="positive"%} {% assign size="normal"%}
-  {% assign label1="NORMAL"%} {% assign color1="positive"%} {% assign size1="normal"%}
-  {% assign label2="OUTLINED"%} {% assign color2="positive"%} {% assign size2="normal"%}
+{% assign label="TEXT"%} 
+{% assign color="positive"%} 
+{% assign size="normal"%}
+{% assign label1="NORMAL"%}
+{% assign label2="OUTLINED"%} 
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
                 {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
@@ -588,13 +637,15 @@ format: html
 
             <ins-styleguide label="Secondary">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-                {% assign label1="NORMAL"%} {% assign color1="secondary"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="secondary"%} {% assign size2="normal"%}
+              <div>
                 {% assign label="TEXT"%} {% assign color="secondary"%} {% assign size="normal"%}
-
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+                {% assign label1="NORMAL"%}
+                {% assign label2="OUTLINED"%} 
+                
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -607,12 +658,12 @@ format: html
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="TEXT"%} {% assign color="secondary"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="secondary"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="secondary"%} {% assign size2="normal"%}
+{% assign label1="NORMAL"%}
+{% assign label2="OUTLINED"%} 
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
                 {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -620,13 +671,17 @@ format: html
 
              <ins-styleguide label="Negative">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-                {% assign label1="NORMAL"%} {% assign color1="negative"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="negative"%} {% assign size2="normal"%}
-                {% assign label="TEXT"%} {% assign color="negative"%} {% assign size="normal"%}
-               
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              <div>
+                {% assign label="TEXT"%} 
+                {% assign color="negative"%} 
+                {% assign size="normal"%}
+                {% assign label1="NORMAL"%} 
+                {% assign label2="OUTLINED"%} 
+                
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -638,13 +693,15 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign label="TEXT"%} {% assign color="negative"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="negative"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="negative"%} {% assign size2="normal"%}
+{% assign label="TEXT"%} 
+{% assign color="negative"%} 
+{% assign size="normal"%}
+{% assign label1="NORMAL"%} 
+{% assign label2="OUTLINED"%} 
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
                 {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -653,13 +710,15 @@ format: html
             <ins-styleguide label="Warning">
               <ins-styleguide-actual slot="actual" class="multiple-button">
               <div>
-                {% assign label1="NORMAL"%} {% assign color1="warning"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="warning"%} {% assign size2="normal"%}
-                {% assign label="TEXT"%} {% assign color="warning"%} {% assign size="normal"%}
+                {% assign label1="NORMAL"%} 
+                {% assign color="warning"%} 
+                {% assign size="normal"%}
+                {% assign label2="OUTLINED"%} 
+                {% assign label="TEXT"%} 
 
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
               </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
@@ -672,13 +731,15 @@ format: html
                 </script>
                  <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign label="TEXT"%} {% assign color="warning"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="warning"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="warning"%} {% assign size2="normal"%}
+{% assign label1="NORMAL"%} 
+{% assign color="warning"%} 
+{% assign size="normal"%}
+{% assign label2="OUTLINED"%} 
+{% assign label="TEXT"%} 
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color}}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
                 {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -686,13 +747,17 @@ format: html
 
              <ins-styleguide label="Information 1">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-                {% assign label1="NORMAL"%} {% assign color1="information-1"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="information-1"%} {% assign size2="normal"%}
-                {% assign label="TEXT"%} {% assign color="information-1"%} {% assign size="normal"%}
-                
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+              <div>
+                {% assign label1="NORMAL"%} 
+                {% assign color="information-1"%} 
+                {% assign size="normal"%}
+                {% assign label2="OUTLINED"%} 
+                {% assign label="TEXT"%}
+
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>  
+                 <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -704,13 +769,15 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign label="TEXT"%} {% assign color="information-1"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="information-1"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="information-1"%} {% assign size2="normal"%}
+{% assign label1="NORMAL"%} 
+{% assign color="information-1"%} 
+{% assign size="normal"%}
+{% assign label2="OUTLINED"%} 
+{% assign label="TEXT"%}
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>  
                 {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
@@ -718,14 +785,17 @@ format: html
 
              <ins-styleguide label="Information 2">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-                {% assign label1="NORMAL"%} {% assign color1="information-2"%} {% assign size1="normal"%}
-                {% assign label2="OUTLINED"%} {% assign color2="information-2"%} {% assign size2="normal"%}
-                {% assign label="TEXT"%} {% assign color="information-2"%} {% assign size="normal"%}
+              <div>
+                {% assign label1="NORMAL"%} 
+                {% assign color="information-2"%} 
+                {% assign size="normal"%}
+                {% assign label2="OUTLINED"%} 
+                {% assign label="TEXT"%} 
 
-                
-                <ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-                <ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                <ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
+                <ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+                <ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
+                <ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
@@ -737,65 +807,155 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign label="TEXT"%} {% assign color="information-2"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="information-2"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="information-2"%} {% assign size2="normal"%}
+{% assign label1="NORMAL"%} 
+{% assign color="information-2"%} 
+{% assign size="normal"%}
+{% assign label2="OUTLINED"%} 
+{% assign label="TEXT"%} 
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
+<ins-button label="{{ label }}" color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label1 }}" solid color="{{ color }}" size="{{ size }}"></ins-button>
+<ins-button label="{{ label2 }}" color="{{ color }}" outlined size="{{ size }}"></ins-button>
                 {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
             </ins-styleguide> 
 
           </div>
-          <div>
 
-           <div>
-            <h2 class="section-title">Loading State</h2>
-            <ins-styleguide>
+          <!-- LOADING STATE -->
+        <div>
+          <h2 class="section-title">Loading State</h2>
+          <ins-styleguide label="Default Button">
               <ins-styleguide-actual slot="actual" class="multiple-button">
-              {% assign label="TEXT"%} {% assign color="blue"%} {% assign size="normal"%}
-              {% assign label1="NORMAL"%} {% assign color1="blue"%} {% assign size1="normal"%}
-              {% assign label2="OUTLINED"%} {% assign color2="blue"%} {% assign size2="normal"%}
-                <ins-button label="NORMAL" solid color="blue" size="normal" loading></ins-button>
-                <ins-button label="OUTLINED" color="blue" outlined size="normal"></ins-button>
-                <ins-button label="TEXT" color="blue" size="normal" loading></ins-button>
+                  {% assign label="OUTLINED"%} 
+                  {% assign color="blue"%} 
+                  {% assign size="normal"%}
+                  <ins-button label="{{ label }}" color="{{ color }}" solid size="{{ size }}" loading></ins-button>
               </ins-styleguide-actual>
-              <ins-styleguide-code class="opacity-trigger" slot="code">
-                <div>
-                <p><strong>HTML: </strong></p>
-                <script type="text/plain" class="language-markup">
-<ins-button label="TEXT" color="blue" size="normal" loading></ins-button>
-<ins-button label="NORMAL" solid color="blue" size="normal" loading></ins-button>
-<ins-button label="OUTLINED" color="blue" outlined size="normal" loading></ins-button>
-                </script>
-                <br /><p><strong>LIQUID: </strong></p>
-                <script type="text/plain" class="language-markup">{% raw %}
-{% assign label="TEXT"%} {% assign color="blue"%} {% assign size="normal"%}
-{% assign label1="NORMAL"%} {% assign color1="blue"%} {% assign size1="normal"%}
-{% assign label2="OUTLINED"%} {% assign color2="blue"%} {% assign size2="normal"%}
 
-<ins-button label="{{label}}" color="{{color}}" size="{{size}}"></ins-button>
-<ins-button label="{{label1}}" solid color="{{color1}}" size="{{size1}}"></ins-button>
-<ins-button label="{{label2}}" color="{{color2}}" outlined size="{{size2}}"></ins-button>
-                {% endraw %}</script>
+              <ins-styleguide-code slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-button label="OUTLINED" color="blue" solid size="normal" loading></ins-button>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="OUTLINED"%} 
+{% assign color="blue"%} 
+{% assign size="normal"%}
+
+<ins-button label="{{ label }}" color="{{ color }}" solid size="{{ size }}" loading></ins-button>
+                  {%endraw%}</script>
                 </div>
               </ins-styleguide-code>
-            </ins-styleguide>
-          </div> 
+          </ins-styleguide>
+
+          <ins-styleguide label="Small Button">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                  {% assign label="OUTLINED"%} 
+                  {% assign color="blue"%} 
+                  {% assign size="small"%}
+                  <ins-button label="{{ label }}" color="{{ color }}" solid size="{{ size }}" loading></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-button label="OUTLINED" color="blue" solid size="small" loading></ins-button>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="OUTLINED"%} 
+{% assign color="blue"%} 
+{% assign size="small"%}
+
+<ins-button label="{{ label }}" color="{{ color }}" solid size="{{ size }}" loading></ins-button>
+                  {%endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+          </ins-styleguide>
+          <ins-styleguide label="Large Button">
+              <ins-styleguide-actual slot="actual" class="multiple-button">
+                  {% assign label="OUTLINED"%} 
+                  {% assign color="blue"%} 
+                  {% assign size="large"%}
+                  <ins-button label="{{ label }}" color="{{ color }}" solid size="{{ size }}" loading></ins-button>
+              </ins-styleguide-actual>
+              <ins-styleguide-code slot="code">
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-button label="OUTLINED" color="blue" solid size="large" loading></ins-button>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign label="OUTLINED"%} 
+{% assign color="blue"%} 
+{% assign size="large"%}
+
+<ins-button label="{{ label }}" color="{{ color }}" solid size="{{ size }}" loading></ins-button>
+                {%endraw%}</script>
+                </div>
+              </ins-styleguide-code>
+          </ins-styleguide>
+          <ins-styleguide label="Loading button Press">
+              <ins-style-actual slot="actual" class="multiple-button">
+                  <div class="button-container">
+                      <ins-button id="submitButton" label="Loading button" color="blue" solid></ins-button>
+                  </div>
+              </ins-style-actual>
+              <ins-styleguide-code slot="code">
+                  <div>
+                    <p><strong>HTML: </strong></p>
+                    <script type="text/plain" class="language-markup">
+<ins-button id="submitButton" label="Loading button" color="blue" solid></ins-button>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{%raw%}
+{% assign id="submitButton"%}
+{% assign label="Loading button"%}
+
+<ins-button id="{{ id }}" label="{{ label }}" color="blue" solid></ins-button>
+                {%endraw%}</script>
+                  </div>
+              </ins-styleguide-code>
+          </ins-styleguide>
+          <script>
+            var submitButtonEl = document.getElementById('submitButton');
+
+            submitButtonEl.addEventListener('click', function () {
+                setTimeout(() => {
+                    submitButtonEl.loading = true;
+
+                    setTimeout(() => {
+                        submitButtonEl.loading = false;
+                    }, 1300);
+
+                }, 700);
+            });
+        </script>
+      </div>
 
           <div>
             <h2 class="section-title">Bullet</h2>
             <ins-styleguide>
               <ins-styleguide-actual slot="actual">
-              {% assign name="radio"%} {% assign label="Radio"%} {% assign value="radio"%}
-              {% assign name1="radio"%} {% assign label1="Television"%} {% assign value1="television"%}
-              {% assign name2="radio"%} {% assign label2="Newspaper"%} {% assign value2="newspaper"%}
-                <ins-radio name="{{name}}" label="{{label}}" value="{{value}}"></ins-radio>
-                <ins-radio name="{{name1}}" label="{{label1}}" value="{{value1}}" checked></ins-radio>
-                <ins-radio name="{{name2}}" label="{{label2}}" value="{{value2}}"></ins-radio>
+              <div>
+              {% assign name="radio"%} 
+              {% assign label="Radio"%} 
+              {% assign value="radio"%}
+                                       
+              {% assign label1="Television"%} 
+              {% assign value1="television"%}
+                                       
+              {% assign label2="Newspaper"%} 
+              {% assign value2="newspaper"%}
+                <ins-radio name="{{ name }}" label="{{ label }}" value="{{ value }}"></ins-radio>
+                <ins-radio name="{{ name }}" label="{{ label1 }}" value="{{ value1 }}" checked></ins-radio>
+                <ins-radio name="{{ name }}" label="{{ label2 }}" value="{{ value2 }}"></ins-radio>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -807,13 +967,19 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign name="radio"%} {% assign label="Radio"%} {% assign value="radio"%}
-{% assign name1="radio"%} {% assign label1="Television"%} {% assign value1="television"%}
-{% assign name2="radio"%} {% assign label2="Newspaper"%} {% assign value2="newspaper"%}
+{% assign name="radio"%} 
+{% assign label="Radio"%} 
+{% assign value="radio"%}
+                         
+{% assign label1="Television"%} 
+{% assign value1="television"%}
+                         
+{% assign label2="Newspaper"%} 
+{% assign value2="newspaper"%}
 
-<ins-radio name="{{name}}" label="{{label}}" value="{{value}}"></ins-radio>
-<ins-radio name="{{name1}}" label="{{label1}}" value="{{value1}}" checked></ins-radio>
-<ins-radio name="{{name2}}" label="{{label2}}" value="{{value2}}"></ins-radio>
+<ins-radio name="{{ name }}" label="{{ label }}" value="{{ value }}"></ins-radio>
+<ins-radio name="{{ name }}" label="{{ label1 }}" value="{{ value1 }}" checked></ins-radio>
+<ins-radio name="{{ name }}" label="{{ label2 }}" value="{{ value2 }}"></ins-radio>
                 {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -824,10 +990,12 @@ format: html
             <h2 class="section-title">Check boxes</h2>
             <ins-styleguide>
               <ins-styleguide-actual slot="actual">
-              {% assign label="Windows"%} {% assign value="Windows"%}
-              {% assign checked_label="Linux"%} {% assign value1="Windows"%}
-                <ins-checkbox label="{{label}}" value="{{value}}"></ins-checkbox>
-                <ins-checkbox checked label="{{checked_label}}" value="{{value1}}"></ins-checkbox>
+              <div>
+                {% assign label="Windows"%} {% assign value="Windows"%}
+                {% assign checked_label="Linux"%}
+                <ins-checkbox label="{{ label }}" value="{{ value }}"></ins-checkbox>
+                <ins-checkbox checked label="{{ checked_label }}" value="{{ value1 }}"></ins-checkbox>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -840,11 +1008,10 @@ format: html
                 <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="Windows"%} 
 {% assign value="Windows"%}
-{% assign checked_label="Linux"%} 
-{% assign value1="Windows"%}
+{% assign checked_label="Linux"%}
 
-<ins-checkbox label="{{label}}" value="{{value}}"></ins-checkbox>
-<ins-checkbox checked label="{{checked_label}}" value="{{value1}}"></ins-checkbox>
+<ins-checkbox label="{{ label }}" value="{{ value }}"></ins-checkbox>
+<ins-checkbox checked label="{{ checked_label }}" value="{{ value1 }}"></ins-checkbox>
                 {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -855,9 +1022,12 @@ format: html
             <h2 class="section-title">Toggle switch</h2>
             <ins-styleguide>
               <ins-styleguide-actual slot="actual">
-              {% assign value=""%} {% assign label="Off"%} {% assign label1="On"%}
-                <ins-toggle-switch value="" label="Off"></ins-toggle-switch>
-                <ins-toggle-switch value="" label="On" checked></ins-toggle-switch>
+              <div>
+                {% assign label="Off"%} 
+                {% assign label1="On"%}
+                <ins-toggle-switch value="" label="{{ label }}"></ins-toggle-switch>
+                <ins-toggle-switch value="" label="{{ label1 }}" checked></ins-toggle-switch>
+              </div>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
@@ -868,7 +1038,6 @@ format: html
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-{% assign value=""%} 
 {% assign label="Off"%} 
 {% assign label1="On"%}
 
@@ -881,6 +1050,8 @@ format: html
 </div>
 <script>
   setTimeout(() => {
+    // var insStyleGuideCode = document.querySelectorAll('ins-styleguide-code');
+
     $('ins-styleguide-code').removeClass('opacity-trigger');
   }, 500);
 </script>

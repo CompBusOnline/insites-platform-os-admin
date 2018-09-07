@@ -18,22 +18,42 @@ layout_name: admin/insites_empty
       color: #2C3148;
     }
     .opacity-trigger > div {
-            opacity: 0;
-        }
+        opacity: 0;
+    }
+    @media (max-width: 1024px) {
+      .ins-styleguide-actual-slot-wrap,
+      .ins-styleguide-code-slot-wrap {
+        width: 100%;
+        float: none;
+      }
+      #selectSection .ins-styleguide-wrap .ins-styleguide-actual-slot-wrap,
+      #selectSection .ins-styleguide-wrap .ins-styleguide-code-slot-wrap {
+        overflow: initial;
+      }
+    }
+    @media only screen and (max-width: 320px) {
+      .content-wrap {
+        padding: 0;
+      }
+    }
   </style>
   
-        <div>
+        <div id="selectSection">
             <h2 class="section-title">Complete Examples</h2>
             <ins-styleguide label="Default Dropdown">
               <ins-styleguide-actual slot="actual">
-              {% assign label="Operating System"%} 
-              {% assign label1="Windows"%} {% assign value="Windows"%}
-              {% assign label2="macOS"%} {% assign value1="macOS"%}
-              {% assign label3="Linux"%} {% assign value2="Linux"%}
-                <ins-select label="{{label}}">
-                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                {% assign label="Operating System"%} 
+                {% assign label1="Windows"%} 
+                {% assign value="Windows"%}
+                {% assign label2="macOS"%} 
+                {% assign value1="macOS"%}
+                {% assign label3="Linux"%} 
+                {% assign value2="Linux"%}
+
+                <ins-select label="{{ label }}">
+                  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+                  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+                  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
                 </ins-select>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
@@ -49,14 +69,17 @@ layout_name: admin/insites_empty
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="Operating System"%} 
-{% assign label1="Windows"%} {% assign value="Windows"%}
-{% assign label2="macOS"%} {% assign value1="macOS"%}
-{% assign label3="Linux"%} {% assign value2="Linux"%}
+{% assign label1="Windows"%} 
+{% assign value="Windows"%}
+{% assign label2="macOS"%} 
+{% assign value1="macOS"%}
+{% assign label3="Linux"%} 
+{% assign value2="Linux"%}
 
-<ins-select label="{{label}}">
-  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+<ins-select label="{{ label }}">
+  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
 </ins-select>
               {% endraw %}</script>
               </div>
@@ -66,14 +89,18 @@ layout_name: admin/insites_empty
             <ins-styleguide label="Searchable Dropdown">
                 <ins-styleguide-actual slot="actual">
                   {% assign label="Operating System"%} 
-                  {% assign label1="Windows"%} {% assign value="Windows"%}
-                  {% assign label2="macOS"%} {% assign value1="macOS"%}
-                  {% assign label3="Linux"%} {% assign value2="Linux"%}
-                <ins-select label="{{label}}" searchable>
-                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
-                </ins-select>
+                  {% assign label1="Windows"%} 
+                  {% assign value="Windows"%}
+                  {% assign label2="macOS"%} 
+                  {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} 
+                  {% assign value2="Linux"%}
+
+                  <ins-select label="{{ label }}" searchable>
+                    <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+                    <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+                    <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
+                  </ins-select>
                 </ins-styleguide-actual>
                 <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
@@ -88,14 +115,17 @@ layout_name: admin/insites_empty
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="Operating System"%} 
-{% assign label1="Windows"%} {% assign value="Windows"%}
-{% assign label2="macOS"%} {% assign value1="macOS"%}
-{% assign label3="Linux"%} {% assign value2="Linux"%}
+{% assign label1="Windows"%} 
+{% assign value="Windows"%}
+{% assign label2="macOS"%} 
+{% assign value1="macOS"%}
+{% assign label3="Linux"%} 
+{% assign value2="Linux"%}
 
-<ins-select label="{{label}} searchable">
-  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+<ins-select label="{{ label }} searchable">
+  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
 </ins-select>
               {% endraw %}</script>
               </div>
@@ -105,14 +135,18 @@ layout_name: admin/insites_empty
             <ins-styleguide label="Multiselect Dropdown">
                 <ins-styleguide-actual slot="actual">
                   {% assign label="Operating System"%} 
-                  {% assign label1="Windows"%} {% assign value="Windows"%}
-                  {% assign label2="macOS"%} {% assign value1="macOS"%}
-                  {% assign label3="Linux"%} {% assign value2="Linux"%}
-                <ins-select label="{{label}}" multiple>
-                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
-                </ins-select>
+                  {% assign label1="Windows"%} 
+                  {% assign value="Windows"%}
+                  {% assign label2="macOS"%} 
+                  {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} 
+                  {% assign value2="Linux"%}
+
+                  <ins-select label="{{ label }}" multiple>
+                    <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+                    <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+                    <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
+                  </ins-select>
                 </ins-styleguide-actual>
                 <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
@@ -127,14 +161,17 @@ layout_name: admin/insites_empty
                  <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="Operating System"%} 
-{% assign label1="Windows"%} {% assign value="Windows"%}
-{% assign label2="macOS"%} {% assign value1="macOS"%}
-{% assign label3="Linux"%} {% assign value2="Linux"%}
+{% assign label1="Windows"%} 
+{% assign value="Windows"%}
+{% assign label2="macOS"%} 
+{% assign value1="macOS"%}
+{% assign label3="Linux"%} 
+{% assign value2="Linux"%}
 
-<ins-select label="{{label}} multiple">
-  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+<ins-select label="{{ label }} multiple">
+  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
 </ins-select>
               {% endraw %}</script>
                 </div>
@@ -144,14 +181,18 @@ layout_name: admin/insites_empty
             <ins-styleguide label="Dropdown Button with Search Bar">
                 <ins-styleguide-actual slot="actual">
                   {% assign label="Operating System"%} 
-                  {% assign label1="Windows"%} {% assign value="Windows"%}
-                  {% assign label2="macOS"%} {% assign value1="macOS"%}
-                  {% assign label3="Linux"%} {% assign value2="Linux"%}
-                <ins-select label="{{label}}" searchable button>
-                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
-                </ins-select>
+                  {% assign label1="Windows"%} 
+                  {% assign value="Windows"%}
+                  {% assign label2="macOS"%} 
+                  {% assign value1="macOS"%}
+                  {% assign label3="Linux"%} 
+                  {% assign value2="Linux"%}
+
+                  <ins-select label="{{ label }}" searchable button>
+                    <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+                    <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+                    <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
+                  </ins-select>
                 </ins-styleguide-actual>
                 <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
@@ -166,14 +207,17 @@ layout_name: admin/insites_empty
                   <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="Operating System"%} 
-{% assign label1="Windows"%} {% assign value="Windows"%}
-{% assign label2="macOS"%} {% assign value1="macOS"%}
-{% assign label3="Linux"%} {% assign value2="Linux"%}
+{% assign label1="Windows"%} 
+{% assign value="Windows"%}
+{% assign label2="macOS"%} 
+{% assign value1="macOS"%}
+{% assign label3="Linux"%} 
+{% assign value2="Linux"%}
 
-<ins-select label="{{label}} searchable button">
-  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+<ins-select label="{{ label }} searchable button">
+  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
 </ins-select>
                 {% endraw %}</script>
               </div>
@@ -186,33 +230,37 @@ layout_name: admin/insites_empty
                   {% assign label1="Windows"%} {% assign value="Windows"%}
                   {% assign label2="macOS"%} {% assign value1="macOS"%}
                   {% assign label3="Linux"%} {% assign value2="Linux"%}
-                <ins-select label="{{label}}" small button>
-                  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-                  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-                  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
-                </ins-select>
+
+                  <ins-select label="{{ label }}" small button>
+                    <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+                    <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+                    <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
+                  </ins-select>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML: </strong></p>
                   <script type="text/plain" class="language-markup">
-  <ins-select label="Operating System" small button>
-    <ins-select-option label="Windows" value="Windows" default></ins-select-option>
-    <ins-select-option label="Linux" value="Linux"></ins-select-option>
-    <ins-select-option label="macOS" value="macOS"></ins-select-option>
-  </ins-select>
+<ins-select label="Operating System" small button>
+  <ins-select-option label="Windows" value="Windows" default></ins-select-option>
+  <ins-select-option label="Linux" value="Linux"></ins-select-option>
+  <ins-select-option label="macOS" value="macOS"></ins-select-option>
+</ins-select>
                 </script>
                    <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 {% assign label="Operating System"%} 
-{% assign label1="Windows"%} {% assign value="Windows"%}
-{% assign label2="macOS"%} {% assign value1="macOS"%}
-{% assign label3="Linux"%} {% assign value2="Linux"%}
+{% assign label1="Windows"%} 
+{% assign value="Windows"%}
+{% assign label2="macOS"%} 
+{% assign value1="macOS"%}
+{% assign label3="Linux"%} 
+{% assign value2="Linux"%}
 
-<ins-select label="{{label}} small button">
-  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+<ins-select label="{{ label }} small button">
+  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
 </ins-select>
                 {% endraw %}</script>
                 </div>
@@ -233,10 +281,11 @@ layout_name: admin/insites_empty
               <ins-styleguide-actual slot="actual">
                 <ins-select id="dsv" label="name"></ins-select>
                 {% assign label="Direct Set Value"%}
+
                 <script>
                   // setTimeout is used to avoid race conditions
                   setTimeout (function(){
-                    ins('#dsv').val('label', '{{label}}')
+                    ins('#dsv').val('label', '{{ label }}')
                   }, 100)
                 </script>
               </ins-styleguide-actual>
@@ -256,35 +305,40 @@ layout_name: admin/insites_empty
                   </script>
                   <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
-  <ins-select id="dsv"></ins-select>
+<ins-select id="dsv"></ins-select>
 {% assign label="Direct Set Value"%}
-  <script>
-    // setTimeout is used to avoid race conditions
-    setTimeout (function() {
-      ins('#dsv').val('label', '{{label}}')
-      // update `label` attribute of the component
-    }, 100)
-  &lt;/script&gt;
+
+<script>
+  // setTimeout is used to avoid race conditions
+  setTimeout (function() {
+    ins('#dsv').val('label', '{{ label }}')
+    // update `label` attribute of the component
+  }, 100)
+&lt;/script&gt;
                 {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Static Data -->
             <ins-styleguide label="Static Data Source">
               <ins-styleguide-actual slot="actual">
-              {% assign label="select"%}
-                <ins-select label="{{label}}" searchable></ins-select>
+                {% assign label="select"%}
+
+                <ins-select label="{{ label }}" searchable></ins-select>
                 </ins-select>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
-              <div>
-                <p><strong>HTML: </strong></p>
-                  <script type="text/plain" class="language-markup"><ins-select label="select" searchable></ins-select></script>
-                <br /><p><strong>LIQUID: </strong></p>
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-select label="select" searchable></ins-select>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{%raw%}
 {% assign label="select"%}
 
-<ins-select label="{{label}}" searchable></ins-select>
+<ins-select label="{{ label }}" searchable></ins-select>
                   {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -292,18 +346,21 @@ layout_name: admin/insites_empty
 
             <ins-styleguide label="Placeholder Attribute">
               <ins-styleguide-actual slot="actual">
-              {% assign placeholder="Value Change"%}
-                <ins-select placeholder="{{placeholder}}"></ins-select>
+                {% assign placeholder="Value Change"%}
+
+                <ins-select placeholder="{{ placeholder }}"></ins-select>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
                 <p><strong>HTML: </strong></p>
-                <script type="text/plain" class="language-markup"><ins-select placeholder="Value Change"></ins-select></script>
+                <script type="text/plain" class="language-markup">
+<ins-select placeholder="Value Change"></ins-select>
+                </script>
                 <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{%raw%}
 {% assign placeholder="Value Change"%}
 
-<ins-select placeholder="{{placeholder}}"></ins-select>
+<ins-select placeholder="{{ placeholder }}"></ins-select>
                   {% endraw %}</script>
               </div>
               </ins-styleguide-code>
@@ -495,13 +552,17 @@ layout_name: admin/insites_empty
 
             <ins-styleguide label="Static Data Source" class="min-height-220">
               <ins-styleguide-actual slot="actual">
-              {% assign label1="Android"%} {% assign value="Android"%}
-              {% assign label2="macOS"%} {% assign value1="macOS"%}
-              {% assign label3="Windows"%} {% assign value2="Windows"%}
+              {% assign label1="Android"%} 
+              {% assign value="Android"%}
+              {% assign label2="macOS"%} 
+              {% assign value1="macOS"%}
+              {% assign label3="Windows"%} 
+              {% assign value2="Windows"%}
+
               <ins-select>
-                <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-                <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-                <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+                <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+                <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+                <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
               </ins-select>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
@@ -516,14 +577,17 @@ layout_name: admin/insites_empty
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{%raw%}
-{% assign label1="Android"%} {% assign value="Android"%}
-{% assign label2="macOS"%} {% assign value1="macOS"%}
-{% assign label3="Windows"%} {% assign value2="Windows"%}
+{% assign label1="Android"%} 
+{% assign value="Android"%}
+{% assign label2="macOS"%} 
+{% assign value1="macOS"%}
+{% assign label3="Windows"%} 
+{% assign value2="Windows"%}
 
 <ins-select>
-  <ins-select-option label="{{label1}}" value="{{value}}" default></ins-select-option>
-  <ins-select-option label="{{label2}}" value="{{value1}}"></ins-select-option>
-  <ins-select-option label="{{label3}}" value="{{value2}}"></ins-select-option>
+  <ins-select-option label="{{ label1 }}" value="{{ value }}" default></ins-select-option>
+  <ins-select-option label="{{ label2 }}" value="{{ value1 }}"></ins-select-option>
+  <ins-select-option label="{{ label3 }}" value="{{ value2 }}"></ins-select-option>
 </ins-select>
                 {%endraw%}</script>
               </div>

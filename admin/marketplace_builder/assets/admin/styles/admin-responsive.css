@@ -1,0 +1,34 @@
+@media only screen and (max-width: 414px) {
+  .welcome-wrap {
+    position: relative;
+    height: 265px;
+    width: 100%;
+    padding-top: 35px; }
+    .welcome-wrap > h1 {
+      font-size: 32px;
+      font-weight: 300; }
+    .welcome-wrap > p {
+      font-size: 16px; }
+    .welcome-wrap .welcome-logo-wrap .welcome-logo {
+      margin-left: -10px;
+      margin-bottom: 5px; }
+
+  .sign-in.form-wrap img {
+    margin-bottom: 6%; }
+  .sign-in.content-wrap {
+    margin-left: unset;
+    padding-top: 10px; }
+  .sign-in .logo-wrap > img {
+    max-width: 55%; }
+
+  #adminSignIn .form-wrap .submit-btn-wrap button {
+    margin-top: 5px; } }
+#adminSignIn .error-submit-sign-in {
+  font-size: 14px;
+  color: #f27474;
+  font-weight: normal; }
+  @media only screen and (max-width: 414px) {
+    #adminSignIn .error-submit-sign-in {
+      font-size: 12px; } }
+
+/*# sourceMappingURL=admin-responsive.css.map */

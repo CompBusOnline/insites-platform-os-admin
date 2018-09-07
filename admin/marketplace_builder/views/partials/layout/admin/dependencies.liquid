@@ -16,6 +16,8 @@
 
 <link rel="stylesheet" href="{{ 'admin/styles/prism.css' | asset_url }}">
 <link rel="stylesheet" href="{{ 'admin/styles/app.css' | asset_url }}">
+<!-- <link rel="stylesheet" href="{{ 'admin/styles/admin.css' | asset_url }}"> -->
+<link rel="stylesheet" href="{{ 'admin/styles/admin-responsive.css' | asset_url }}">
 
 <script src="{{ 'admin/scripts/ins.js' | asset_url }}"></script>
 <script src="{{ 'admin/scripts/web_components/insites.js' | asset_url }}"></script>
@@ -23,10 +25,11 @@
 <script src="{{ 'admin/scripts/app.js' | asset_url }}"></script>
 <script src="{{ 'admin/scripts/toastr/toastr.min.js' | asset_url }}"></script>
 
-<link href="{{ 'admin/spa/css/app.c15534ac.css' | asset_url }}" rel=preload as=style>
-<link href="{{ 'admin/spa/js/app.dc5e3fc2.js' | asset_url }}" rel=preload as=script>
-<link href="{{ 'admin/spa/js/chunk-vendors.5b0259ae.js' | asset_url }}" rel=preload as=script>
-<link href="{{ 'admin/spa/css/app.c15534ac.css' | asset_url }}" rel=stylesheet>
+<link href="{{ 'admin/insites/css/app.0b4292db.css' | asset_url }}" rel=preload as=style>
+<link href="{{ 'admin/insites/js/app.8d3a32ef.js' | asset_url }}" rel=preload as=script>
+<link href="{{ 'admin/insites/js/chunk-vendors.b6904cb5.js' | asset_url }}" rel=preload as=script>
+<link href="{{ 'admin/insites/css/app.0b4292db.css' | asset_url }}" rel=stylesheet>
+<link href="{{ 'admin/insites/css/insites-custom.css' | asset_url }}" rel=stylesheet>
 
 <style>
   body {
@@ -43,6 +46,19 @@
     url("{{ 'admin/fonts/insites-20-fonticon.svg' | asset_url }}") format('svg');
     font-weight: normal;
     font-style: normal;
+  }
+
+  #toast-container .toast.toast-error {
+    background-color: #f27474
+  }
+  #toast-container .toast.toast-error:before {
+    content: "\e943";
+  }
+  .ins-input-tel-wrap .ins-form-field.ins-form-field[readonly],
+  .ins-input-tel-wrap input.ins-form-field[readonly] {
+    border-color: #e4e6ec!important;
+    background-color: #fafbfc;
+    color: #8c94a4;
   }
 </style>
 

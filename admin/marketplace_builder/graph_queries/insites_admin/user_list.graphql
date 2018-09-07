@@ -1,0 +1,14 @@
+query user_list {
+  users {
+    id
+    slug
+    name
+    email
+    administrator: profile(profile_type: "administrator") {
+      id
+      phone: property(name: "phone")
+      company: property(name: "company")
+      username: property(name: "username")
+    }
+  }
+}

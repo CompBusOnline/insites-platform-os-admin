@@ -1,0 +1,62 @@
+#app { position: relative; }
+.ins-renderer-wrap__title { padding: 0; margin-bottom: 10px; }
+.ins-form-error {
+    visibility: hidden;
+}
+.ins-sw-in.is-invalid .ins-form-error {
+    visibility: visible;
+}
+ins-button button {
+    font-family: 'Open Sanes', sans-serif;
+    font-size: 12px;	
+    font-weight: 600;
+    height: 32px;	
+    letter-spacing: 1px;	
+    line-height: 17px;	
+    text-align: center;
+}
+
+ins-checkbox .ins-checkbox-wrap [type='checkbox'] {
+    border: 1px solid #E4E6EB;
+    background: #ffffff;
+    vertical-align: middle;
+}
+
+ins-checkbox .ins-checkbox-wrap [type='checkbox']:checked::before {  
+    right: -1px;
+}
+
+.ins-select-wrap.buttonise:before { 
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 3px solid #8c94a4;
+    right: 7px;
+    top: calc(50% - 2px);
+    }
+
+.ins-select-wrap.buttonise .ins-select-label-wrap span {
+    font-family: 'Open Sanes', sans-serif;
+    font-size: 10px;
+    font-weight: 600;	
+    line-height: 14px;
+    padding-right: 15px;
+}
+ins-select {
+    line-height: 22px;
+}
+.ibt-table-wrap.no-label .ibt-table-header-wrap { padding-bottom: 15px; }
+.ibt-table-wrap .ibt-table_td.has-link { color: #1E86E3; }
+.ibt-table-wrap .ibt-table_td.has-link:hover span { font-weight: 600; }
+.ibt-table-wrap .ibt-table_td.has-link:hover .action-item { 
+    font-weight: 400; 
+    margin: 15px 0;
+}
+
+.ibt-table-wrap .ibt-table-action-container ins-select-wrap.buttonise .ins-select-label-wrap { 
+    padding: 1px 2px;
+}
+.ibt-table-wrap .ibt-table-action-container .ins-button { 
+    padding: 0 12px;
+}
+
+    

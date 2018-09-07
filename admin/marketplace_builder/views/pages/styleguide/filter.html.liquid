@@ -3,31 +3,55 @@ slug: admin/styleguide/filters
 layout_name: admin/insites_empty
 format: html
 ---
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: transparent;
+<style>
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: transparent;
+}
+h2.section-title {
+    font-family: "Open Sans", sans-serif;
+    padding-bottom: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: solid 1px #eee;
+    margin: 40px 0 0px;
+    color: #2C3148;
+}
+@media (max-width: 1024px) {
+    .ins-styleguide-actual-slot-wrap,
+    .ins-styleguide-code-slot-wrap {
+      width: 100%;
+      float: none;
     }
-    h2.section-title {
-      font-family: "Open Sans", sans-serif;
-      padding-bottom: 10px;
-      font-weight: 600;
-      font-size: 18px;
-      border-bottom: solid 1px #eee;
-      margin: 40px 0 0px;
-      color: #2C3148;
+    #filterSection .ins-styleguide-wrap .ins-styleguide-actual-slot-wrap,
+    #filterSection .ins-styleguide-wrap .ins-styleguide-code-slot-wrap {
+       overflow: initial;
     }
-  </style>
+  }
+@media only screen and (max-width: 320px) {
+    .content-wrap {
+        padding: 0;
+    }
+}
+</style>
 
-
-<body><div>
+<div id="filterSection">
     <h2 class="section-title">Complete Example</h2>
     <ins-styleguide class="equal-width">
         <ins-styleguide-actual slot="actual">
             <ins-filter with-date-filter date-title="Date Period">
                 {% assign name="Status"%}
-                <ins-filter-item id="filterID" name="{{name}}" options='["All Status", "Pending", "Completed", "Declined"]'>
+
+                <ins-filter-item 
+                    id="filterID" 
+                    name="{{ name }}" 
+                    options='[
+                        "All Status", 
+                        "Pending", 
+                        "Completed", 
+                        "Declined"
+                    ]'>
                 </ins-filter-item>
             </ins-filter>
         </ins-styleguide-actual>
@@ -36,8 +60,14 @@ format: html
             <p><strong>HTML: <strong></p>
             <script type="text/plain" class="language-markup">
 <ins-filter with-date-filter date-title="Date Period">
-    <ins-filter-item name="Status"
-                    options='["All Status", "Pending", "Completed", "Declined"]'>
+    <ins-filter-item 
+        name="Status"
+        options='[
+            "All Status", 
+            "Pending", 
+            "Completed", 
+            "Declined"
+        ]'>
     </ins-filter-item>
 </ins-filter>
             </script>
@@ -45,15 +75,27 @@ format: html
             <script type="text/plain" class="language-markup">{%raw%}
 <ins-filter with-date-filter date-title="Date Period">
     {% assign name="Status"%}
-    <ins-filter-item name="{{name}}" options='["All Status", "Pending", "Completed", "Declined"]'>
-</ins-filter-item>
+
+    <ins-filter-item 
+        name="{{ name }}" 
+        options='[
+            "All Status", 
+            "Pending", 
+            "Completed", 
+            "Declined"
+        ]'>
+    </ins-filter-item>
             {%endraw%}</script>
         </div>
         </ins-styleguide-code>
     </ins-styleguide>
     <h2 class="section-title">ins-filter</h2>
     <ins-styleguide label="Default State" class="equal-width">
-
+        <!--
+            dateFrom
+            dateTo
+            dateOpt
+            -->
         <ins-styleguide-actual slot="actual">
             <ins-filter></ins-filter>
         </ins-styleguide-actual>
@@ -64,20 +106,25 @@ format: html
         </ins-styleguide-code>
     </ins-styleguide>
     <ins-styleguide label="Direct Set Data" class="equal-width">
-
+        <!--
+            can't update options on ins-filter-item
+            -->
         <ins-styleguide-actual slot="actual">
             <ins-filter id="directDataSourceFilter"></ins-filter>
+            {% assign defaultDate="Last Year"%}
+            {% assign dateTitle="Direct Set Value"%}
+
             <script>
-                {% assign defaultDate="Last Year"%}
-                {% assign dateTitle=""%}
                 setTimeout(function () {
                     ins('#directDataSourceFilter').val('withDateFilter', true);
-                    ins('#directDataSourceFilter').val('defaultDate', 'Last Year');
-                    ins('#directDataSourceFilter').val('dateTitle', 'Direct Set Value');
+                    ins('#directDataSourceFilter').val('defaultDate', '{{ defaultDate }}');
+                    ins('#directDataSourceFilter').val('dateTitle', '{{ dateTitle }}');
                 }, 500);
             </script>
         </ins-styleguide-actual>
         <ins-styleguide-code slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
             <script type="text/plain" class="language-markup">
 <ins-filter id="directDataSourceFilter"></ins-filter>
 
@@ -92,22 +139,58 @@ setTimeout(function(){
 }, 500);
 &lt;/script&gt;
             </script>
+            <br /><p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+{% assign defaultDate="Last Year"%}
+{% assign dateTitle="Direct Set Value"%}
+
+<ins-filter id="directDataSourceFilter"></ins-filter>
+
+<script>
+    
+    setTimeout(function () {
+        ins('#directDataSourceFilter').val('withDateFilter', true);
+        ins('#directDataSourceFilter').val('defaultDate', '{{ defaultDate }}');
+        ins('#directDataSourceFilter').val('dateTitle', '{{ dateTitle }}');
+    }, 500);
+&lt;/script&gt;
+            {%endraw%}</script>
+        </div>
         </ins-styleguide-code>
     </ins-styleguide>
+
     <ins-styleguide label="Static Data Source" class="equal-width">
         <ins-styleguide-actual slot="actual">
-            <ins-filter with-date-filter
-                        date-title="Custom Date Filter Title"
-                        default-date="Last Year">
+            {% assign date-title="Custom Date Filter Title"%}
+            {% assign default-date="Last Year"%}
+
+            <ins-filter 
+                with-date-filter
+                date-title="{{ date-title }}"
+                default-date="{{ default-date }}">
             </ins-filter>
         </ins-styleguide-actual>
         <ins-styleguide-code slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
             <script type="text/plain" class="language-markup">
 <ins-filter with-date-filter
             date-title="Custom Date Filter Title"
             default-date="Last Year">
 </ins-filter>
             </script>
+            <br /><p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+{% assign date-title="Custom Date Filter Title"%}
+{% assign default-date="Last Year"%}
+
+<ins-filter 
+    with-date-filter
+    date-title="{{ date-title }}"
+    default-date="{{ default-date }}">
+</ins-filter>
+            {%endraw%}</script>
+        </div>
         </ins-styleguide-code>
     </ins-styleguide>
     <h2 class="section-title">ins-filter-item</h2>
@@ -130,17 +213,19 @@ setTimeout(function(){
             </ins-filter>
             <script>
                 var options;
+
                 setTimeout(function () {
                     $.ajax({
                         type: "GET",
                         async: false,
-                        url: '/styleguide/data/filter-options.json',
+                        url: '/styleguide/data/filter-options1.json',
                         success: function(response){
                             options = response;
                             console.log('options', options);
                         }
                     });
-                    ins('#directSetDataFilterItem').val('name', 'Operating System');
+
+                    ins('#directSetDataFilterItem').val('name', 'Position');
                     ins('#directSetDataFilterItem').val('options', options);
                 }, 500);
             </script>
@@ -157,8 +242,8 @@ setTimeout(function(){
 <script>
     // setTimeout is used to avoid race conditions
     setTimeout(function(){
-        ins('#directSetDataFilterItem').val('name', 'Operating System');
-        ins('#directSetDataFilterItem').val('options', '["Windows", "macOS", "Linux"]');
+        ins('#directSetDataFilterItem').val('name', 'Position');
+        ins('#directSetDataFilterItem').val('options', '["CEO", "Manager"]');
     // update `name` and `options` attribute of the component
     }, 500);
 &lt;/script&gt;
@@ -175,12 +260,13 @@ setTimeout(function(){
         $.ajax({
             type: "GET",
             async: false,
-            url: '/styleguide/data/filter-options.json',
+            url: '/styleguide/data/filter-options1.json',
             success: function(response){
                 options = response;
                 console.log('options', options);
             }
         });
+
         ins('#directSetDataFilterItem').val('name', 'Operating System');
         ins('#directSetDataFilterItem').val('options', options);
     }, 500);
@@ -202,7 +288,7 @@ layout_name: ''
         <ins-styleguide-actual slot="actual">
             <ins-filter>
                 {% assign name="Operating System"%}
-                <ins-filter-item name="{{name}}" options='["Windows", "macOS", "Linux"]'></ins-filter-item>
+                <ins-filter-item name="{{ name }}" options='["Windows", "macOS", "Linux"]'></ins-filter-item>
             </ins-filter>
         </ins-styleguide-actual>
         <ins-styleguide-code slot="code">
@@ -210,8 +296,13 @@ layout_name: ''
             <p><strong>HTML: </strong></p>
             <script type="text/plain" class="language-markup">
 <ins-filter>
-    <ins-filter-item name="Operating System"
-                    options='["Windows", "macOS", "Linux"]'>
+    <ins-filter-item 
+        name="Operating System"
+        options='[
+            "Windows", 
+            "macOS", 
+            "Linux"
+        ]'>
     </ins-filter-item>
 </ins-filter>
             </script>
@@ -219,13 +310,14 @@ layout_name: ''
             <script type="text/plain" class="language-markup">{%raw%}
 <ins-filter>
     {% assign name="Operating System"%}
-    <ins-filter-item name="{{name}}" options='https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/filter-options.json'></ins-filter-item>
+
+    <ins-filter-item 
+        name="{{ name }}" 
+        options='https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/filter-options.json'>
+    </ins-filter-item>
 </ins-filter>
             {%endraw%}</script>
         </div>
         </ins-styleguide-code>
     </ins-styleguide>
 </div>
-
-</body>
-</html>

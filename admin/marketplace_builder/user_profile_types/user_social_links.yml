@@ -1,0 +1,14 @@
+name: Social Links
+custom_attributes:
+- name: facebook_link
+  attribute_type: string
+- name: youtube_link
+  attribute_type: string
+- name: google_plus_link
+  attribute_type: string
+- name: twitter_link
+  attribute_type: string
+- name: linkedin_link
+  attribute_type: string
+- name: instagram_link
+  attribute_type: string

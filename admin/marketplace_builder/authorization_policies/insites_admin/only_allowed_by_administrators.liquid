@@ -1,0 +1,8 @@
+---
+name: only_allowed_by_administrators
+redirect_to: /unauthorized
+flash_alert: Please login as administrator to access this page.
+---
+
+{% query_graph 'current_user', result_name: 'g' %}
+{% if g.current_user.administrator %} true {% endif %}

@@ -1,0 +1,16 @@
+---
+name: example_api_call
+to: 'https://example.com/endpoint/{{ form.id }}'
+delay: 0
+enabled: true
+format: http
+trigger_condition: true
+request_type: POST
+headers: '{
+  "Content-Type": "application/json"
+}'
+---
+{
+  "first_name": "{{ form.first_name }}",
+  "id": "{{ form.id }}"
+}

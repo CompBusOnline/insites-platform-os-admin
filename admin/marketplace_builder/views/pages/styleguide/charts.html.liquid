@@ -30,6 +30,7 @@ authorization_policies:
     <div>
         <div>
             <h2 class="section-title">Complete Examples</h2>
+            <!-- Sparkline Complete Example -->
             <ins-styleguide label="Sparkline Chart">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -47,7 +48,7 @@ authorization_policies:
                                 url: '/styleguide/data/sparkline-chart.json',
                                 success: function(response){
                                     dataSpark = response.data;
-                                    console.log(dataSpark);
+                                    // console.log(dataSpark);
                                 }
                             });
                             ins('#sparkLineChartID').val('chartData', dataSpark);
@@ -59,7 +60,13 @@ authorization_policies:
                         <p><strong>HTML: </strong></p>
                     
                     <script type="text/plain" class="language-markup">
-<ins-sparkline id="sparkLineChartID" icon="icon-analytic-1" name="Profits" value="370" percentage="26" description="From previous year"
+<ins-sparkline 
+    id="sparkLineChartID" 
+    icon="icon-analytic-1" 
+    name="Profits" 
+    value="370" 
+    percentage="26" 
+    description="From previous year"
     movement="0">
 </ins-sparkline>
 
@@ -120,6 +127,7 @@ layout_name: ''
 </div>
                 </ins-styleguide-code>
             </ins-styleguide>
+            <!-- Bar Chart Complete Example -->
             <ins-styleguide label="Bar Chart">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -134,7 +142,7 @@ layout_name: ''
                                 url: '/styleguide/data/bar-chart.json',
                                 success: function(response){
                                     barChartSample = response;
-                                    console.log('barChartSample', barChartSample);
+                                    // console.log('barChartSample', barChartSample);
                                 }
                             });
                             var name = 'Sessions';
@@ -142,7 +150,7 @@ layout_name: ''
                             ins('#barChartID').val('name', name);
                             ins('#barChartID').val('chartData', barChartSample);
                             ins('#barChartID').val('categories', barChartCat);
-                            console.log();
+                            // console.log();
                         }, 1000);
                     </script>
                 </ins-styleguide-actual>
@@ -179,7 +187,12 @@ layout_name: ''
     }
   ];
   // sets the categories for the chart
-  var barChartCat = ["Jan - Apr 18", "May - Jul 18", "Aug - Oct 18", "Sept - Dec 18"];
+  var barChartCat = [
+    "Jan - Apr 18", 
+    "May - Jul 18", 
+    "Aug - Oct 18", 
+    "Sept - Dec 18"
+  ];
 
   // setTimeout is used to avoid race conditions
   setTimeOut(() => {
@@ -234,6 +247,8 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
 
+
+            <!-- Line Chart Complete Example -->
             <ins-styleguide label="Line Chart">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -241,10 +256,22 @@ query get-data {
                     </ins-card>
                     <script>
                         var chartTitle = 'Monthly Average Temperature';
-                        var lineChartCat = ['Jaaan 18', 'Feb 18', 'Mar 18', 'Apr 18', 'May 18', 'Jun 18', 'Jul 18',
-                            'Aug 18', 'Sep 18', 'Oct 18', 'Nov 18', 'Dec 18'
+                        var lineChartCat = [
+                            'Jan 18', 
+                            'Feb 18', 
+                            'Mar 18', 
+                            'Apr 18', 
+                            'May 18', 
+                            'Jun 18', 
+                            'Jul 18',
+                            'Aug 18', 
+                            'Sep 18', 
+                            'Oct 18', 
+                            'Nov 18', 
+                            'Dec 18'
                         ];
                         var lineChartSample;
+
                         setTimeout(() => {
                             $.ajax({
                                 type: "GET",
@@ -252,7 +279,7 @@ query get-data {
                                 url: '/styleguide/data/line-chart.json',
                                 success: function(response){
                                     lineChartSample = response;
-                                    console.log('lineChartSample', lineChartSample);
+                                    // console.log('lineChartSample', lineChartSample);
                                 }
                             });
                             ins('#lineChartID').val('name', chartTitle);
@@ -311,8 +338,19 @@ query get-data {
     }
 ];
 // sets the categories for the chart
-var lineChartCat = ['Jan 18', 'Feb 18', 'Mar 18', 'Apr 18', 'May 18', 'Jun 18', 'Jul 18',
-    'Aug 18', 'Sep 18', 'Oct 18', 'Nov 18', 'Dec 18'
+var lineChartCat = [
+    'Jan 18', 
+    'Feb 18', 
+    'Mar 18', 
+    'Apr 18', 
+    'May 18', 
+    'Jun 18', 
+    'Jul 18',
+    'Aug 18', 
+    'Sep 18', 
+    'Oct 18', 
+    'Nov 18', 
+    'Dec 18'
 ];
 
 // setTimeout is used to avoid race conditions
@@ -330,8 +368,19 @@ setTimeout(() => {
 
 <script>
     var chartTitle = 'Monthly Average Temperature';
-    var lineChartCat = ['Jaaan 18', 'Feb 18', 'Mar 18', 'Apr 18', 'May 18', 'Jun 18', 'Jul 18',
-        'Aug 18', 'Sep 18', 'Oct 18', 'Nov 18', 'Dec 18'
+    var lineChartCat = [
+        'Jan 18', 
+        'Feb 18', 
+        'Mar 18', 
+        'Apr 18', 
+        'May 18', 
+        'Jun 18', 
+        'Jul 18',
+        'Aug 18', 
+        'Sep 18', 
+        'Oct 18', 
+        'Nov 18', 
+        'Dec 18'
     ];
     var lineChartSample;
     setTimeout(() => {
@@ -369,6 +418,7 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
             <h2 class="section-title">Sparklines</h2>
+            <!-- Default Data Source -->
             <ins-styleguide label="Default State">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -383,15 +433,23 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Direct Set Data -->
             <ins-styleguide label="Direct Set Data">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
-                        <ins-sparkline id="directDataSourceSpark" icon="icon-user-1" name="Direct Data Source" value="720" percentage="7" description="From previous year"
+                        <ins-sparkline 
+                            id="directDataSourceSpark" 
+                            icon="icon-user-1" 
+                            name="Direct Data Source" 
+                            value="720" 
+                            percentage="7" 
+                            description="From previous year"
                             movement="1">
                         </ins-sparkline>
                     </ins-card>
                     <script>
                         var data;
+
                         setTimeout(function () {
                             $.ajax({
                                 type: "GET",
@@ -399,7 +457,7 @@ query get-data {
                                 url: '/styleguide/data/directset-chart.json',
                                 success: function(response){
                                     data = response;
-                                    console.log('data', data);
+                                    // console.log('data', data);
                                 }
                             });
                             ins('#directDataSourceSpark').val('chartData', data)
@@ -432,11 +490,18 @@ query get-data {
                         </script>
                         <br /><p><strong>LIQUID: </strong></p>
                         <script type="text/plain" class="language-markup">{% raw %}
-<ins-sparkline id="directDataSourceSpark" icon="icon-user-1" name="Direct Data Source" value="720" percentage="7" description="From previous year"
+<ins-sparkline 
+    id="directDataSourceSpark" 
+    icon="icon-user-1" 
+    name="Direct Data Source" 
+    value="720" 
+    percentage="7" 
+    description="From previous year"
     movement="1">
 </ins-sparkline>
 <script>
     var data;
+
     setTimeout(function () {
         $.ajax({
             type: "GET",
@@ -455,13 +520,18 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Static Data Source -->
             <ins-styleguide label="Static Data Source">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
-                        {% assign id="staticDataSource"%}       {% assign value="720"%}
-                        {% assign icon="icon-analytic-1"%}      {% assign percentage="7"%}
-                        {% assign name="Static Data Source"%}   {% assign description="From previous year"%}
-                        <ins-sparkline id="{{id}}" icon="{{icon}}" name="{{name}}" value="{{value}}" percentage="{{percentage}}" description="{{description}}"
+                        {% assign id="staticDataSource"%}       
+                        {% assign value="720"%}
+                        {% assign icon="icon-analytic-1"%}      
+                        {% assign percentage="7"%}
+                        {% assign name="Static Data Source"%}   
+                        {% assign description="From previous year"%}
+
+                        <ins-sparkline id="{{ id }}" icon="{{ icon }}" name="{{ name }}" value="{{ value }}" percentage="{{ percentage }}" description="{{ description }}"
                             movement="increase">
                         </ins-sparkline>
                     </ins-card>
@@ -476,11 +546,20 @@ query get-data {
                         </script>
                         <br /><p><strong>LIQUID: </strong></p>
                         <script type="text/plain" class="language-markup">{%raw%}
-{% assign id="staticDataSource"%}       {% assign value="720"%}
-{% assign icon="icon-analytic-1"%}      {% assign percentage="7"%}
-{% assign name="Static Data Source"%}   {% assign description="From previous year"%}
+{% assign id="staticDataSource"%}       
+{% assign value="720"%}
+{% assign icon="icon-analytic-1"%}      
+{% assign percentage="7"%}
+{% assign name="Static Data Source"%}   
+{% assign description="From previous year"%}
 
-<ins-sparkline id="{{id}}" icon="{{icon}}" name="{{name}}" value="{{value}}" percentage="{{percentage}}" description="{{description}}"
+<ins-sparkline 
+    id="{{ id }}" 
+    icon="{{ icon }}" 
+    name="{{ name }}" 
+    value="{{ value }}" 
+    percentage="{{ percentage }}" 
+    description="{{ description }}"
     movement="increase">
 </ins-sparkline>
                         {%endraw%}</script>
@@ -488,10 +567,11 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Dynamic Data Source -->
             <ins-styleguide label="Dynamic Data Source">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
-                        <ins-sparkline data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/dynamic-chart.json">
+                        <ins-sparkline data-src="https://insites.staging-oregon.near-me.com/styleguide/data/dynamic-chart.json">
                         </ins-sparkline>
                     </ins-card>
                 </ins-styleguide-actual>
@@ -512,8 +592,10 @@ query get-data {
             </ins-styleguide>
         </div>
 
+        <!-- Bar Chart-->
         <div>
             <h2 class="section-title">Bar Chart</h2>
+            <!-- Bar Chart Default State -->
             <ins-styleguide label="Default State">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -527,6 +609,7 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Bar Chart Static Direct Set Data-->
             <ins-styleguide label="Direct Set Data">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -534,6 +617,7 @@ query get-data {
                     </ins-card>
                     <script>
                             var barChartSampledata;
+
                             setTimeout(function () {
                                 $.ajax({
                                     type: "GET",
@@ -541,13 +625,17 @@ query get-data {
                                     url: '/styleguide/data/bar-chart.json',
                                     success: function(response){
                                         barChartSampledata = response;
-                                        console.log('barChartSampledata', barChartSampledata);
+                                        // console.log('barChartSampledata', barChartSampledata);
                                     }
                                 });
                             var name = 'Direct Set Data';
-                            var barChartCategories = ["Jan - Apr 18", "May - Jul 18", "Aug - Oct 18",
+                            var barChartCategories = [
+                                "Jan - Apr 18", 
+                                "May - Jul 18", 
+                                "Aug - Oct 18",
                                 "Sept - Dec 18"
                             ];
+
                             ins('#barChartDS').val('name', name);
                             ins('#barChartDS').val('chartData', barChartSampledata);
                             ins('#barChartDS').val('categories', barChartCategories);
@@ -585,7 +673,10 @@ query get-data {
             color: "#2BBAD9"
         }
     ];
-    var barChartCategories = ["Jan - Apr 18", "May - Jul 18", "Aug - Oct 18",
+    var barChartCategories = [
+        "Jan - Apr 18", 
+        "May - Jul 18", 
+        "Aug - Oct 18",
         "Sept - Dec 18"
     ];
     ins('#barChartDS').val('name', name);
@@ -600,6 +691,7 @@ query get-data {
 
 <script>
     var barChartSampledata;
+
     setTimeout(function () {
         $.ajax({
             type: "GET",
@@ -611,7 +703,10 @@ query get-data {
             }
         });
     var name = 'Direct Set Data';
-    var barChartCategories = ["Jan - Apr 18", "May - Jul 18", "Aug - Oct 18",
+    var barChartCategories = [
+        "Jan - Apr 18", 
+        "May - Jul 18", 
+        "Aug - Oct 18",
         "Sept - Dec 18"
     ];
     ins('#barChartDS').val('name', name);
@@ -639,12 +734,13 @@ query get-data {
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Bar Chart Static Data-->
             <ins-styleguide label="Static Data Source">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
                         {% assign id="barChart"%}
                         {% assign name="Bar Chart"%}
-                        <ins-bar-chart id="{{id}}" name="{{name}}" chartData="" categories="">
+                        <ins-bar-chart id="{{ id }}" name="{{ name }}" chartData="" categories="">
                         </ins-bar-chart>
                     </ins-card>
                 </ins-styleguide-actual>
@@ -659,28 +755,40 @@ query get-data {
                     <script type="text/plain" class="language-markup">{%raw%}
 {% assign id="barChart"%}
 {% assign name="Bar Chart"%}
-<ins-bar-chart id="{{id}}" name="{{name}}" chartData="" categories="">
+
+<ins-bar-chart id="{{ id }}" name="{{ name }}" chartData="" categories="">
                     {%endraw%}</script>
                 </div>
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Bar Chart Dynamic Data Source-->
             <ins-styleguide label="Dynamic Data Source">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
-                        <ins-bar-chart id="barChart" name="Column Chart" data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/bar-chart-sample.json"></ins-bar-chart>
+                        <ins-bar-chart 
+                            id="barChart" 
+                            name="Column Chart" 
+                            data-src="https://insites.staging-oregon.near-me.com/styleguide/data/bar-chart-sample.json">
+                        </ins-bar-chart>
                     </ins-card>
                 </ins-styleguide-actual>
                 <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                     <p><strong>HTML: </strong></p>
                     <script type="text/plain" class="language-markup">
-<ins-bar-chart id="barChart" name="Column Chart" data-src="https://9p1pa4b3fa.execute-api.us-east-2.amazonaws.com/insites-barchart-deployment/insites-dummy-barchart">
+<ins-bar-chart 
+    id="barChart" 
+    name="Column Chart" 
+    data-src="https://9p1pa4b3fa.execute-api.us-east-2.amazonaws.com/insites-barchart-deployment/insites-dummy-barchart">
 </ins-bar-chart>
                     </script>
                     <br /><p><strong>LIQUID: </strong></p>
                     <script type="text/plain" class="language-markup">
-<ins-bar-chart id="barChart" name="Column Chart" data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/bar-chart-sample.json">
+<ins-bar-chart 
+    id="barChart" 
+    name="Column Chart" 
+    data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/bar-chart-sample.json">
 </ins-bar-chart>
                     </script>
                 </div>
@@ -688,8 +796,10 @@ query get-data {
             </ins-styleguide>
         </div>
 
+        <!-- line Chart-->
         <div>
             <h2 class="section-title">Line Chart</h2>
+            <!-- Line Chart Default State -->
             <ins-styleguide label="Default State">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -704,6 +814,7 @@ query get-data {
             </ins-styleguide>
 
 
+            <!-- Line Chart Static Direct Set Data-->
             <ins-styleguide label="Direct Set Data">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
@@ -711,10 +822,22 @@ query get-data {
                     </ins-card>
                     <script>
                         var name = 'Direct Set Data';
-                        var lineChartCategories = ['Jan 18', 'Feb 18', 'Mar 18', 'Apr 18', 'May 18', 'Jun 18', 'Jul 18',
-                            'Aug 18', 'Sep 18', 'Oct 18', 'Nov 18', 'Dec 18'
+                        var lineChartCategories = [
+                            'Jan 18', 
+                            'Feb 18', 
+                            'Mar 18', 
+                            'Apr 18', 
+                            'May 18', 
+                            'Jun 18', 
+                            'Jul 18',
+                            'Aug 18', 
+                            'Sep 18', 
+                            'Oct 18', 
+                            'Nov 18', 
+                            'Dec 18'
                         ];
                         var lineChartData;
+
                         setTimeout(function () {
                             $.ajax({
                                 type: "GET",
@@ -722,9 +845,10 @@ query get-data {
                                 url: '/styleguide/data/line-chart-direct.json',
                                 success: function(response){
                                     lineChartData = response;
-                                    console.log('lineChartData', lineChartData);
+                                    // console.log('lineChartData', lineChartData);
                                 }
                             });
+
                             ins('#directSetDataLine').val('name', name);
                             ins('#directSetDataLine').val('chartData', lineChartData);
                             ins('#directSetDataLine').val('categories', lineChartCategories);
@@ -781,8 +905,19 @@ query get-data {
     }
 ];
 // sets the categories for the chart
-var lineChartCategories = ['Jan 18', 'Feb 18', 'Mar 18', 'Apr 18', 'May 18', 'Jun 18',
-    'Jul 18', 'Aug 18', 'Sep 18', 'Oct 18', 'Nov 18', 'Dec 18'
+var lineChartCategories = [
+    'Jan 18', 
+    'Feb 18', 
+    'Mar 18', 
+    'Apr 18', 
+    'May 18', 
+    'Jun 18', 
+    'Jul 18', 
+    'Aug 18', 
+    'Sep 18', 
+    'Oct 18', 
+    'Nov 18', 
+    'Dec 18'
 ];
 
 // setTimeout is used to avoid race conditions
@@ -800,10 +935,24 @@ setTimeout(function () {
 
 <script>
     var name = 'Direct Set Data';
-    var lineChartCategories = ['Jan 18', 'Feb 18', 'Mar 18', 'Apr 18', 'May 18', 'Jun 18', 'Jul 18',
-        'Aug 18', 'Sep 18', 'Oct 18', 'Nov 18', 'Dec 18'
+
+    var lineChartCategories = [
+        'Jan 18', 
+        'Feb 18', 
+        'Mar 18', 
+        'Apr 18', 
+        'May 18', 
+        'Jun 18', 
+        'Jul 18',
+        'Aug 18', 
+        'Sep 18', 
+        'Oct 18', 
+        'Nov 18', 
+        'Dec 18'
     ];
+
     var lineChartData;
+
     setTimeout(function () {
         $.ajax({
             type: "GET",
@@ -814,6 +963,7 @@ setTimeout(function () {
                 console.log('lineChartData', lineChartData);
             }
         });
+
         ins('#directSetDataLine').val('name', name);
         ins('#directSetDataLine').val('chartData', lineChartData);
         ins('#directSetDataLine').val('categories', lineChartCategories);
@@ -823,12 +973,13 @@ setTimeout(function () {
                     </div>
                 </ins-styleguide-code>
             </ins-styleguide>
+            <!-- line Chart Static Data-->
             <ins-styleguide label="Static Data Source">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
                         {% assign id="lineChart"%}
                         {% assign name="Column Chart"%}
-                        <ins-line-chart id="{{id}}" name="{{name}}" chartData="" categories="">
+                        <ins-line-chart id="{{ id }}" name="{{ name }}" chartData="" categories="">
                         </ins-line-chart>
                     </ins-card>
                 </ins-styleguide-actual>
@@ -844,16 +995,21 @@ setTimeout(function () {
 {% assign id="lineChart"%}
 {% assign name="Column Chart"%}
 
-<ins-line-chart id="{{id}}" name="{{name}}" chartData="" categories="">
+<ins-line-chart id="{{ id }}" name="{{ name }}" chartData="" categories="">
                     {%endraw%}</script>
                 </div>
                 </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- Line Chart Dynamic Set Data-->
             <ins-styleguide label="Dynamic Set Data">
                 <ins-styleguide-actual slot="actual">
                     <ins-card steady>
-                        <ins-line-chart id="linechartDynamic" name="Sessions" data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/line-chart-sample.json"></ins-line-chart>
+                        <ins-line-chart 
+                            id="linechartDynamic" 
+                            name="Sessions" 
+                            data-src="https://insites.staging-oregon.near-me.com/styleguide/data/line-chart-sample.json">
+                        </ins-line-chart>
                     </ins-card>
                     </ins-card>
                 </ins-styleguide-actual>
@@ -861,11 +1017,19 @@ setTimeout(function () {
                 <div>
                     <p><strong>HTML: </strong></p>
                     <script type="text/plain" class="language-markup">
-<ins-line-chart id="linechartDynamic" name="Sessions" data-src="https://8yu847n8rb.execute-api.us-east-2.amazonaws.com/insites-linegraph2-deployment/insites-dummy-linegraph2"></ins-line-chart>
+<ins-line-chart 
+    id="linechartDynamic" 
+    name="Sessions" 
+    data-src="https://8yu847n8rb.execute-api.us-east-2.amazonaws.com/insites-linegraph2-deployment/insites-dummy-linegraph2">
+</ins-line-chart>
                     </script>
                     <br /><p><strong>LIQUID: </strong></p>
                     <script type="text/plain" class="language-markup">{%raw%}
-<ins-line-chart id="linechartDynamic" name="Sessions" data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/line-chart-sample.json"></ins-line-chart>
+<ins-line-chart 
+    id="linechartDynamic" 
+    name="Sessions" 
+    data-src="https://stencilize-pos.staging-sydney.near-me.com/styleguide/data/line-chart-sample.json">
+</ins-line-chart>
                     {%endraw%}</script>
                 </div>
                 </ins-styleguide-code>
@@ -874,6 +1038,8 @@ setTimeout(function () {
     </div>
 <script>
     setTimeout(() => {
+        // var insStyleGuideCode = document.querySelectorAll('ins-styleguide-code');
+
         $('ins-styleguide-code').removeClass('opacity-trigger');
     }, 500);
 </script>

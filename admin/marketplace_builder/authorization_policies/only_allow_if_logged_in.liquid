@@ -1,7 +1,0 @@
----
-name: only_allow_if_logged_in
-redirect_to: /admin/sessions/new
-flash_alert: Please login to access this page.
----
-{% query_graph 'current_user', result_name: 'g' %}
-{% if g.current_user != nil %}true{% endif %}

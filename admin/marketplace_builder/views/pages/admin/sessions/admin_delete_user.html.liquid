@@ -1,0 +1,9 @@
+---
+slug: delete-user
+layout_name: ''
+method: delete
+authorization_policies:
+  - only_allowed_by_administrators
+---
+
+{% query_graph 'delete_user', id: params.user_id %}

@@ -2,6 +2,8 @@
 slug: admin/insites/styleguide
 format: html
 layout_name: admin/insites_shell
+authorization_policies:
+  - only_allowed_by_administrators
 ---
 {%- assign name = 'Insites Admin' -%}
 {%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
@@ -12,19 +14,37 @@ layout_name: admin/insites_shell
     full-logo="{{'admin/images/Insites_logo.svg' | asset_url}}"
     icon-logo="{{'admin/images/insites_logo_icon.svg' | asset_url}}">
 
-    <ins-sidebar-item
-      link="/admin/styleguide/buttons"
-      icon="icon-play-circle-fill"
-      label="Buttons" app
+    <!-- <ins-sidebar-item
+      id="overview"
+      link="/admin/styleguide/overview"
+      icon="icon-dashboard"
+      label="Overview"
+      app
       landing-page>
-    </ins-sidebar-item>
-    <ins-sidebar-item link="/admin/styleguide/charts" icon="icon-analytic-1" label="Charts" app></ins-sidebar-item>
-    <ins-sidebar-item link="/admin/styleguide/filters" label="Filters" icon="icon-search" app></ins-sidebar-item>
-    <ins-sidebar-item link="/admin/styleguide/input" icon="icon-edit" label="Input" app></ins-sidebar-item>
-    <ins-sidebar-item link="/admin/styleguide/loader" label="Loaders" icon="icon-goal-1" app></ins-sidebar-item>
-    <ins-sidebar-item link="/admin/styleguide/select" icon="icon-arrow-down" label="Select" app></ins-sidebar-item>
+    </ins-sidebar-item> -->
+    <ins-sidebar-item link="/admin/styleguide/buttons" icon="icon-buttons" label="Buttons" app landing-page></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/charts" icon="icon-chart" label="Charts" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/filters" label="Filters" icon="icon-filters" app></ins-sidebar-item>
+    <ins-sidebar-item link="/styleguide/header" icon="icon-globals" label="Headers" app></ins-sidebar-item>
+    <!-- <ins-sidebar-item link="/assets/pages/styleguide/image-picker.html" icon="icon-image" label="Image Picker" app></ins-sidebar-item> -->
+    <ins-sidebar-item link="/admin/styleguide/input" icon="icon-input" label="Input" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/loader" label="Loaders" icon="icon-loaders" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/select" icon="icon-select" label="Select" app></ins-sidebar-item>
     <ins-sidebar-item link="/admin/styleguide/sidebar" icon="icon-menu-1" label="Sidebar" app></ins-sidebar-item>
-    <ins-sidebar-item link="/admin/styleguide/tables" icon="icon-plugin-store" label="Tables" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/tables" icon="icon-tables" label="Tables" app></ins-sidebar-item>
+
+
+      {% comment %} <ins-sidebar-item link="/assets/pages/styleguide/buttons.html" icon="icon-buttons" label="Buttons" app landing-page></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/charts.html" icon="icon-chart" label="Charts" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/filters.html" icon="icon-filters" label="Filters" app></ins-sidebar-item>
+      <!-- <ins-sidebar-item link="/assets/pages/styleguide/header.html" icon="icon-globals" label="Headers" app></ins-sidebar-item> -->
+      <!-- <ins-sidebar-item link="/assets/pages/styleguide/image-picker.html" icon="icon-image" label="Image Picker" app></ins-sidebar-item> -->
+      <ins-sidebar-item link="/assets/pages/styleguide/input.html" icon="icon-input" label="Input" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/loader.html" icon="icon-loaders" label="Loaders" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/select.html" icon="icon-select" label="Select" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/sidebar.html" icon="icon-menu-1" label="Sidebar" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/tables.html" icon="icon-tables" label="Tables" app></ins-sidebar-item> {% endcomment %}
+
 
   <ins-sidebar-footer>
     <ins-sidebar-footer-button icon="icon-logout-1" onclick="logoutUser()"></ins-sidebar-footer-button>
@@ -34,12 +54,6 @@ layout_name: admin/insites_shell
 <ins-content>
   {% query_graph 'current_user', result_name: 'g' %}
   <ins-header>
-    <ins-header-user
-      name="{{ g.current_user.name }}"
-      logout-link="/admin/sessions/logout"
-      profile-link="/admin/sessions/my-profile">
-    </ins-header-user>
-
     <ins-instances 
       logo-link="{{'images/admin/logo-1@2x.png' | asset_url}}"
       instance="Final Sprint">

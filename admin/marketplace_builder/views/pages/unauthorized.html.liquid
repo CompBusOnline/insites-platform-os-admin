@@ -2,4 +2,11 @@
 slug: unauthorized
 ---
 
-You are not authorized to see this page.
+
+{% query_graph 'current_user', result_name: 'g' %}
+<pre id="curUser" style="display:none">{{ g | json}}</pre>
+
+<script>
+  console.log('redirecting');
+  console.log(document.getElementById('curUser').innerHTML);
+</script>

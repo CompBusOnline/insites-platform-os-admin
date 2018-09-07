@@ -24,38 +24,47 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-location-arrow:before {
-  content: "\f124";
+.icon-select:before {
+  content: "\e955";
 }
-.icon-caret-down:before {
-  content: "\f0d7";
+.icon-chart:before {
+  content: "\e957";
 }
-.icon-caret-up:before {
-  content: "\f0d8";
+.icon-tables:before {
+  content: "\e950";
 }
-.icon-caret-left:before {
-  content: "\f0d9";
+.icon-loaders:before {
+  content: "\e951";
 }
-.icon-caret-right:before {
-  content: "\f0da";
+.icon-input:before {
+  content: "\e952";
 }
-.icon-twitter-square:before {
-  content: "\f081";
+.icon-header:before {
+  content: "\e953";
 }
-.icon-facebook-square:before {
-  content: "\f082";
+.icon-filters:before {
+  content: "\e954";
 }
-.icon-linkedin-square:before {
-  content: "\f08c";
+.icon-buttons:before {
+  content: "\e956";
 }
-.icon-google-plus-square:before {
-  content: "\f0d4";
+.icon-ongoing-check:before {
+  content: "\e94c";
 }
-.icon-youtube-square:before {
-  content: "\f166";
+.icon-crm:before {
+  content: "\e94b";
 }
-.icon-instagram:before {
-  content: "\f16d";
+.icon-database:before {
+  content: "\e94d";
+}
+.icon-admin-user:before {
+  content: "\e94e";
+}
+.icon-help-menu:before {
+  content: "\e94f";
+}
+.icon-support-1:before {
+  content: "\e907";
 }
 .icon-reports:before {
   content: "\e949";
@@ -101,9 +110,6 @@
 }
 .icon-settings-1:before {
   content: "\e906";
-}
-.icon-support-1:before {
-  content: "\e907";
 }
 .icon-user-1:before {
   content: "\e908";
@@ -308,4 +314,37 @@
 }
 .icon-remove:before {
   content: "\e15b";
+}
+.icon-location-arrow:before {
+  content: "\f124";
+}
+.icon-caret-down:before {
+  content: "\f0d7";
+}
+.icon-caret-up:before {
+  content: "\f0d8";
+}
+.icon-caret-left:before {
+  content: "\f0d9";
+}
+.icon-caret-right:before {
+  content: "\f0da";
+}
+.icon-twitter-square:before {
+  content: "\f081";
+}
+.icon-facebook-square:before {
+  content: "\f082";
+}
+.icon-linkedin-square:before {
+  content: "\f08c";
+}
+.icon-google-plus-square:before {
+  content: "\f0d4";
+}
+.icon-youtube-square:before {
+  content: "\f166";
+}
+.icon-instagram:before {
+  content: "\f16d";
 }

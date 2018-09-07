@@ -1,0 +1,14 @@
+name: Activities
+custom_attributes:
+- name: user_id
+  attribute_type: ID
+- name: activity_type
+  attribute_type: string
+- name: notes
+  attribute_type: string
+- name: date_time
+  attribute_type: datetime
+- name: duration
+  attribute_type: string
+- name: attendees
+  attribute_type: string

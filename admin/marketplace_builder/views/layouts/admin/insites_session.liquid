@@ -3,12 +3,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   
   <meta name="description" content="{{ desc }}">
   <title>{{ pagetitle }}</title>
 	{%- include 'layout/admin/dependencies' -%}
 </head>
+<style>
+  .marginBottom {
+    position: relative;
+    display: block;
+    bottom: 125px;
+  }
+</style>
 <body class="sign-in-wrapper">
   <div class="welcome-wrap">
     <div class="welcome-logo-wrap">
@@ -33,12 +40,34 @@
     $(document).foundation();
 
     $(function(){
-      var $input = $('input');
-      $input.on('focus', function(){
-        $(this).closest('label').addClass('active');
-      }).on('blur', function(){
-        $(this).closest('label').removeClass('active');
-      });
+        var $input = $('input');
+        var platform = getPlatform();
+
+        $input.on('focus', function(){ 
+            $(this).closest('label').addClass('active');
+            
+            // for android only
+          if (platform === 'android') { 
+            $('.sign-in-wrapper').addClass('marginBottom');
+          } 
+
+        }).on('blur', function(){
+            $(this).closest('label').removeClass('active');
+
+            // for android only
+            if (platform === 'android') { 
+              $('.sign-in-wrapper').removeClass('marginBottom');
+            } 
+        });
+
+       function getPlatform() {
+          if(navigator != undefined && navigator.userAgent != undefined) {
+              user_agent = navigator.userAgent.toLowerCase();
+              if(user_agent.indexOf('android') > -1) { // Is Android.
+                  return 'android';
+              }
+          }
+       }
     });
   </script>
 </body>

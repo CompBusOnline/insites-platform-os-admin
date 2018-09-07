@@ -1,0 +1,25 @@
+---
+slug: api/get-all-administrator-data.json
+authorization_policies:
+ - only_allowed_by_administrators
+---
+{% assign size = 10 %}
+{% assign page = 1 %}
+{% assign sortBy = "first_name" %}
+{% assign orderBy = "asc" %}
+
+{% if params.size %}
+    {% assign size = params.size | plus: 0 %}
+{% endif %}
+{% if params.page %}
+    {% assign page = params.page | plus: 0 %}
+{% endif %}
+{% if params.sortBy %}
+    {% assign sortBy = params.sortBy | downcase %}
+{% endif %}
+{% if params.orderBy %}
+    {% assign orderBy = params.orderBy | downcase %}
+{% endif %}
+ 
+{% query_graph 'get_all_administrators_paginated', result_name: 'administrator_list', size: size, page: page, sortBy: sortBy, orderBy: orderBy %}
+{{ administrator_list | json }}

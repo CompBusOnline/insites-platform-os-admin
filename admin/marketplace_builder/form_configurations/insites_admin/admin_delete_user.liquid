@@ -1,0 +1,9 @@
+---
+name: delete_admin_user
+resource: User
+resource_owner: anyone
+configuration:
+  deleted_at:
+authorization_policies:
+  - only_allowed_by_administrators
+---

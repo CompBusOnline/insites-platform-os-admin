@@ -1,8 +1,5 @@
 name: administrator
 custom_attributes:
-- name: phone
-  attribute_type: string
 - name: company
   attribute_type: string
-- name: username
-  attribute_type: string
+ 

@@ -1,0 +1,9 @@
+mutation delete_user($id: ID!){
+  user_delete (
+    id: $id,
+    form_configuration_name: delete_admin_user
+  )
+  {
+    email
+  }
+}

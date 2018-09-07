@@ -1,0 +1,256 @@
+---
+slug: admin/styleguide/overview
+layout_name: admin/insites_empty
+format: html
+---
+
+    <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+    h2.section-title {
+      font-family: "Open Sans", sans-serif;
+      padding-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-bottom: solid 1px #eee;
+      margin: 20px 0 0px;
+      color: #2C3148;
+    }
+    .opacity-trigger > div {
+      opacity: 0;
+    }
+    ins-styleguide-actual ins-button {
+      float: left;
+    }
+  </style>
+
+
+
+  <div class="grid-container-full">
+    <div class="grid-x grid-padding-x">
+      <!-- <div class="large-12 cell">
+        <ins-card steady>
+          <ins-input-tel label="Phone" areacode-value="1300" phonenum-value="12345"></ins-input-tel>
+        </ins-card>
+      </div> -->
+      <!-- <ins-image-picker img-type="logo"></ins-image-picker> -->
+      <div class="large-12 small-12 medium-12 cell" style="margin-bottom:30px">
+        <ins-filter id="boom" with-date-filter date-title="Date Period">
+          <ins-filter-item name="Status" options='["All Status", "Pending", "Completed", "Declined"]'>
+          </ins-filter-item>
+        </ins-filter>
+      </div>
+      <div class="large-3 cell margin-bottom-30">
+        <ins-card>
+          <ins-sparkline id="sparkline-test" data-src="https://8podbzvdw2.execute-api.us-east-2.amazonaws.com/insites-dummy-sparkline-deployment/insites-dummy-get-sparkline">
+          </ins-sparkline>
+        </ins-card>
+      </div>
+      <div class="large-3 cell margin-bottom-30">
+        <ins-card>
+          <ins-sparkline id="users" icon="icon-user-1" name="Users" value="720" percentage="7"
+            description="From previous year" movement="decrease">
+          </ins-sparkline>
+        </ins-card>
+      </div>
+      <div class="large-3 cell margin-bottom-30">
+        <ins-card>
+          <ins-sparkline id="bounceRate" icon="icon-analytic-1" name="Bounce Rate" value="86%"
+            percentage="12" description="From previous year" movement="increase">
+          </ins-sparkline>
+        </ins-card>
+      </div>
+      <div class="large-3 cell margin-bottom-30">
+        <ins-card>
+          <ins-sparkline id="goals" icon="icon-goal-1" name="Goals" value="2.5K" percentage="7"
+            description="From previous year" movement="decrease">
+          </ins-sparkline>
+        </ins-card>
+      </div>
+
+      <!-- <div class="large-12 cell margin-bottom-30">
+        <ins-confirm-modal
+          heading="Sample Heading"
+          icon="help"
+          icon-color="blue"
+          message="This is a sample modal confirmation"
+          with-backdrop
+          with-confirm>
+        </ins-confirm-modal>
+      </div> -->
+
+      <div class="large-12 cell margin-bottom-30">
+        <ins-card>
+          <ins-line-chart id="lineChart" name="Sessions" data-src="https://8yu847n8rb.execute-api.us-east-2.amazonaws.com/insites-linegraph2-deployment/insites-dummy-linegraph2"></ins-line-chart>
+        </ins-card>
+      </div>
+      <div class="large-12 cell margin-bottom-30">
+        <ins-card steady no-padding>
+          <ins-table data-src="https://ag64gmtsc0.execute-api.us-east-2.amazonaws.com/insites-dummy-deployment/insites-dummy-get-table"
+            table-title="Table"></ins-table>
+        </ins-card>
+      </div>
+      <div class="large-12 cell margin-bottom-30">
+        <ins-card>
+          <ins-bar-chart id="barChart" name="Column Chart" data-src="https://9p1pa4b3fa.execute-api.us-east-2.amazonaws.com/insites-barchart-deployment/insites-dummy-barchart"></ins-bar-chart>
+        </ins-card>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function someCallback() {
+      console.log('someCallback called');
+    }
+
+    var insConfirmModal = document.querySelector('ins-confirm-modal');
+    console.log('insConfirmModal', insConfirmModal);
+    insConfirmModal.callback = someCallback;
+    insConfirmModal.addEventListener('onInsConfirmModalCofirm', function (event) {
+      console.log(event);
+      event.detail.callback();
+    });
+
+    var sparkLineSampleData = [
+      ["2017-12-18", 13],
+      ["2017-12-25", 0],
+      ["2018-01-01", 0],
+      ["2018-01-08", 8],
+      ["2018-01-15", 5],
+      ["2018-01-22", 2],
+      ["2018-01-29", 1],
+      ["2018-02-05", 1],
+      ["2018-02-12", 1],
+      ["2018-02-19", 0],
+      ["2018-02-26", 1],
+      ["2018-03-05", 0],
+      ["2018-03-12", 0],
+      ["2018-03-19", 2],
+      ["2018-03-26", 1],
+      ["2018-04-02", 11],
+      ["2018-04-09", 2],
+      ["2018-04-16", 2],
+      ["2018-04-23", 0],
+      ["2018-04-30", 0],
+      ["2018-05-07", 0],
+      ["2018-05-14", 0],
+      ["2018-05-21", 1],
+      ["2018-05-28", 0]
+    ];
+
+    var lineChartSampleData = [{
+        name: "Visitor Sessions",
+        data: [
+          ["2018-01-10", 3],
+          ["2018-01-11", 24],
+          ["2018-01-12", 1],
+          ["2018-01-13", 5],
+          ["2018-01-14", 28],
+          ["2018-01-15", 0],
+          ["2018-01-16", 12],
+          ["2018-01-17", 0],
+          ["2018-01-18", 2],
+          ["2018-03-29", 10],
+          ["2018-03-30", 4],
+          ["2018-03-31", 2]
+        ],
+        color: "#3EB98C"
+      },
+      {
+        name: "Events",
+        data: [
+          ["2017-05-29", 5],
+          ["2017-06-05", 2],
+          ["2017-06-12", 18],
+          ["2017-06-19", 3],
+          ["2017-06-26", 15],
+          ["2017-07-03", 13],
+          ["2017-07-10", 8],
+          ["2017-07-24", 25],
+          ["2017-07-31", 20],
+          ["2017-08-07", 14],
+          ["2017-08-14", 27],
+          ["2017-09-07", 14]
+        ],
+        color: "#2BBAD9"
+      }
+    ];
+    var lineChartCategories = ['Jan 17', 'Feb 17', 'Mar 17', 'Apr 17', 'May 17',
+      'Jun 17', 'Jul 17', 'Aug 17', 'Sep 17', 'Oct 17', 'Nov 17', 'Dec 17'
+    ];
+
+    var barChartSampledata = [{
+        name: "Column 1",
+        data: [
+          ["2018-01-10", 3],
+          ["2018-01-11", 24],
+          ["2018-01-12", 1],
+          ["2018-01-13", 5]
+        ],
+        color: "#3EB98C"
+      },
+      {
+        name: "Column 2",
+        data: [
+          ["2017-05-29", 5],
+          ["2017-06-05", 2],
+          ["2017-06-12", 18],
+          ["2017-06-19", 3]
+        ],
+        color: "#2BBAD9"
+      }
+    ];
+    var barChartCategories = ["Jan - Apr 17", "May - Jul 17", "Aug - Oct 17",
+      "Sept - Dec 17"
+    ];
+
+    var rawInsThEls = document.querySelectorAll('ins-table');
+    var insThEls = [...rawInsThEls];
+
+    insThEls.forEach(function (insTh) {
+      insTh.addEventListener('pageState', function (e) {
+        console.log('event handled', event);
+      })
+    });
+
+    function eventHandler(event) {
+      console.log('event handled', event);
+    }
+
+    $('#myTable')
+      .on('onAction', eventHandler)
+      .on('onPageChange', eventHandler)
+      .on('onPageSizeChange', eventHandler);
+
+    $('ins-th').on('onSort', eventHandler);
+    $('ins-td').on('onClick', eventHandler);
+    $('ins-td-action-item').on('onClick', eventHandler);
+
+    setTimeout(function () {
+      var sparklineChartSessions = document.getElementById('sessions');
+      var sparklineChartUsers = document.getElementById('users');
+      sparklineChartUsers.chartData = sparkLineSampleData;
+
+      var sparklineChartBounceRate = document.getElementById('bounceRate');
+      sparklineChartBounceRate.chartData = sparkLineSampleData;
+
+      var sparklineChartGoals = document.getElementById('goals');
+      sparklineChartGoals.chartData = sparkLineSampleData;
+
+      var lineChart = document.getElementById('lineChart');
+
+      var barChart = document.getElementById('barChart');
+
+      // var staticlineChart = document.getElementById('lineChartID');
+      // staticlineChart.reRenderChart(lineChartSampleData, lineChartCategories);
+    }, 500);
+
+  </script>
+
+  <script>
+    $(document).foundation();
+  </script>
+
+

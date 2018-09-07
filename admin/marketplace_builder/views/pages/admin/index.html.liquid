@@ -14,11 +14,21 @@ authorization_policies:
     background-color: transparent;
   }
 
+  @media screen and (max-width: 660px) {
+    .ins-searchbar-container {
+      min-width: auto !important;
+    }
+  }
+
+  /* #app {
+    padding-right: 20px;
+  } */
+
   .swal2-show {
     box-shadow: 0px 6px 20px #aaa;
     border-radius: 1px;
-    top: -120px;
-    width: 21em;
+    /* top: -120px;
+    width: 21em; */
   }
 
   .swal2-popup #swal2-content {
@@ -106,6 +116,111 @@ authorization_policies:
     margin-bottom: 32px;
     color: #8694a4;
   }
+  /* .swal2-modal.swal2-show {
+    box-shadow: none !important;
+  } */
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item .ins-sidebar-item-label{
+    display: none;
+  }
+  /* when minimised the sidebar */
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap {
+    position: relative;
+  }
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a {
+    border-left: 0px solid transparent;
+    background-color: #e4e6ec;
+  }
+  /* not active */
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+    background-color: #e4e6ec;
+  }
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  }
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a .fas {
+    color: unset;
+    width: auto;
+    margin: 0 0 0 16px;
+  }
+  ins-admin.mini ins-sidebar:not(.style-guide) .sidebar ins-sidebar-item div.ins-sidebar-item-wrap .fas {
+    margin-left: -3px;
+  }
+  /* for active */
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+  }
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  } 
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active a .fas {
+    /* color: unset; */
+    margin: 0;
+  }
+
+  
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active,
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap {
+    position: absolute;
+    width: 125px;
+  }
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a {
+    width: 125px;
+  }
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a {
+    color: unset;
+  }
+  /* not active */
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+    background-color: #e4e6ec;
+  }
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  }
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a .fas {
+    color: unset;
+    width: auto;
+    margin: 0 0 0 37px;
+  }
+
+  /* for active */
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+  }
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  } 
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active a .fas {
+    color: unset;
+    margin: 0 0 0 37px;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-footer-button .ins-sidebar-footer-item-wrap .ins-sfiw-button-icon {
+    margin-left: 0px;
+  }
+  ins-sidebar-footer.side-bar-footer ins-sidebar-footer-button .ins-sidebar-footer-item-wrap .ins-sfiw-button-icon {
+    margin-left: 126px;
+  }
+  
+  /* .side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a .fas{
+    background: #2c3148;
+    color: #fff;
+  } */
+  .hide-render {
+    display: none;
+  }
+  .highcharts-container {
+    width: 100%; 
+  }
+  .displayNoneIpad {
+    display: none;
+  }
 </style>
 
 <ins-admin>
@@ -122,16 +237,33 @@ authorization_policies:
       landing-page>
     </ins-sidebar-item>
 
-  <ins-sidebar-footer>
+    <ins-sidebar-item
+      id="overview"
+      link="#/admin-users"
+      icon="icon-admin-user"
+      label="Admin Users">
+    </ins-sidebar-item>
+
+  <!-- <ins-sidebar-footer>
     <ins-sidebar-footer-button
       icon="icon-logout-1"
       onclick="logoutUser()">
     </ins-sidebar-footer-button>
+  </ins-sidebar-footer> -->
+
+  <ins-sidebar-footer class="side-bar-footer">
+    <ins-sidebar-item link="/admin/settings" label="Settings" icon="icon-settings-1" app></ins-sidebar-item>
+    <ins-sidebar-footer-button onclick="logoutUser()" icon="icon-logout-1"></ins-sidebar-footer-button>
   </ins-sidebar-footer>
+
 </ins-sidebar>
 
 <ins-content>
+  
   {% query_graph 'current_user', result_name: 'g' %}
+  <div class="hide-render">
+    {% render_form 'admin_create_profile' %}
+  </div>
   
   <ins-header>
     <ins-header-user
@@ -146,10 +278,10 @@ authorization_policies:
     </ins-instances>
   </ins-header>
 
-  <ins-renderer link="/#/overview" label="Overview">
+  <ins-renderer label="Overview" link="#/overview">
     <div id="app"></div>
-    <script src="{{ 'admin/spa/js/chunk-vendors.5b0259ae.js' | asset_url }}"></script>
-    <script src="{{ 'admin/spa/js/app.dc5e3fc2.js' | asset_url }}"></script>
+    <script src="{{ 'admin/insites/js/chunk-vendors.b6904cb5.js' | asset_url }}"></script>
+    <script src="{{ 'admin/insites/js/app.8d3a32ef.js' | asset_url }}"></script>
   </ins-renderer>
 </ins-content>
 
@@ -185,17 +317,15 @@ authorization_policies:
 </ins-notifications>
 </ins-admin>
 <script>
-    let a = 0;
-    let b = 0;
-    let c = 0;
+  // var myProfile = document.getElementById('myProfile');
 
-  function getVar(){
-
-  }
-
-  function setVar(data){
-
-  }
+  // setTimeout(() => {
+  //   myProfile.addEventListener('click', function(){
+  //     var isOverview = document.getElementById('app') ? 'overview' : '';
+      
+  //     console.log(isOverview);
+  //   });
+  // }, 1000);
 
   function logoutUser(){
     window.location.assign('/admin/sessions/logout');
@@ -209,6 +339,7 @@ authorization_policies:
         toastr.options[option] = options[option];
       }
     }
+    toastr.options.preventDuplicates = true;
     toastr[type](message);
   }
 
@@ -224,16 +355,61 @@ authorization_policies:
     });
 
     setTimeout(() => {
-      $('#myProfile').on('click', function(){
+      $('a#myProfile').on('click', function() {
         var isOverview = $(this).attr('id') ? 'overview' : '';
         // console.log(isOverview);
-        if (isOverview){
+        if (isOverview) {
           $('#app').addClass('hide-slot');
         } else {
           $('#app').removeClass('hide-slot');
         }
       });
     }, 1000);
+    
+    // when in safari browser
+    $(window).bind("resize", function () {
+        if ($(this).width() < 1260) {
+            $('ins-admin').addClass('mini');
+        } else {
+            $('ins-admin').removeClass('mini');
+        }
+    }).resize();
+  });
+  
+  // firefox purposes
+  $('ins-filter-item').click(function () {
+    var filterOption = $('.filter-item__options');
+
+    filterOption.toggleClass('active');
   });
 
+  // var userAgent = window.navigator.userAgent.toLowerCase();
+  // var ipad = /iphone|ipod|ipad/.test(userAgent);
+
+  // if (!ipad) {
+  //   // $('button.icon-nav').addClass('displayNoneIpad');
+  //   // alert('not ipad');
+  // } else {
+  //   // $('button.icon-nav').removeClass('displayNoneIpad');
+  //   // alert('ipad');
+  // }
+
+  // var checkVersion = function () {
+  //   var agent = window.navigator.userAgent,
+  //       start = agent.indexOf('OS');
+  //   if ((agent.indexOf('iPhone') > -1 || agent.indexOf('iPad') > -1) && start > -1) {
+  //       return window.Number(agent.substr(start + 3, 3).replace('_', '.'));
+  //   }
+  //   return 0;
+  // }
+
+  // getIOSVersion();
+ 
+  // function getIOSVersion() {
+  //     var iOS_Version = checkVersion();
+  //     if(iOS_Version < 11) {
+  //       console.log('less than 11');
+  //        alert("Freak friday");
+  //      }
+  // }
 </script>

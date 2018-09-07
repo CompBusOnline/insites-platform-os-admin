@@ -27,6 +27,11 @@ layout_name: admin/insites_empty
     .opacity-trigger > div {
       opacity: 0;
     }
+    @media only screen and (max-width: 320px) {
+      .content-wrap {
+        padding: 0;
+      }
+    }
   </style>
         <div>
           <h2 class="section-title">Complete Example</h2>
@@ -37,10 +42,20 @@ layout_name: admin/insites_empty
             <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
                 <p><strong>HTML: </strong></p>
-                <script type="text/plain" class="language-markup"><ins-input name="FirstName" placeholder="Name" value="John" label="Name" field="text" icon="icon-person"></ins-input></script>
+                <script type="text/plain" class="language-markup">
+<ins-input 
+  name="FirstName" 
+  placeholder="Name" 
+  value="John" 
+  label="Name" 
+  field="text" 
+  icon="icon-person">
+</ins-input>
+                </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-current_user.graphql                  
+current_user.graphql          
+
 {
   current_user {
     id
@@ -53,18 +68,69 @@ current_user.graphql
 ......
 
 {% query_graph 'current_user', result_name: 'g' %}
+{% assign firstName="FirstName" %}
+{% assign placeholderName="Name" %}
+{% assign labelName="Name" %}
+{% assign fieldText="text" %}
+{% assign icon="icon-user-1" %}
+
+
 <ins-input 
-  name="FirstName" 
-  placeholder="Name" 
+  name="{{ firstName }}" 
+  placeholder="{{ placeholderName }}" 
   value="{{ g.current_user.name }}" 
-  label="Name" 
-  field="text" 
-  icon="icon-user-1">
+  label="{{ labelName }}" 
+  field="{{ fieldText }}" 
+  icon="{{ icon }}">
 </ins-input>{% endraw %}</script>
               </div>
             </ins-styleguide-code>
-
           </ins-styleguide>
+
+        <!-- <ins-styleguide label="Search Field">
+          <ins-styleguide-actual slot="actual">
+            {% assign placeholder="Search..."%}
+            <ins-searchbar placeholder="{{placeholder}}"></ins-searchbar>
+          </ins-styleguide-actual>
+          <ins-styleguide-code slot="code">
+          <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup"><ins-searchbar placeholder="Search..."></ins-searchbar></script>
+            <p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+{% assign placeholder="Search..."%}
+
+<ins-searchbar placeholder="{{placeholder}}"></ins-searchbar>
+            {%endraw%}</script>
+          </div>
+          </ins-styleguide-code>
+        </ins-styleguide> -->
+
+        <!-- <ins-styleguide label="Phone Number Field">
+          <ins-styleguide-actual slot="actual">
+            {% assign label="Phone"%}
+            {% assign areacode-placeholder="Area Code"%}
+            {% assign areacode-value="1300"%}
+            {% assign phonenum-placeholder="Phone Number"%}
+            {% assign phonenum-value="12345"%}
+            <ins-input-tel label="Phone" 
+                           areacode-placeholder="Area Code"
+                           areacode-value="1300" 
+                           phonenum-placeholder="Phone Number" 
+                           phonenum-value="12345">
+            </ins-input-tel>
+          </ins-styleguide-actual>
+          <ins-styleguide-code slot="code">
+            <script type="text/plain" class="language-markup">
+<ins-input-tel label="Phone" 
+             areacode-placeholder="Area Code"
+             areacode-value="1300" 
+             phonenum-placeholder="Phone Number" 
+             phonenum-value="12345">
+</ins-input-tel>
+            </script>
+          </ins-styleguide-code>
+        </ins-styleguide> -->
 
         </div>
           <div>
@@ -89,12 +155,28 @@ current_user.graphql
                 </script>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
-                <script type="text/plain" class="language-markup">{% raw %}
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
 <ins-input id="dsv"></ins-input>
 
 <script src="/assets/js/ins.js">&lt;/script&gt;
 <script>
-    {% assign PlaceHolder = "Direct Set Value" %}
+    // setTimeout is used to avoid race conditions
+    setTimeout(function(){
+      ins('#dsv').val('placeholder', '{{ PlaceHolder }}');
+      // update `placeholder` attribute of the component
+    }, 500);
+&lt;/script&gt;
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+<ins-input id="dsv"></ins-input>
+
+{% assign PlaceHolder = "Direct Set Value" %}
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
     // setTimeout is used to avoid race conditions
     setTimeout(function(){
       ins('#dsv').val('placeholder', '{{ PlaceHolder }}');
@@ -102,6 +184,7 @@ current_user.graphql
     }, 500);
 &lt;/script&gt;{% endraw %}
                 </script>
+                </div>
               </ins-styleguide-code>
             </ins-styleguide>
 
@@ -113,8 +196,10 @@ current_user.graphql
                       <div>
                         <p><strong>HTML: </strong></p>
                         <script type="text/plain" class="language-markup"><ins-input value="John Smith" label="Name"></ins-input></script>
-                        <br /><p><strong>Liquid: </strong></p>
-                        <script type="text/plain" class="language-markup">{% raw %}{% assign FullName = 'John Smith' %}
+                        <br /><p><strong>LIQUID: </strong></p>
+                        <script type="text/plain" class="language-markup">{% raw %}
+{% assign FullName = 'John Smith' %}
+
 <ins-input value="{{ FullName }}" label="Name"></ins-input>{% endraw %}</script>
                       </div>
                 </ins-styleguide-code>
@@ -122,30 +207,57 @@ current_user.graphql
 
             <ins-styleguide label="Disabled State">
                 <ins-styleguide-actual slot="actual">
-                  <ins-input value="samplepassword123" label="Password" disabled field="password"></ins-input>
+                  {% assign passwordValue="samplepassword123" %}
+                  {% assign passwordLabel="Password" %}  
+                  {% assign passwordField="password" %} 
+
+                  <ins-input value="{{ passwordValue }}" label="{{ passwordLabel }}" disabled field="{{ passwordField }}"></ins-input>
                 </ins-styleguide-actual>
                 <ins-styleguide-code class="opacity-trigger" slot="code">
                       <div>
                         <p><strong>HTML: </strong></p>                     
                         <script type="text/plain" class="language-markup"><ins-input value="samplepassword123" label="Password" disabled type="password"></ins-input></script>
-                        <br /><p><strong>Liquid:</strong></p>
-                        <script type="text/plain" class="language-markup">{% raw %}{% assign password = 'samplepassword123' %}
-<ins-input value="{{ password }}" label="Password" disabled type="password"></ins-input>{% endraw %}</script>
+                        <br /><p><strong>LIQUID:</strong></p>
+                        <script type="text/plain" class="language-markup">{% raw %}
+{% assign passwordValue="samplepassword123" %}
+{% assign passwordLabel="Password" %}
+{% assign passwordField="password" %}
+
+<ins-input 
+  value="{{ passwordValue }}" 
+  label="{{ passwordLabel }}" 
+  disabled 
+  field="{{ passwordField }}">
+</ins-input>{% endraw %}</script>
                       </div>
                 </ins-styleguide-code>
               </ins-styleguide>
 
             <ins-styleguide label="Read Only State">
               <ins-styleguide-actual slot="actual">
-                <ins-input value="samplepassword123" label="Password" readonly field="password"></ins-input>
+                  {% assign passwordValue="samplepassword123" %}
+                  {% assign passwordLabel="Password" %}  
+                  {% assign passwordField="password" %}
+                  <ins-input value="{{ passwordValue }}" label="{{ passwordLabel }}" readonly field="{{ passwordField }}"></ins-input>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML:</strong></p>
-                  <script type="text/plain" class="language-markup"><ins-input value="samplepassword123" label="Password" readonly field="password"></ins-input></script>
-                  <br/><p><strong>Liquid:</strong></p>
-                  <script type="text/plain" class="language-markup">{% raw %}{% assign password = 'samplepassword123' %}
-<ins-input value="{{ password }}" label="Password" readonly type="password"></ins-input>{% endraw %}</script>
+                  <script type="text/plain" class="language-markup">
+<ins-input value="samplepassword123" label="Password" readonly field="password"></ins-input></script>
+                  <br/><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign passwordValue="samplepassword123" %}
+{% assign passwordLabel="Password" %}  
+{% assign passwordField="password" %}
+
+<ins-input 
+  value="{{ passwordValue }}" 
+  label="{{ passwordLabel }}" 
+  readonly 
+  field="{{ passwordField }}">
+</ins-input>
+    {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
             </ins-styleguide>
@@ -157,40 +269,54 @@ current_user.graphql
               <ins-styleguide-code class="opacity-trigger" slot="code">
               <div>
                   <p><strong>HTML: </strong></p>
-                  <script type="text/plain" class="language-markup"><ins-input placeholder="Type anything..." 
-          value="a sample text" 
-          label="Email" 
-          field="email" 
-          error-message="Please provide valid email address." has-error>
-</ins-input></script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <script type="text/plain" class="language-markup">
+<ins-input 
+  placeholder="Type anything..." 
+  value="a sample text" 
+  label="Email" 
+  field="email" 
+  error-message="Please provide valid email address." has-error>
+</ins-input>
+                </script>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}---
  # ... form properties
  flash_alert: 'Please provide valid email address.'
  ---
-<ins-input placeholder="Type anything..." 
-          value="a sample text" 
-          label="Email" 
-          field="email" 
-          error-message="{{ flash_alert }}" has-error>
+{% assign placholderEmail="Type Anything..." %}
+{% assign valueEmail="a sample text" %}
+{% assign labelEmail="Email" %}
+{% assign fieldEmail="email" %}
+
+<ins-input 
+  placeholder="{{ placholderEmail }}" 
+  value="a sample text" 
+  label="{{ valueEmail }}" 
+  field="{{ fieldEmail }}" 
+  error-message="{{ flash_alert }}" has-error>
 </ins-input>{% endraw %}</script>
                 </div>
-                
               </ins-styleguide-code>
             </ins-styleguide>
 
             <ins-styleguide label="Value Attribute">
               <ins-styleguide-actual slot="actual">
                 {% assign Value = "Value Change" %}
+
                 <ins-input value="{{ Value }}"></ins-input>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML: </strong></p>
-                  <script type="text/plain" class="language-markup"><ins-input value="Value Change"></ins-input></script>
-                  <br/><p><strong>Liquid:</strong></p>
-                  <script type="text/plain" class="language-markup">{% raw %}{% assign Value = 'Value Change' %}
-<ins-input value="{{ Value }}"></ins-input>{% endraw %}</script>
+                  <script type="text/plain" class="language-markup">
+<ins-input value="Value Change"></ins-input>
+                  </script>
+                  <br/><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign Value = 'Value Change' %}
+
+<ins-input value="{{ Value }}"></ins-input>
+      {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
             </ins-styleguide>
@@ -198,15 +324,21 @@ current_user.graphql
             <ins-styleguide label="Placeholder Attribute">
               <ins-styleguide-actual slot="actual">
                 {% assign Placeholder = "Placeholder Attribute" %}
+
                 <ins-input placeholder="{{ PlaceHolder }}"></ins-input>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML: </strong></p>
-                  <script type="text/plain" class="language-markup"><ins-input placeholder="Placeholder Attribute"></ins-input></script>
-                  <br/><p><strong>Liquid:</strong></p>
-                  <script type="text/plain" class="language-markup">{% raw %}{% assign PlaceHolder = 'Placeholder Attribute' %}
-<ins-input placeholder="{{ PlaceHolder }}"></ins-input>{% endraw %}</script>
+                  <script type="text/plain" class="language-markup">
+<ins-input placeholder="Placeholder Attribute"></ins-input>
+                  </script>
+                  <br/><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign PlaceHolder = 'Placeholder Attribute' %}
+
+<ins-input placeholder="{{ PlaceHolder }}"></ins-input>
+      {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
             </ins-styleguide>
@@ -214,15 +346,21 @@ current_user.graphql
             <ins-styleguide label="Icon Attribute">
                 <ins-styleguide-actual slot="actual">
                   {% assign IconEmail = "icon-email-1" %}
+
                   <ins-input icon="{{ IconEmail }}"></ins-input>
                 </ins-styleguide-actual>
                 <ins-styleguide-code class="opacity-trigger" slot="code">
                   <div>
                     <p><strong>HTML: </strong></p>
-                    <script type="text/plain" class="language-markup"><ins-input icon="icon-email-1"></ins-input></script>
-                    <br/><p><strong>Liquid:</strong></p>
-                    <script type="text/plain" class="language-markup">{% raw %}{% assign IconEmail = 'icon-email-1' %}
-<ins-input icon="{{ IconEmail }}"></ins-input>{% endraw %}</script>
+                    <script type="text/plain" class="language-markup">
+<ins-input icon="icon-email-1"></ins-input>
+                    </script>
+                    <br/><p><strong>LIQUID:</strong></p>
+                    <script type="text/plain" class="language-markup">{% raw %}
+{% assign IconEmail = 'icon-email-1' %}
+
+<ins-input icon="{{ IconEmail }}"></ins-input>
+        {% endraw %}</script>
                   </div>
                 </ins-styleguide-code>
               </ins-styleguide>
@@ -230,15 +368,21 @@ current_user.graphql
             <ins-styleguide label="Label Attribute">
               <ins-styleguide-actual slot="actual">
                 {% assign Label = "Name" %}
+
                 <ins-input label="{{ Label }}"></ins-input>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML: </strong></p>
-                  <script type="text/plain" class="language-markup"><ins-input label="Name"></ins-input></script>
-                  <br/><p><strong>Liquid:</strong></p>
-                  <script type="text/plain" class="language-markup">{% raw %}{% assign Label = 'Name' %}
-<ins-input label="{{ Label }}"></ins-input>{% endraw %}</script>
+                  <script type="text/plain" class="language-markup">
+<ins-input label="Name"></ins-input>
+                  </script>
+                  <br/><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign Label = 'Name' %}
+
+<ins-input label="{{ Label }}"></ins-input>
+      {% endraw %}</script>
                 </div>
               </ins-styleguide-code>
             </ins-styleguide>
@@ -246,38 +390,50 @@ current_user.graphql
             <ins-styleguide label="Field Attribute">
               <ins-styleguide-actual slot="actual">
                 {% assign Field = "password" %}
+
                 <ins-input field="{{ Field }}"></ins-input>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML: </strong></p>
-                  <script type="text/plain" class="language-markup"><ins-input field="password"></ins-input></script>
-                  <br/><p><strong>Liquid:</strong></p>
-                  <script type="text/plain" class="language-markup">{% raw %}{% assign Field = 'password' %}
-<ins-input field="{{ Field }}"></ins-input>{% endraw %}</script>
+                  <script type="text/plain" class="language-markup">
+<ins-input field="password"></ins-input>
+                  </script>
+                  <br/><p><strong>LIQUID:</strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign Field = 'password' %}
+
+<ins-input field="{{ Field }}"></ins-input>
+      {% endraw %}</script>
                 </div> 
               </ins-styleguide-code>
             </ins-styleguide>
-
           </div>
 
+          <!-- ins-searchbar -->
           <div>
             <h2 class="section-title">Search Field</h2>
             <ins-styleguide label="Search Field">
             <ins-styleguide-actual slot="actual">
-              <ins-searchbar placeholder="Search..."></ins-searchbar>
+              {% assign placeholderSearch="Search..." %}
+
+              <ins-searchbar placeholder="{{ placeholderSearch }}"></ins-searchbar>
             </ins-styleguide-actual>
             <ins-styleguide-code class="opacity-trigger" slot="code">
                 <div>
                   <p><strong>HTML: </strong></p>
-                      <script type="text/plain" class="language-markup"><ins-searchbar name="FirstName" placeholder="Search..."></ins-searchbar></script>
-                  <br /><p><strong>Liquid: </strong></p>
-<script type="text/plain" class="language-markup">{% raw %}
+                  <script type="text/plain" class="language-markup">
+<ins-searchbar name="FirstName" placeholder="Search..."></ins-searchbar>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign placeholderSearch="Search..." %}
+
 <ins-searchbar 
   name="{{ form_builder.fields.first_name.name }}" 
-  placeholder="Search...">
+  placeholder="{{ placeholderSearch }}">
 </ins-searchbar>
-{% endraw %}</script>
+      {% endraw %}</script>
                 </div>
             </ins-styleguide-code>
           </ins-styleguide>
@@ -286,13 +442,17 @@ current_user.graphql
                 <ins-searchbar></ins-searchbar>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
-                <script type="text/plain" class="language-markup"><ins-searchbar></ins-searchbar></script>
+                <script type="text/plain" class="language-markup">
+<ins-searchbar></ins-searchbar>
+                </script>
               </ins-styleguide-code>
             </ins-styleguide>
+
             <ins-styleguide label="Direct Set Data">
               <ins-styleguide-actual slot="actual">
                 <ins-searchbar id="directSetDataSearch"></ins-searchbar>
                 {% assign PlaceHolderSearch = "Type anything..." %}
+
                 <script>
                   var placeholder_search = '{{ PlaceHolderSearch }}';
                   setTimeout(()=>{
@@ -301,9 +461,28 @@ current_user.graphql
                 </script>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
-                <script type="text/plain" class="language-markup">{% raw %}
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
 <ins-searchbar id="directSetDataSearch"></ins-searchbar>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    var placeholder_search = 'Type anything...';
+
+    // setTimeout is used to avoid race conditions
+    setTimeout(function(){
+      ins('#directSetDataSearch').val('placeholder', placeholder_search);
+      // update `placeholder` attribute of the component
+    }, 500);
+&lt;/script&gt;{% endraw %}
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+<ins-searchbar id="directSetDataSearch"></ins-searchbar>
+
 {% assign PlaceHolderSearch = "Type anything..." %}
+
 <script src="/assets/js/ins.js">&lt;/script&gt;
 <script>
     var placeholder_search = '{{ PlaceHolderSearch }}';
@@ -314,15 +493,30 @@ current_user.graphql
       // update `placeholder` attribute of the component
     }, 500);
 &lt;/script&gt;{% endraw %}
-                </script>
+                  </script>
+                </div>
+                
               </ins-styleguide-code>
             </ins-styleguide>
             <ins-styleguide label="Static Data Source">
               <ins-styleguide-actual slot="actual">
+
                 <ins-searchbar placeholder="Search here..."></ins-searchbar>
+
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
-                <script type="text/plain" class="language-markup"><ins-searchbar placeholder="Search here..."></ins-searchbar></script>              
+                <div>
+                  <p><strong>HTML: </strong></p>
+                  <script type="text/plain" class="language-markup">
+  <ins-searchbar placeholder="Search here..."></ins-searchbar>
+                  </script>  
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign placeholderSearchHere="Search here..." %}
+
+<ins-searchbar placeholder="{{ placeholderSearchHere }}"></ins-searchbar>{% endraw %}
+                  </script>            
+                </div>
               </ins-styleguide-code>
             </ins-styleguide>
             <ins-styleguide label="Searching State">
@@ -330,21 +524,39 @@ current_user.graphql
                 <ins-searchbar placeholder="Search here..." is-searching value="Australia"></ins-searchbar>
               </ins-styleguide-actual>
               <ins-styleguide-code class="opacity-trigger" slot="code">
+                <p><strong>HTML: </strong></p>
                 <script type="text/plain" class="language-markup">
-<ins-searchbar placeholder="Search here..." 
-                value="Australia"
-                is-searching>
+<ins-searchbar 
+  placeholder="Search here..." 
+  value="Australia"
+  is-searching>
 </ins-searchbar>
+                  </script>
+                  <br /><p><strong>LIQUID: </strong></p>
+                  <script type="text/plain" class="language-markup">{% raw %}
+{% assign placeholderSearchHere="Search here..." %}
+{% assign searchValue="Australia" %}
+
+<ins-searchbar 
+  placeholder="{{ placeholderSearchHere }}" 
+  value="{{ searchValue }}"
+  is-searching>
+</ins-searchbar>{% endraw %}
                   </script>
               </ins-styleguide-code>
             </ins-styleguide>
           </div>
 
+          <!-- ins-input-tel -->
           <div style="padding: 0 20px;">
             <h2 class="section-title">Phone Number Field</h2>
             <ins-styleguide label="Default Field">
               <ins-styleguide-actual slot="actual">
-                <ins-input-tel label="Phone" areacode-placeholder="Area Code" areacode-value="1300" phonenum-placeholder="Phone Number"
+                <ins-input-tel 
+                  label="Phone" 
+                  areacode-placeholder="Area Code" 
+                  areacode-value="1300" 
+                  phonenum-placeholder="Phone Number"
                   phonenum-value="12345">
                 </ins-input-tel>
               </ins-styleguide-actual>
@@ -352,15 +564,15 @@ current_user.graphql
                 <div>
                   <p><strong>HTML: </strong></p>
                   <script type="text/plain" class="language-markup">
-  <ins-input-tel 
-    label="Phone" 
-    areacode-placeholder="Area Code" 
-    areacode-value="1300" 
-    phonenum-placeholder="Phone Number"
-    phonenum-value="12345">
-  </ins-input-tel>
+<ins-input-tel 
+  label="Phone" 
+  areacode-placeholder="Area Code" 
+  areacode-value="1300" 
+  phonenum-placeholder="Phone Number"
+  phonenum-value="12345">
+</ins-input-tel>
                   </script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <br /><p><strong>LIQUID: </strong></p>
 <script type="text/plain" class="language-markup">{% raw %}
 {% assign LabelTel = 'Phone' %}
 {% assign AreaCodePlaceholder = 'Area Code' %}
@@ -428,9 +640,10 @@ current_user.graphql
     }, 500);
 &lt;/script&gt;
                   </script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 <ins-input-tel id="directSetDataInputtel"></ins-input-tel>
+
 {% assign LabelInputTel = 'Telephone' %}
 {% assign AreaCode = '14143' %}
 {% assign PhoneNum = '5190724671' %}
@@ -467,7 +680,7 @@ current_user.graphql
                   <script type="text/plain" class="language-markup">
 <ins-input-tel label="Phone" areacode-value="1300" phonenum-value="12345"></ins-input-tel>
                   </script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 {% assign Label = 'Phone' %}
 {% assign AreaCode = '1300' %}
@@ -492,9 +705,10 @@ current_user.graphql
                   <script type="text/plain" class="language-markup">
 <ins-input-tel label="Phone"></ins-input-tel>
                   </script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 {% assign Label = 'Phone' %}
+
 <ins-input-tel label="{{ Label }}"></ins-input-tel>{% endraw %}
                   </script>
                 </div>
@@ -511,9 +725,10 @@ current_user.graphql
                   <script type="text/plain" class="language-markup">
 <ins-input-tel areacode-value="1300"></ins-input-tel>
                   </script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 {% assign AreaCodeValue = '1300' %}
+
 <ins-input-tel areacode-value="{{ AreaCodeValue }}"></ins-input-tel>{% endraw %}
                   </script>
                 </div>
@@ -530,20 +745,43 @@ current_user.graphql
                   <script type="text/plain" class="language-markup">
 <ins-input-tel phonenum-value="12345"></ins-input-tel>
                   </script>
-                  <br /><p><strong>Liquid: </strong></p>
+                  <br /><p><strong>LIQUID: </strong></p>
                   <script type="text/plain" class="language-markup">{% raw %}
 {% assign PhoneNumValue = '12345' %}
+
 <ins-input-tel phonenum-value="{{ PhoneNumValue }}"></ins-input-tel>{% endraw %}
                   </script>
                 </div>  
               </ins-styleguide-code>
             </ins-styleguide>
 
+            <!-- <ins-styleguide label="Area Code Placeholder Attribute">
+              <ins-styleguide-actual slot="actual">
+                <ins-input-tel areacode-placeholder="Area Code"></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-input-tel areacode-placeholder="Area Code"></ins-input-tel>
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide>
+
+            <ins-styleguide label="Phone Number Placeholder Attribute">
+              <ins-styleguide-actual slot="actual">
+            <ins-input-tel phonenum-placeholder="Phone Number"></ins-input-tel>
+              </ins-styleguide-actual>
+              <ins-styleguide-code class="opacity-trigger" slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-input-tel phonenum-placeholder="Phone Number"></ins-input-tel>
+                </script>
+              </ins-styleguide-code>
+            </ins-styleguide> -->
 
           </div>
-      <script src="../../../assets/js/ins.js"></script>
           <script>
             setTimeout(() => {
+              // var insStyleGuideCode = document.querySelectorAll('ins-styleguide-code');
+
               $('ins-styleguide-code').removeClass('opacity-trigger');
             }, 500);
           </script>

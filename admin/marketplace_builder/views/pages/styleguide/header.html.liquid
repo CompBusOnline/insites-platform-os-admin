@@ -17,21 +17,22 @@ format: html
       margin: 40px 0 0px;
       color: #2C3148;
     }
+    #headerSection ins-header .ins-header-wrap {
+        position: relative;
+    }
+    @media only screen and (max-width: 320px) {
+      .content-wrap {
+        padding: 0;
+      }
+    }
   </style>
-
-
-
-<html>
-<body>
-    <div>
+    <div id="headerSection">
         <h2 class="section-title">Complete Example</h2>
         <ins-styleguide>
             <ins-styleguide-actual slot="actual">
                 <ins-header>
-                    {% query_graph 'input', result_name: 'g' %}
-                    {% for user in g.users limit: 4 offset: 3 %}
-                    <ins-header-user name="{{user.name}}" ></ins-header-user>
-                    {% endfor%}
+                    <!-- {% query_graph 'current_user', result_name: 'g' %}
+                    <ins-header-user name="{{g.current_user.name}}" ></ins-header-user> -->
                     <ins-instances logo-link="{{ 'images/logo-3@2x.png' | asset_url }}" instance="Final Sprint"></ins-instances>
                 </ins-header>
             </ins-styleguide-actual>
@@ -47,20 +48,21 @@ format: html
                 </script>
                 <br /><p><strong>HTML: </strong></p>
                 <script type="text/plain" class="language-markup">{% raw %}
-input.graphql                  
-query {
-  users {
-      id
-      name
-      email
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
   }
 }
+
 ......
+
 <ins-header>
-    {% query_graph 'input', result_name: 'g' %}
-    {% for user in g.users limit: 4 offset: 3 %}
-    <ins-header-user name="{{user.name}}"  profile-link=""></ins-header-user>
-    {% endfor%}
+    {% query_graph 'current_user', result_name: 'g' %}
+    <ins-header-user name="{{ g.current_user.name }}" ></ins-header-user>
     <ins-instances logo-link="{{ 'images/logo-3@2x.png' | asset_url }}" instance="Final Sprint"></ins-instances>
 </ins-header>
                 {% endraw %}</script>
@@ -69,6 +71,7 @@ query {
         </ins-styleguide>
         <h2 class="section-title">ins-header-user</h2>
 
+        <!-- Default Data -->
         <ins-styleguide label="Default State" >
             <ins-styleguide-actual slot="actual">
                 <ins-header>
@@ -84,20 +87,19 @@ query {
             </ins-styleguide-code>
         </ins-styleguide>
 
+        <!-- Direct Set Data -->
         <ins-styleguide label="Direct Set Data" >
             <ins-styleguide-actual slot="actual">
                 <ins-header>
                     <ins-header-user id="directSetDataHeaderUser"></ins-header-user>
                 </ins-header>
+                {% query_graph 'current_user', result_name: 'g' %}
                 <script>
-                    {% query_graph 'input', result_name: 'g' %}
-                    {% for user in g.users limit: 4 offset: 3 %}
                     setTimeout(()=>{
-                        ins('#directSetDataHeaderUser').val('name', '{{user.name}}');
+                        ins('#directSetDataHeaderUser').val('name', '{{ g.current_user.name }}');
                         ins('#directSetDataHeaderUser').val('logoutLink', '/admin/sessions/my-profile');
                         ins('#directSetDataHeaderUser').val('profileLink', '/admin/sessions/logout');
                     }, 500);
-                    {% endfor%}
                 </script>
             </ins-styleguide-actual>
             <ins-styleguide-code slot="code">
@@ -124,42 +126,42 @@ query {
                 </script>
                 <br /><p><strong>LIQUID: </strong></p>
                 <script type="text/plain" class="language-markup">{%raw%}
-input.graphql                  
-query {
-  users {
-      id
-      name
-      email
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
   }
 }
+
 ......
+
 <ins-header>
     <ins-header-user id="directSetDataHeaderUser"></ins-header-user>
 </ins-header>
 
+{% query_graph 'current_user', result_name: 'g' %}
+
 <script src="/assets/js/ins.js">&lt;/script&gt;
 <script>
-    {% query_graph 'input', result_name: 'g' %}
-    {% for user in g.users limit: 4 offset: 3 %}
     setTimeout(()=>{
-        ins('#directSetDataHeaderUser').val('name', '{{user.name}}');
+        ins('#directSetDataHeaderUser').val('name', '{{ g.current_user.name }}');
         ins('#directSetDataHeaderUser').val('logoutLink', '/admin/sessions/my-profile');
         ins('#directSetDataHeaderUser').val('profileLink', '/admin/sessions/logout');
     }, 500);
-    {% endfor%}
 &lt;/script&gt;
                 {%endraw%}</script>
             </ins-styleguide-code>
         </ins-styleguide>
 
+        <!-- Static Data Source -->
         <ins-styleguide label="Static Data Source">
             <ins-styleguide-actual slot="actual">
                 <ins-header>
-                    {% query_graph 'input', result_name: 'g' %}
-                        {% for user in g.users limit: 4 offset: 3 %}
-                        <ins-header-user name="{{user.name}}" logout-link="/logout" profile-link="/my-profile">
-                        </ins-header-user> 
-                        {% endfor %}
+                    {% query_graph 'current_user', result_name: 'g' %}
+                    <ins-header-user name="{{ g.current_user.name }}" logout-link="/logout" profile-link="/my-profile"></ins-header-user> 
                 </ins-header>
             </ins-styleguide-actual>
             <ins-styleguide-code slot="code">
@@ -172,22 +174,23 @@ query {
                     </script>
                     <br /><p><strong>LIQUID: </strong></p>
                     <script type="text/plain" class="language-markup">{% raw %}
-input.graphql                  
-query {
-  users {
-      id
-      name
-      email
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
   }
 }
+
 ......
-{% query_graph 'input', result_name: 'g' %}
-{% for user in g.users limit: 4 offset: 3 %}
-<ins-header-user name="{{user.name}}" 
+
+{% query_graph 'current_user', result_name: 'g' %}
+<ins-header-user name="{{g.current_user.name}}" 
             logout-link="/logout" 
             profile-link="/my-profile">
 </ins-header-user> 
-{% endfor %}
                     {% endraw %}</script>
                 </div>
             </ins-styleguide-code>
@@ -195,11 +198,11 @@ query {
 
         <h2 class="section-title">ins-instances</h2>
 
+        <!-- Default Data -->
         <ins-styleguide label="Default State" class="min-height-310">
             <ins-styleguide-actual slot="actual">
                 <ins-header>
-                    <ins-instances>
-                    </ins-instances>
+                    <ins-instances></ins-instances>
                 </ins-header>
             </ins-styleguide-actual>
             <ins-styleguide-code slot="code">
@@ -211,22 +214,23 @@ query {
             </ins-styleguide-code>
         </ins-styleguide>
 
+        <!-- Direct Set Data -->
         <ins-styleguide label="Direct Set Data" class="min-height-310">
             <ins-styleguide-actual slot="actual">
                 <ins-header>
                     <ins-instances id="directSetDataInstances"></ins-instances>
                 </ins-header>
-                <script>
                 {% assign instance = 'Codehow'%}
                 {% assign instanceLink = '/codehow-dashboard'%}
                 {% assign logoLink = 'images/logo-2@2x.png'%}
                 {% assign newTab = true%}
 
+                <script>
                     setTimeout(()=>{
-                        ins('#directSetDataInstances').val('instance', "{{instance}}");
-                        ins('#directSetDataInstances').val('instanceLink', "{{instanceLink}}");
-                        ins('#directSetDataInstances').val('logoLink', "{{logoLink | asset_url}}");
-                        ins('#directSetDataInstances').val('newTab', "{{newTab}}");
+                        ins('#directSetDataInstances').val('instance', "{{ instance }}");
+                        ins('#directSetDataInstances').val('instanceLink', "{{ instanceLink }}");
+                        ins('#directSetDataInstances').val('logoLink', "{{ logoLink | asset_url }}");
+                        ins('#directSetDataInstances').val('newTab', "{{ newTab }}");
                     }, 500);
                 </script>
             </ins-styleguide-actual>
@@ -263,33 +267,34 @@ query {
     </ins-instances>
 </ins-header>
 
+{% assign instance = 'Codehow'%}
+{% assign instanceLink = '/codehow-dashboard'%}
+{% assign logoLink = 'images/logo-2@2x.png'%}
+{% assign newTab = true%}
+
 <script src="/assets/js/ins.js">&lt;/script&gt;
 <script>
-    {% assign instance = 'Codehow'%}
-    {% assign instanceLink = '/codehow-dashboard'%}
-    {% assign logoLink = 'images/logo-2@2x.png'%}
-    {% assign newTab = true%}
-
-        setTimeout(()=>{
-            ins('#directSetDataInstances').val('instance', "{{instance}}");
-            ins('#directSetDataInstances').val('instanceLink', "{{instanceLink}}");
-            ins('#directSetDataInstances').val('logoLink', "{{logoLink | asset_url}}");
-            ins('#directSetDataInstances').val('newTab', "{{newTab}}");
-        }, 500);
+    setTimeout(()=>{
+        ins('#directSetDataInstances').val('instance', "{{instance}}");
+        ins('#directSetDataInstances').val('instanceLink', "{{instanceLink}}");
+        ins('#directSetDataInstances').val('logoLink', "{{logoLink | asset_url}}");
+        ins('#directSetDataInstances').val('newTab', "{{newTab}}");
+    }, 500);
 &lt;/script&gt;
                     {%endraw%}</script>
                 </div>
             </ins-styleguide-code>
         </ins-styleguide>
 
+        <!-- Static Data Source -->
         <ins-styleguide label="Static Data Source" class="min-height-310">
             <ins-styleguide-actual slot="actual">
                 <ins-header>
-                {% assign logo-link='images/logo-3@2x.png'%}
-                {% assign instance="Final Sprint"%}
-                {% assign instance-link="/dashboard"%}
-                    <ins-instances logo-link="{{ logo-link | asset_url }}" instance="{{instance}}" instance-link="{{instance-link}}" new-tab>
-                    </ins-instances>
+                    {% assign logo-link='images/logo-3@2x.png'%}
+                    {% assign instance="Final Sprint"%}
+                    {% assign instance-link="/dashboard"%}
+
+                    <ins-instances logo-link="{{ logo-link | asset_url }}" instance="{{instance}}" instance-link="{{instance-link}}" new-tab></ins-instances>
                 </ins-header>
             </ins-styleguide-actual>
             <ins-styleguide-code slot="code">
@@ -321,6 +326,3 @@ query {
             </ins-styleguide-code>
         </ins-styleguide>
     </div>
-
-    </body>
-</html>

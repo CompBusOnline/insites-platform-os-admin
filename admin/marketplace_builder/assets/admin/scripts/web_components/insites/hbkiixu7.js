@@ -1,0 +1,2 @@
+/*! Built with http://stenciljs.com */
+const{h:t}=window.insites;class s{render(){return t("div",{class:"ins-title-wrapper"},t("h1",{class:`title-${this.class}`},this.label))}static get is(){return"ins-title"}static get properties(){return{class:{type:String,attr:"class"},label:{type:String,attr:"label"}}}static get style(){return".ins-title-wrapper h1{opacity:.87;color:#1a1d2c;font-family:\"Open Sans\",sans-serif;font-size:24px;font-weight:300;line-height:33px}"}}export{s as InsTitle};

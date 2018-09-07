@@ -39,3 +39,15 @@
   }
   return ins;
 });
+
+var insRouter = new ((function () {
+    function Insites() {
+    }
+    Insites.prototype.url = function () {
+        return window.location;
+    };
+    Insites.prototype.go = function (path) {
+        return document.location.href = path
+    };
+    return Insites;
+}()));

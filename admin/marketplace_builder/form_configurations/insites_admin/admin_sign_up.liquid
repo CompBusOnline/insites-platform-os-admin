@@ -1,0 +1,60 @@
+---
+name: admin_sign_up
+resource: User
+resource_owner: anyone
+redirect_to: /admin/sessions/new
+configuration:
+  email:
+  password:
+  first_name:
+  last_name:
+  profiles:
+    administrator:
+      properties:
+        company:
+    contact_number:
+      properties:
+        work_phone_country_code:
+        work_phone_area_code:
+        work_phone_number:
+authorization_policies:
+  - only_allowed_by_administrators
+---
+
+<!-- <div class="grid-x top-container">
+  <div class="large-12 cell text-right">
+    <span>Already have an account?</span>
+    <ins-button label="SIGN IN" outlined></ins-button> 
+  </div>
+</div> -->
+
+{% form url: '/api/users', method: 'post' %}
+<div class="grid-container">
+  <div class="grid-x grid-padding-x">
+    <div class="large-12 cell">
+      <label class="form-label">Name
+        {% input 'name' %}
+      </label>
+    </div>
+    <div class="large-12 cell">
+      <label class="form-label">Email
+        {% input 'email' %}
+      </label>
+    </div>
+    <div class="large-12 cell">
+      <label class="form-label">Password
+        {% input 'password', as: 'password' %}
+      </label>
+    </div> 
+
+    {% fields_for 'profiles' %}
+      {% fields_for 'administrator', form: 'profiles' %}
+        {% input 'enabled', as: 'hidden', form: 'administrator' %}
+      {% endfields_for %}
+    {% endfields_for %}
+    <div class="large-12 cell submit-btn-wrap">
+        {% submit 'Create' class: 'ripple-effects' %}
+    </div>
+  </div>
+</div>
+{% endform %}
