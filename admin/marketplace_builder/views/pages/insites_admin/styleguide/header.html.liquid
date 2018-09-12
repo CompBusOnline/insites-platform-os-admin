@@ -1,0 +1,328 @@
+---
+slug: styleguide/header
+layout_name: insites_admin/insites_empty
+format: html
+---
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+    h2.section-title {
+      font-family: "Open Sans", sans-serif;
+      padding-bottom: 10px;
+      font-weight: 600;
+      font-size: 18px;
+      border-bottom: solid 1px #eee;
+      margin: 40px 0 0px;
+      color: #2C3148;
+    }
+    #headerSection ins-header .ins-header-wrap {
+        position: relative;
+    }
+    @media only screen and (max-width: 320px) {
+      .content-wrap {
+        padding: 0;
+      }
+    }
+  </style>
+    <div id="headerSection">
+        <h2 class="section-title">Complete Example</h2>
+        <ins-styleguide>
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    <!-- {% query_graph 'current_user', result_name: 'g' %}
+                    <ins-header-user name="{{g.current_user.name}}" ></ins-header-user> -->
+                    <ins-instances logo-link="{{ 'images/logo-3@2x.png' | asset_url }}" instance="Final Sprint"></ins-instances>
+                </ins-header>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-header-user name="John Smith" profile-link="/assets/pages/my-profile.html"></ins-header-user>
+    <ins-instances logo-link="/assets/images/logo-3@2x.png" instance="Final Sprint">
+    </ins-instances>
+</ins-header>
+                </script>
+                <br /><p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
+  }
+}
+
+......
+
+<ins-header>
+    {% query_graph 'current_user', result_name: 'g' %}
+    <ins-header-user name="{{ g.current_user.name }}" ></ins-header-user>
+    <ins-instances logo-link="{{ 'images/logo-3@2x.png' | asset_url }}" instance="Final Sprint"></ins-instances>
+</ins-header>
+                {% endraw %}</script>
+                </div>
+            </ins-styleguide-code>
+        </ins-styleguide>
+        <h2 class="section-title">ins-header-user</h2>
+
+        <!-- Default Data -->
+        <ins-styleguide label="Default State" >
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    <ins-header-user></ins-header-user>
+                </ins-header>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-header-user></ins-header-user>
+</ins-header>
+                        </script>
+            </ins-styleguide-code>
+        </ins-styleguide>
+
+        <!-- Direct Set Data -->
+        <ins-styleguide label="Direct Set Data" >
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    <ins-header-user id="directSetDataHeaderUser"></ins-header-user>
+                </ins-header>
+                {% query_graph 'current_user', result_name: 'g' %}
+                <script>
+                    setTimeout(()=>{
+                        ins('#directSetDataHeaderUser').val('name', '{{ g.current_user.name }}');
+                        ins('#directSetDataHeaderUser').val('logoutLink', '/admin/sessions/my-profile');
+                        ins('#directSetDataHeaderUser').val('profileLink', '/admin/sessions/logout');
+                    }, 500);
+                </script>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-header-user id="directSetDataHeaderUser"></ins-header-user>
+</ins-header>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    var name = 'Jane Doe',
+        logoutLink = '/sign-out',
+        profileLink = '/my-account';
+
+    // setTimeout is used to avoid race conditions
+    setTimeout(() => {
+        ins('#directSetDataHeaderUser').val('name', name);
+        ins('#directSetDataHeaderUser').val('logoutLink', logoutLink);
+        ins('#directSetDataHeaderUser').val('profileLink', profileLink);
+        // update `name`, `logoutLink` and `profileLink` attributes of the component
+    }, 500);
+&lt;/script&gt;
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
+  }
+}
+
+......
+
+<ins-header>
+    <ins-header-user id="directSetDataHeaderUser"></ins-header-user>
+</ins-header>
+
+{% query_graph 'current_user', result_name: 'g' %}
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(()=>{
+        ins('#directSetDataHeaderUser').val('name', '{{ g.current_user.name }}');
+        ins('#directSetDataHeaderUser').val('logoutLink', '/admin/sessions/my-profile');
+        ins('#directSetDataHeaderUser').val('profileLink', '/admin/sessions/logout');
+    }, 500);
+&lt;/script&gt;
+                {%endraw%}</script>
+            </ins-styleguide-code>
+        </ins-styleguide>
+
+        <!-- Static Data Source -->
+        <ins-styleguide label="Static Data Source">
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    {% query_graph 'current_user', result_name: 'g' %}
+                    <ins-header-user name="{{ g.current_user.name }}" logout-link="/logout" profile-link="/my-profile"></ins-header-user> 
+                </ins-header>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <div>
+                    <p><strong>HTML: </strong></p>
+                    <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-header-user name="John Smith" logout-link="/logout" profile-link="/my-profile"></ins-header-user>
+</ins-header>
+                    </script>
+                    <br /><p><strong>LIQUID: </strong></p>
+                    <script type="text/plain" class="language-markup">{% raw %}
+current_user.graphql                  
+{
+  current_user {
+    id
+    slug
+    name
+    email
+  }
+}
+
+......
+
+{% query_graph 'current_user', result_name: 'g' %}
+<ins-header-user name="{{g.current_user.name}}" 
+            logout-link="/logout" 
+            profile-link="/my-profile">
+</ins-header-user> 
+                    {% endraw %}</script>
+                </div>
+            </ins-styleguide-code>
+        </ins-styleguide>
+
+        <h2 class="section-title">ins-instances</h2>
+
+        <!-- Default Data -->
+        <ins-styleguide label="Default State" class="min-height-310">
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    <ins-instances></ins-instances>
+                </ins-header>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-instances></ins-instances>
+</ins-header>
+                        </script>
+            </ins-styleguide-code>
+        </ins-styleguide>
+
+        <!-- Direct Set Data -->
+        <ins-styleguide label="Direct Set Data" class="min-height-310">
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    <ins-instances id="directSetDataInstances"></ins-instances>
+                </ins-header>
+                {% assign instance = 'Codehow'%}
+                {% assign instanceLink = '/codehow-dashboard'%}
+                {% assign logoLink = 'images/logo-2@2x.png'%}
+                {% assign newTab = true%}
+
+                <script>
+                    setTimeout(()=>{
+                        ins('#directSetDataInstances').val('instance', "{{ instance }}");
+                        ins('#directSetDataInstances').val('instanceLink', "{{ instanceLink }}");
+                        ins('#directSetDataInstances').val('logoLink', "{{ logoLink | asset_url }}");
+                        ins('#directSetDataInstances').val('newTab', "{{ newTab }}");
+                    }, 500);
+                </script>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <div>
+                    <p><strong>HTML: </strong></p>
+                    <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-instances id="directSetDataInstances">
+    </ins-instances>
+</ins-header>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    var instance = 'Codehow',
+        instanceLink = '/codehow-dashboard',
+        logoLink = '/assets/images/logo-2@2x.png',
+        newTab = true;
+
+    // setTimeout is used to avoid race conditions
+    setTimeout(() => {
+        ins('#directSetDataInstances').val('instance', instance);
+        ins('#directSetDataInstances').val('instanceLink', instanceLink);
+        ins('#directSetDataInstances').val('logoLink', logoLink);
+        ins('#directSetDataInstances').val('newTab', newTab);
+        // update `instance`, `instanceLink`, `logoLink` and `newTab` attributes of the component
+    }, 500);
+&lt;/script&gt;
+                    </script>
+                    <br /><p><strong>LIQUID: </strong></p>
+                    <script type="text/plain" class="language-markup">{%raw%}
+<ins-header>
+    <ins-instances id="directSetDataInstances">
+    </ins-instances>
+</ins-header>
+
+{% assign instance = 'Codehow'%}
+{% assign instanceLink = '/codehow-dashboard'%}
+{% assign logoLink = 'images/logo-2@2x.png'%}
+{% assign newTab = true%}
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(()=>{
+        ins('#directSetDataInstances').val('instance', "{{instance}}");
+        ins('#directSetDataInstances').val('instanceLink', "{{instanceLink}}");
+        ins('#directSetDataInstances').val('logoLink', "{{logoLink | asset_url }}");
+        ins('#directSetDataInstances').val('newTab', "{{newTab}}");
+    }, 500);
+&lt;/script&gt;
+                    {%endraw%}</script>
+                </div>
+            </ins-styleguide-code>
+        </ins-styleguide>
+
+        <!-- Static Data Source -->
+        <ins-styleguide label="Static Data Source" class="min-height-310">
+            <ins-styleguide-actual slot="actual">
+                <ins-header>
+                    {% assign logo-link='images/logo-3@2x.png'%}
+                    {% assign instance="Final Sprint"%}
+                    {% assign instance-link="/dashboard"%}
+
+                    <ins-instances logo-link="{{ logo-link | asset_url }}" instance="{{instance}}" instance-link="{{instance-link}}" new-tab></ins-instances>
+                </ins-header>
+            </ins-styleguide-actual>
+            <ins-styleguide-code slot="code">
+                <div>
+                    <p><strong>HTML: </strong></p>
+                    <script type="text/plain" class="language-markup">
+<ins-header>
+    <ins-instances logo-link="/assets/images/logo-3@2x.png"
+                    instance="Final Sprint"
+                    instance-link="/dashboard"
+                    new-tab>
+        <ins-instances-item></ins-instances-item>
+    </ins-instances>
+</ins-header>
+                    </script>
+                    <br /><p><strong>LIQUID: </strong></p>
+                    <script type="text/plain" class="language-markup">{%raw%}
+{% assign logo-link='images/logo-3@2x.png'%}
+{% assign instance="Final Sprint"%}
+{% assign instance-link="/dashboard"%}
+
+<ins-instances logo-link="{{ logo-link | asset_url }}" 
+               instance="{{instance}}" 
+               instance-link="{{instance-link}}" 
+               new-tab>
+</ins-instances>
+                    {%endraw%}</script>
+                </div>
+            </ins-styleguide-code>
+        </ins-styleguide>
+    </div>

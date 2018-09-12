@@ -1,0 +1,684 @@
+---
+slug: admin/styleguide/sidebar
+layout_name: insites_admin/insites_empty
+format: html
+---
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        background-color: transparent;
+    }
+
+    h2.section-title {
+        font-family: "Open Sans", sans-serif;
+        padding-bottom: 10px;
+        font-weight: 600;
+        font-size: 18px;
+        border-bottom: solid 1px #eee;
+        margin: 40px 0 0px;
+        color: #2C3148;
+    }
+    .opacity-trigger > div {
+        opacity: 0;
+    }
+    ins-sidebar .sidebar ins-sidebar-footer-menu .menu-item-wrap {
+        top: calc(-250px + 110px) !important;
+        height: calc(250px - 110px) !important;
+    }
+
+    ins-sidebar .sidebar {
+        position: relative;
+        height: 250px;
+        z-index: 105;
+    }
+
+    .complete-example ins-sidebar .sidebar {
+        height: 550px;
+    }
+
+    .complete-example ins-sidebar ins-sidebar-footer-menu .menu-item-wrap {
+        top: calc(-550px + 110px) !important;
+        height: calc(550px - 110px) !important;
+    }
+    @media only screen and (max-width: 320px) {
+      .content-wrap {
+        padding: 0;
+      }
+    }
+</style>
+<div>
+    <h2 class="section-title">Complete Example</h2>
+    <ins-styleguide>
+        <ins-styleguide-actual slot="actual" class="complete-example">
+            <ins-sidebar full-logo="{{'images/Insites_logo.svg' | asset_url }}"
+                                    icon-logo="{{'images/insites_logo_icon.svg' | asset_url }}"
+                                    with-sidebar-actions class="style-guide">
+            <ins-sidebar-item link="/assets/pages/styleguide/buttons.html"
+                            icon="icon-buttons"
+                            label="Buttons"
+                            app>
+            </ins-sidebar-item>
+            <ins-sidebar-item link="/assets/pages/styleguide/charts.html"
+                            icon="icon-chart"
+                            label="Charts"
+                            app>
+            </ins-sidebar-item>
+            <ins-sidebar-footer>
+                <ins-sidebar-footer-menu icon="icon-settings-1"
+                                        label="Settings">
+                    <ins-sidebar-item link="/admin/settings/colour-themes"
+                                            label="Color Themes"
+                                            app>
+                    </ins-sidebar-item>
+                    <ins-sidebar-item link="/admin/settings/localisation"
+                                            label="Localisation"
+                                            app>
+                    </ins-sidebar-item>
+                    <ins-sidebar-item link="/admin/settings/website-settings"
+                                            label="Website Settings"
+                                            app>
+                    </ins-sidebar-item>
+                </ins-sidebar-footer-menu>
+                <ins-sidebar-footer-button icon="icon-lock-1"></ins-sidebar-footer-button>
+                <ins-sidebar-footer-button icon="icon-logout-1"></ins-sidebar-footer-button>
+            </ins-sidebar-footer>
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+            <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-sidebar 
+    full-logo="/assets/images/Insites_logo.svg"
+    icon-logo="/assets/images/insites_logo_icon.svg"
+    with-sidebar-actions>
+    <ins-sidebar-item 
+        link="/assets/pages/styleguide/buttons.html"
+        icon="icon-buttons"
+        label="Buttons"
+        app>
+    </ins-sidebar-item>
+    <ins-sidebar-item 
+        link="/assets/pages/styleguide/charts.html"
+        icon="icon-chart"
+        label="Charts"
+        app>
+    </ins-sidebar-item>
+    <ins-sidebar-footer>
+        <ins-sidebar-footer-menu 
+            icon="icon-settings-1"
+            label="Settings">
+            <ins-sidebar-item 
+                link="/admin/settings/colour-themes"
+                label="Color Themes"
+                app>
+            </ins-sidebar-item>
+            <ins-sidebar-item 
+                link="/admin/settings/localisation"
+                label="Localisation"
+                app>
+            </ins-sidebar-item>
+            <ins-sidebar-item 
+                link="/admin/settings/website-settings"
+                label="Website Settings"
+                app>
+            </ins-sidebar-item>
+        </ins-sidebar-footer-menu>
+        <ins-sidebar-footer-button icon="icon-lock-1"></ins-sidebar-footer-button>
+        <ins-sidebar-footer-button icon="icon-logout-1"></ins-sidebar-footer-button>
+    </ins-sidebar-footer>
+</ins-sidebar>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>
+                <script type="text/plain" class="language-markup">{% raw %}
+{% assign fullLogo="images/Insites_logo.svg" %}
+{% assign iconLogo="images/insites_logo_icon.svg" %}
+{% assign urlIconButtons="/assets/pages/styleguide/buttons.html" %}
+{% assign iconButton="icon-buttons" %}
+{% assign labelButton="Label" %}
+{% assign urlCiconChart="/assets/pages/styleguide/charts.html" %}
+{% assign iconChart="icon-chart" %}
+{% assign labelChart="Charts"%}
+{% assign footerMenuSettingIcon="icon-settings-1" %}
+{% assign footerMenuSettingLabel="Settings" %}
+{% assign urlColorThemePage="/admin/settings/colour-themes" %}
+{% assign urlColorThemePageLabel="Color Themes" %}
+{% assign urlLocalisationpage="/admin/settings/localisation" %}
+{% assign urlLocalisationpageLabel="Localisation" %}
+{% assign urlWebsiteSettingsPage="/admin/settings/website-settings" %}
+{% assign urlWebsiteSettingsPageLabel="Website Settings" %}
+{% assign iconLock="icon-lock-1" %}
+{% assign iconLogout="icon-logout-1" %}
+
+
+<ins-sidebar 
+    full-logo="{{ fullLogo | asset_url }}"
+    icon-logo="{{ iconLogo | asset_url }}"
+    with-sidebar-actions class="style-guide">
+    <ins-sidebar-item 
+        link="{{ urlIconButtons }}"
+        icon="{{ iconButton }}"
+        label="{{ labelButton }}"
+        app>
+    </ins-sidebar-item>
+    <ins-sidebar-item 
+        link="{{ urlCiconChart }}"
+        icon="{{ iconChart }}"
+        label="{{ labelChart }}"
+        app>
+    </ins-sidebar-item>
+    <ins-sidebar-footer>
+        <ins-sidebar-footer-menu 
+            icon="{{ footerMenuSettingIcon }}"
+            label="{{ footerMenuSettingLabel }}">
+            <ins-sidebar-item 
+                link="{{ urlColorThemePage }}"
+                label="{{ urlColorThemePageLabel }}"
+                app>
+            </ins-sidebar-item>
+            <ins-sidebar-item 
+                link="{{ urlLocalisationpage }}"
+                label="{{ urlLocalisationpageLabel }}"
+                app>
+            </ins-sidebar-item>
+            <ins-sidebar-item 
+                link="{{ urlWebsiteSettingsPage }}"
+                label="{{ urlWebsiteSettingsPageLabel }}"
+                app>
+            </ins-sidebar-item>
+        </ins-sidebar-footer-menu>
+        <ins-sidebar-footer-button icon="{{ iconLock }}"></ins-sidebar-footer-button>
+        <ins-sidebar-footer-button icon="{{ iconLogout }}"></ins-sidebar-footer-button>
+    </ins-sidebar-footer>
+</ins-sidebar>
+                {% endraw %}</script>
+            </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+    <h2 class="section-title">ins-sidebar</h2>
+    <ins-styleguide label="Default State">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide"></ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+            <script type="text/plain" class="language-markup">
+<ins-sidebar></ins-sidebar>
+            </script>
+        </ins-styleguide-code>
+    </ins-styleguide>
+
+    <ins-styleguide label="Direct Set Data">
+        <ins-styleguide-actual slot="actual">
+            {% assign logo = 'admin/images/Insites_logo.svg'%}
+
+            <ins-sidebar 
+                id="sidebarID" 
+                icon-logo="{{ logo | asset_url }}"
+                class="style-guide"></ins-sidebar>
+            <script>
+            
+                setTimeout(function () {
+                    ins('#sidebarID').val('fullLogo', "{{ logo | asset_url }}");
+                }, 500);
+            </script>
+        </ins-styleguide-actual>
+
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+            <div>
+                <p><strong>HTML</strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-sidebar id="sidebarID" icon-logo="/assets/images/Insites_logo_icon.svg"></ins-sidebar>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+var logo = "/assets/images/Insites_logo.svg";
+
+// setTimeout is used to avoid race condition
+setTimeout(() => {
+    ins('#sidebarID').val('full-logo', logo);
+    // update `full-logo` attribute of the component
+}, 500);
+&lt;/script&gt;
+                </script>
+                <br /><p><strong>LIQUID</strong></p>
+                <script type="text/plain" class="language-markup">{%raw%}
+{% assign logo="admin/images/Insites_logo.svg" %}
+
+<ins-sidebar id="sidebarID" icon-logo="{{ logo | asset_url }}"
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(function () {
+        ins('#sidebarID').val('fullLogo', "{{ logo | asset_url }}");
+    }, 500);
+&lt;/script&gt;
+                {%endraw%}</script>
+            </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+
+    <ins-styleguide label="Static Data Source">
+        <ins-styleguide-actual slot="actual">
+            {% assign full-logo="images/Insites_logo.svg" %}
+            {% assign icon-logo="images/Insites_logo_icon.svg" %}
+
+            <ins-sidebar full-logo="{{ full-logo | asset_url }}" icon-logo="{{ icon-logo | asset_url }}"
+                         class="style-guide"></ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar
+    full-logo="/assets/images/Insites_logo.svg" 
+    icon-logo="/assets/images/Insites_logo_icon.svg">
+</ins-sidebar>
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>{% raw%}
+            <script type="text/plain" class="language-markup">
+{% assign full-logo="images/Insites_logo.svg" %}
+{% assign icon-logo="images/Insites_logo_icon.svg" %}
+
+<ins-sidebar 
+    full-logo="{{ full-logo | asset_url }}" 
+    icon-logo="{{ icon-logo | asset_url }}"
+    class="style-guide">
+</ins-sidebar>
+            {% endraw%}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+
+    <h2 class="section-title">ins-sidebar-item</h2>
+    <ins-styleguide label="Default Example">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-item></ins-sidebar-item>
+                <!-- <ins-sidebar-item icon="icon-settings-1" label="Test"></ins-sidebar-item> -->
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-item></ins-sidebar-item>
+</ins-sidebar>
+            </script>
+        </ins-styleguide-code>
+    </ins-styleguide>
+    <ins-styleguide label="Static Data Source">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                {% assign icon="icon-settings-1" %}
+                {% assign label="Settings" %}
+                <ins-sidebar-item icon="{{ icon }}" label="{{ label }}" app></ins-sidebar-item>
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+            <div>
+                <p><strong>HTML: </strong></p>
+                <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-item icon="icon-settings-1" label="Settings" app></ins-sidebar-item>
+</ins-sidebar>
+                </script>
+                <br /><p><strong>LIQUID: </strong></p>{%raw%}
+                <script type="text/plain" class="language-markup">
+{% assign icon="icon-settings-1" %}
+{% assign label="Settings" %}
+
+<ins-sidebar-item icon="{{ icon }}" label="{{ label }}" app></ins-sidebar-item>
+                {%endraw%}</script>
+            </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+
+    <ins-styleguide label="Direct Data Source">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-item id="sidebarItemID"></ins-sidebar-item>
+            </ins-sidebar>
+
+            {% assign icon="icon-dashboard" %}
+            {% assign label="Dashboard" %}
+
+            <script>
+                setTimeout(function () {
+                    
+
+                    ins('#sidebarItemID').val('icon', '{{ icon }}');
+                    ins('#sidebarItemID').val('label', '{{ label }}');
+                }, 500);
+            </script>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-item id="sidebarItemID"></ins-sidebar-item>
+</ins-sidebar>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+  var icon = "icon-dashboard",
+      label = "Dashboard";
+
+    // setTimeout is used to avoid race condition
+    setTimeout(() => {
+        ins('#sidebarItemID').val('icon', icon);
+        ins('#sidebarItemID').val('label', label);
+        // update `icon` and `label` attributes of the component
+    }, 500);
+&lt;/script&gt;
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>{% raw %}
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-item id="sidebarItemID"></ins-sidebar-item>
+</ins-sidebar>
+
+{% assign icon = "icon-dashboard"%}
+{% assign label = "Dashboard"%}
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(function () {
+        ins('#sidebarItemID').val('icon', '{{ icon }}');
+        ins('#sidebarItemID').val('label', '{{ label }}');
+    }, 500);
+&lt;/script&gt;
+            {% endraw %}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+    <!-- INS-SIDEBAR-FOOTER -->
+    <h2 class="section-title">ins-sidebar-footer-menu</h2>
+  
+    <ins-styleguide label="Default State">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-footer>
+                    <ins-sidebar-footer-menu>
+                        {% assign link="/admin/settings/colour-themes"%}
+                        {% assign label="System Fields"%}
+                        <ins-sidebar-item 
+                            link="{{ link }}" 
+                            label="{{ label }}"
+                            app>
+                        </ins-sidebar-item>
+                    </ins-sidebar-footer-menu>
+                </ins-sidebar-footer>
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+  <ins-sidebar-footer>
+    <ins-sidebar-footer-menu>
+        <ins-sidebar-item link="/admin/settings/colour-themes" label="System Fields" app></ins-sidebar-item>
+    </ins-sidebar-footer-menu>
+  </ins-sidebar-footer>
+</ins-sidebar>
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+{% assign link="/admin/settings/colour-themes"%}
+{% assign label="System Fields"%}
+
+<ins-sidebar>
+  <ins-sidebar-footer>
+    <ins-sidebar-footer-menu>
+        <ins-sidebar-item   
+            link="{{ link }}" 
+            label="{{ label }}"
+            app>
+        </ins-sidebar-item>
+    </ins-sidebar-footer-menu>
+  </ins-sidebar-footer>
+</ins-sidebar>
+            {%endraw%}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+    <ins-styleguide label="Direct Data Source">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-footer>
+                    <ins-sidebar-footer-menu id="directDataSourceFooterMenu">
+                        <ins-sidebar-item link="/logout" label="Log Out" app></ins-sidebar-item>
+                    </ins-sidebar-footer-menu>
+                </ins-sidebar-footer>
+            </ins-sidebar>
+
+            {% assign icon = 'icon-logout-1'%}
+            {% assign label = 'Power'%}
+
+            <script>
+                setTimeout(() => {
+                    ins('#directDataSourceFooterMenu').val('icon', '{{ icon }}');
+                    ins('#directDataSourceFooterMenu').val('label', '{{ label }}');
+                }, 500);
+            </script>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+  <ins-sidebar-footer>
+    <ins-sidebar-footer-menu id="directDataSourceFooterMenu">
+        <ins-sidebar-item link="/logout" label="Log Out" app></ins-sidebar-item>
+    </ins-sidebar-footer-menu>
+  </ins-sidebar-footer>
+</ins-sidebar>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+  var icon = 'icon-logout-1',
+      label = 'Power';
+
+  // setTimeout is used to avoid race condition
+  setTimeout(() => {
+      ins('#directDataSourceFooterMenu').val('icon', icon);
+      ins('#directDataSourceFooterMenu').val('label', label);
+      // update `icon` and `label` attribute of the component
+  }, 500);
+&lt;/script&gt;
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+<ins-sidebar>
+  <ins-sidebar-footer>
+    <ins-sidebar-footer-menu id="directDataSourceFooterMenu">
+        <ins-sidebar-item link="/logout" label="Log Out" app></ins-sidebar-item>
+    </ins-sidebar-footer-menu>
+  </ins-sidebar-footer>
+</ins-sidebar>
+
+{% assign icon="icon-logout-1" %}
+{% assign label="Power" %}
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(() => {
+        ins('#directDataSourceFooterMenu').val('icon', '{{ icon }}');
+        ins('#directDataSourceFooterMenu').val('label', '{{ label }}');
+    }, 500);
+&lt;/script&gt;
+            {%endraw%}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+
+    <ins-styleguide label="Static Data Source">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-footer>
+                    <ins-sidebar-footer-menu icon="icon-dashboard" label="Dashboard">
+                        {% assign link="/overview"%}
+                        {% assign label="Overview"%}
+
+                        <ins-sidebar-item 
+                            link="{{link}}"
+                            label="{{label}}"
+                            app>
+                        </ins-sidebar-item>
+                    </ins-sidebar-footer-menu>
+                </ins-sidebar-footer>
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar-footer>
+  <ins-sidebar-footer-menu icon="icon-dashboard" label="Dashboard">
+      <ins-sidebar-item link="/overview"
+                        label="Overview"
+                        app>
+      </ins-sidebar-item>
+  </ins-sidebar-footer-menu>
+</ins-sidebar-footer>
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+{% assign link="/overview"%}
+{% assign label="Overview"%}
+
+<ins-sidebar-footer>
+  <ins-sidebar-footer-menu icon="icon-dashboard" label="Dashboard">
+    <ins-sidebar-item   
+        link="{{ link }}"
+        label="{{ abel }}"
+        app>
+    </ins-sidebar-item>
+  </ins-sidebar-footer-menu>
+</ins-sidebar-footer>
+            {%endraw%}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+    <!-- ins-sidebar-footer-button -->
+    <h2 class="section-title">ins-sidebar-footer-button</h2>
+
+    <ins-styleguide label="Default State">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar>
+                <ins-sidebar-footer>
+                    <ins-sidebar-footer-button></ins-sidebar-footer-button>
+                </ins-sidebar-footer>
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+  <ins-sidebar-footer>
+      <ins-sidebar-footer-button></ins-sidebar-footer-button>
+  </ins-sidebar-footer>
+</ins-sidebar>
+            </script>
+        </ins-styleguide-code>
+    </ins-styleguide>
+
+    <ins-styleguide label="Direct Data Source">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-footer>
+                    <ins-sidebar-footer-button id="directDataSourceFooterBtn"></ins-sidebar-footer-button>
+                </ins-sidebar-footer>
+            </ins-sidebar>
+            {% assign iconBtn = 'icon-notification-1' %}
+
+            <script>
+                setTimeout(() => {
+                    ins('#directDataSourceFooterBtn').val('icon', '{{iconBtn}}');
+                }, 500);
+            </script>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-footer>
+        <ins-sidebar-footer-button id="directDataSourceFooterBtn"></ins-sidebar-footer-button>
+    </ins-sidebar-footer>
+</ins-sidebar>
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+  var iconBtn = 'icon-notification-1';
+
+  // setTimeout is used to avoid race condition
+  setTimeout(() => {
+      ins('#directDataSourceFooterBtn').val('icon', iconBtn);
+      // update `icon` attribute of the component
+  }, 500);
+&lt;/script&gt;
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>{%raw%}
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-footer>
+        <ins-sidebar-footer-button id="directDataSourceFooterBtn"></ins-sidebar-footer-button>
+    </ins-sidebar-footer>
+</ins-sidebar>
+
+{% assign iconBtn = 'icon-notification-1'%}
+
+<script src="/assets/js/ins.js">&lt;/script&gt;
+<script>
+    setTimeout(() => {
+        ins('#directDataSourceFooterBtn').val('icon', '{{ iconBtn }}');
+    }, 500);
+&lt;/script&gt;
+            {%endraw%}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+    <ins-styleguide label="Static Data Source">
+        <ins-styleguide-actual slot="actual">
+            <ins-sidebar class="style-guide">
+                <ins-sidebar-footer>
+                    {% assign icon="icon-search-1"%}
+
+                    <ins-sidebar-footer-button icon="{{ icon }}"></ins-sidebar-footer-button>
+                </ins-sidebar-footer>
+            </ins-sidebar>
+        </ins-styleguide-actual>
+        <ins-styleguide-code class="opacity-trigger" slot="code">
+        <div>
+            <p><strong>HTML: </strong></p>
+            <script type="text/plain" class="language-markup">
+<ins-sidebar>
+    <ins-sidebar-footer>
+        <ins-sidebar-footer-button icon="icon-search-1"></ins-sidebar-footer-button>
+    </ins-sidebar-footer>
+</ins-sidebar>
+            </script>
+            <br /><p><strong>LIQUID: </strong></p>
+            <script type="text/plain" class="language-markup">{%raw%}
+{% assign icon="icon-search-1"%}
+
+<ins-sidebar>
+    <ins-sidebar-footer>
+        <ins-sidebar-footer-button icon="{{ icon }}"></ins-sidebar-footer-button>
+    </ins-sidebar-footer>
+</ins-sidebar>
+            {%endraw%}</script>
+        </div>
+        </ins-styleguide-code>
+    </ins-styleguide>
+</div>
+<script src="../../../assets/js/ins.js"></script>
+<script>
+    setTimeout(() => {
+        // var insStyleGuideCode = document.querySelectorAll('ins-styleguide-code');
+
+        $('ins-styleguide-code').removeClass('opacity-trigger');
+    }, 500);
+</script>

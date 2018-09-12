@@ -1,0 +1,68 @@
+query search_administrators_paginated ($keyword: String!, $page: Int, $size: Int, $sortBy: String, $orderBy: String) {
+  items: people(
+    per_page: $size
+    page: $page
+    sort: [{name: $sortBy, order: $orderBy}]
+    query: { keyword: $keyword, match_type:  CONTAINS, fields: [{ name: "name" }, { name: "first_name" }, { name: "last_name" }, { name: "email" }]}
+        user: {
+            is_deleted: false
+        profiles: [
+                    {
+                    profile_type: "administrator"
+                    }
+                ]
+        }
+    ) { 
+        total_entries
+        total_pages
+        has_next_page
+        has_previous_page
+        results {
+            id          
+            slug
+            email
+            first_name
+            last_name     
+            created_at
+          	updated_at
+            administrator_details: profile(profile_type: "administrator") {
+                company_name: property(name: "company")
+            }           
+            contact_number: profile(profile_type: "contact_number") {
+                work_phone_country_code: property(name: "work_phone_country_code")
+                work_phone_area_code: property(name: "work_phone_area_code")
+                work_phone_number: property(name: "work_phone_number")
+
+            }
+            user_activities: customizations(name: "activities") {
+                id
+                name
+                user_id
+                created_at
+                    user_email: property(name: "user_email")
+                    activity_type: property(name: "activity_type")
+                    notes: property(name: "notes")
+                    date_time: property(name: "date_time")
+                    duration: property(name: "duration")
+                    attendees: property(name: "attendees")
+            }
+        }
+  	}
+      all_activities: customizations(
+            name: "activities"
+            is_deleted: false
+            ) {        
+            results {
+                id
+                name
+                user_id
+                created_at 
+                user_email: property(name: "user_email")
+                activity_type: property(name: "activity_type")
+                notes: property(name: "notes")
+                date_time: property(name: "date_time")
+                duration: property(name: "duration")
+                attendees: property(name: "attendees")
+            }
+        }
+}

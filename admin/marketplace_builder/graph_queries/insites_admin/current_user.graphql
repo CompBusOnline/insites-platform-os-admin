@@ -2,13 +2,18 @@
   current_user {
     id
     slug
+    first_name
+    last_name
     name
     email
+    updated_at
     administrator: profile(profile_type: "administrator") {
-      id
-      phone: property(name: "phone")
-      company: property(name: "company")
-      username: property(name: "username")
+        company_name: property(name: "company")
+    }           
+    contact_number: profile(profile_type: "contact_number") {
+        work_phone_country_code: property(name: "work_phone_country_code")
+        work_phone_area_code: property(name: "work_phone_area_code")
+        work_phone_number: property(name: "work_phone_number")
     }
   }
 }

@@ -3,18 +3,18 @@ custom_attributes:
 - name: home_phone_country_code
   attribute_type: string
 - name: home_phone_area_code
-  attribute_type: integer
+  attribute_type: string
 - name: home_phone_number
-  attribute_type: integer
+  attribute_type: string
 - name: mobile_phone_country_code
   attribute_type: string
 - name: mobile_phone_area_code
-  attribute_type: integer
+  attribute_type: string
 - name: mobile_phone_number
-  attribute_type: integer 
+  attribute_type: string 
 - name: work_phone_country_code
   attribute_type: string
 - name: work_phone_area_code
-  attribute_type: integer
+  attribute_type: string
 - name: work_phone_number
-  attribute_type: integer
+  attribute_type: string

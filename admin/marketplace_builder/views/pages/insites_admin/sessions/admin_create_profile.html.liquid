@@ -1,0 +1,17 @@
+---
+slug: admin/user/add
+format: html
+layout_name: insites_admin/insites_empty
+---
+{%- assign name = 'Add User' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+<div class="grid-container-full">
+  <div class="grid-x">
+    <div class="large-6 cell">
+      <div class="form-wrap">
+        {% render_form 'admin_create_profile' %}
+      </div>
+    </div>
+  </div>
+</div>

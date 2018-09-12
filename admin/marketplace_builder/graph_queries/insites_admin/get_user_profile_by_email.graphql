@@ -1,0 +1,28 @@
+query get_user_profile_by_email ($email: String) {
+    user(email: $email) {
+        id
+        slug
+        email
+        first_name
+        last_name
+        customer_details: profile(profile_type: "customers") {
+            company_id: property(name: "company_id")
+            work_phone: property(name: "work_phone")
+            mobile_phone: property(name: "mobile_phone")
+            home_phone: property(name: "home_phone")
+            notes: property(name: "notes")
+            address: property(name: "address")
+            profile_image: custom_image(name: "profile_image") {
+                original: url(version: "transformed")
+            }
+        }
+        social_links: profile(profile_type: "social_links") {
+            facebook_link: property(name: "facebook_link")
+            youtube_link: property(name: "youtube_link")
+            google_plus_link: property(name: "google_plus_link")
+            twitter_link: property(name: "twitter_link")
+            linkedin_link: property(name: "linkedin_link")
+            instagram_link: property(name: "instagram_link")
+        }
+    }
+}

@@ -1,0 +1,15 @@
+---
+slug: admin/sessions/logout
+format: html
+layout_name: insites_admin/insites_session
+---
+{%- assign name = 'Admin Login' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+{% render_form 'admin_sign_out' %}
+
+<script>
+  var submitButton = document.querySelector('[type="submit"]');
+  submitButton.click();
+  sessionStorage.setItem("session_deleted", "success");
+</script>

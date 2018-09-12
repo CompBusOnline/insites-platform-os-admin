@@ -1,7 +1,7 @@
 ---
 name: admin_sign_in
 resource: Session
-redirect_to: admin/insites
+redirect_to: admin/insites#/overview
 ---
 
 <!-- {{form_builder}} -->
@@ -15,7 +15,11 @@ redirect_to: admin/insites
 <pre id="adminSignInFormConfig" style="display: none">
   {{form_builder.errors | json}}
 </pre>
-<form id="adminSignIn" accept-charset="UTF-8" name="{{form_builder.system_fields.form_configuration_name}}" action="/api/sessions" method="POST" data-abide data-live-validate="true" novalidate>
+<form id="adminSignIn"
+  accept-charset="UTF-8"
+  name="{{form_builder.system_fields.form_configuration_name}}"
+  action="/api/sessions" method="POST"
+  data-abide data-live-validate="true" novalidate>
 
   <input name="utf8" value="{{form_builder.system_fields.utf8}}" type="hidden">
   <input name="authenticity_token" value="{{form_builder.system_fields.authenticity_token}}" type="hidden">
@@ -58,102 +62,46 @@ redirect_to: admin/insites
       </div>
       <div class="large-12 cell submit-btn-wrap">
         {% comment %} {% submit 'SIGN IN' class: 'button rippleSolid' tabindex: "3" %} {% endcomment %}
-
-        <!-- <input type="submit" id="submitButton" class="button rippleSolid" value="SIGN IN" tabindex="3" /> -->
-        <!-- <button type="submit" id="submitButton" class="button rippleSolid" value="SIGN IN" tabindex="3">
-          <div class="spinner"></div>
-          SIGN IN
-        </button> -->
-        <ins-button label="SIGN IN" id="submitButton" solid color="blue"></ins-button>
-        <!-- <ins-button label="SIGN IN" loading solid color="blue"></ins-button> -->
-        <!-- <ins-button loading disabled solid></ins-button> -->
+        <ins-button type="submit" label="SIGN IN" id="submitButton" solid color="blue"></ins-button>
         <div class="form-error error-submit-sign-in">Oops! That email / password combination is not valid.</div>
       </div>
     </div>
   </div>
 
 </form>
-<style>
-.spinner, .spinner:after {
-  margin: -5px auto;
-  border-radius: 50%; 
-  /* width: 36px !important; 
-  height: 36px !important; */
-} 
-.spinner { 
-  border-top: 2px solid #b3d3f0;
-  border-right: 2px solid #b3d3f0;
-  border-bottom: 2px solid #b3d3f0;
-  border-left: 2px solid #1e86e3;
-} 
-@-webkit-keyframes load8 { 
-  0% { 
-    -webkit-transform: rotate(0deg); 
-    transform: rotate(0deg); 
-  } 
-  100% { 
-    -webkit-transform: rotate(360deg); 
-    transform: rotate(360deg); 
-  } 
-} 
-@keyframes load8 { 
-  0% { 
-    -webkit-transform: rotate(0deg); 
-    transform: rotate(0deg);
-  } 
-  100% { 
-    -webkit-transform: rotate(360deg); 
-    transform: rotate(360deg); 
-    } 
-}
-/* button.solid:disabled {
-  background-color: transparent !important;
-}
-button.solid:disabled {
-  opacity: .5 !important;
-} */
-
-</style>
 <script>
-  var submitButtonEl = document.getElementById('submitButton');
-  var formErrors = JSON.parse(document.getElementById('adminSignInFormConfig').innerText);
+  $(function(){
+    // console.log('ready');
+    var submitButtonEl = document.getElementById('submitButton');
+    var formErrors = JSON.parse(document.getElementById('adminSignInFormConfig').innerText);
 
-  submitButtonEl.addEventListener('click', function(){
-    var email_field = document.getElementById('form_email'),
-      password_field = document.getElementById('form_password'),
-      hasError = false;
+    submitButtonEl.addEventListener('click', function(){
+      // console.log('clicked');
+      submitButtonEl.loading = true;
+      var email_field = document.getElementById('form_email'),
+        password_field = document.getElementById('form_password'),
+        hasError = false;
 
-    if (email_field.value && password_field.value)  {
-      if (!hasClass(email_field, 'is-invalid-input') && !hasClass(password_field, 'is-invalid-input')) {
-        // submitButtonEl.disabled = true;
+      if (email_field.value && password_field.value)  {
         submitButtonEl.loading = true;
+        
+        if (!hasClass(email_field, 'is-invalid-input') && !hasClass(password_field, 'is-invalid-input')) {
+          // submitButtonEl.disabled = true;
+          // submitButtonEl.loading = true;
+        }
+      } else {
+        submitButtonEl.loading = false;
       }
+      
+    });
+
+    function hasClass(element, cls) {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
     }
-    
+
+    if (formErrors.password === 'Invalid email or password.') {
+        document.querySelector('.error-submit-sign-in').classList.add('is-visible');
+        history.pushState({urlPath: '/admin/login'},"",'/admin/login');
+    }
   });
-
-  function hasClass(element, cls) {
-      return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-  }
-
-  // if (formErrors.password === 'Invalid email or password.'){
-  //   // submitButtonEl.disabled = true;
-  //   submitButtonEl.loading = true;
-  //   swal({
-  //     title:'',
-  //     text:'Invalid email or password.',
-  //     type:'error',
-  //     customClass: 'not-iframe'
-  //   }).then(function(result){
-  //     if (result.value){
-  //       window.location.assign('/admin/login');
-  //     }
-  //   });
-  // }
-
-  if(formErrors.password === 'Invalid email or password.') {
-      document.querySelector('.error-submit-sign-in').classList.add('is-visible');
-      history.pushState({urlPath: '/admin/login'},"",'/admin/login');
-  }
-
 </script>

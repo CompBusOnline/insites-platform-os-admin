@@ -1,0 +1,38 @@
+---
+slug: admin/login
+format: html
+layout_name: insites_admin/insites_session
+authorization_policies:
+  - only_allow_if_no_session
+---
+{%- assign name = 'Insites Admin - Sign In' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+{% if flash.alert != blank %}
+  <p>{{ flash.alert }}</p>
+{% endif %}
+
+{% if flash.notice != blank %}
+  <span id="message" style="display:none">{{ flash.notice }}</span>
+  <script>
+    var message = document.getElementById('message').innerText;
+    toastr.options.closeHtml = '<button><i class="icon-close-1"></i></button>';
+    toastr.options.closeButton = false;
+    toastr.options.timeOut = 3000;
+    toastr.options.extendedTimeOut = 1000;
+    toastr.success(message);
+  </script>
+{% endif %}
+
+{% render_form 'admin_sign_in' %}
+
+{% comment %} <script>
+  var sessionDeleted = sessionStorage.getItem("session_deleted");
+
+  if (sessionDeleted === 'success'){
+    toastr.options.closeHtml = '<button><i class="icon-close-1"></i></button>';
+    toastr.options.closeButton = true;
+    toastr.success('You have been logged out securely.');
+    sessionStorage.setItem("session_deleted", "nope");
+  }
+</script> {% endcomment %}

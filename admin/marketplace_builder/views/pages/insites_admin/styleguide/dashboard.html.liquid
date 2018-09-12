@@ -1,0 +1,115 @@
+---
+slug: admin/insites/styleguide
+format: html
+layout_name: insites_admin/insites_shell
+authorization_policies:
+  - only_allowed_by_administrators
+---
+{%- assign name = 'Insites Admin' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+<ins-admin>
+  <ins-sidebar
+    with-sidebar-actions
+    full-logo="{{ 'insites_admin/images/Insites_logo.svg' | asset_url }}"
+    icon-logo="{{ 'insites_admin/images/insites_logo_icon.svg' | asset_url }}">
+
+    <!-- <ins-sidebar-item
+      id="overview"
+      link="/admin/styleguide/overview"
+      icon="icon-dashboard"
+      label="Overview"
+      app
+      landing-page>
+    </ins-sidebar-item> -->
+    <ins-sidebar-item link="/admin/styleguide/buttons" icon="icon-buttons" label="Buttons" app landing-page></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/charts" icon="icon-chart" label="Charts" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/filters" label="Filters" icon="icon-filters" app></ins-sidebar-item>
+    <ins-sidebar-item link="/styleguide/header" icon="icon-globals" label="Headers" app></ins-sidebar-item>
+    <!-- <ins-sidebar-item link="/assets/pages/styleguide/image-picker.html" icon="icon-image" label="Image Picker" app></ins-sidebar-item> -->
+    <ins-sidebar-item link="/admin/styleguide/input" icon="icon-input" label="Input" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/loader" label="Loaders" icon="icon-loaders" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/select" icon="icon-select" label="Select" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/sidebar" icon="icon-menu-1" label="Sidebar" app></ins-sidebar-item>
+    <ins-sidebar-item link="/admin/styleguide/tables" icon="icon-tables" label="Tables" app></ins-sidebar-item>
+
+
+      {% comment %} <ins-sidebar-item link="/assets/pages/styleguide/buttons.html" icon="icon-buttons" label="Buttons" app landing-page></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/charts.html" icon="icon-chart" label="Charts" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/filters.html" icon="icon-filters" label="Filters" app></ins-sidebar-item>
+      <!-- <ins-sidebar-item link="/assets/pages/styleguide/header.html" icon="icon-globals" label="Headers" app></ins-sidebar-item> -->
+      <!-- <ins-sidebar-item link="/assets/pages/styleguide/image-picker.html" icon="icon-image" label="Image Picker" app></ins-sidebar-item> -->
+      <ins-sidebar-item link="/assets/pages/styleguide/input.html" icon="icon-input" label="Input" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/loader.html" icon="icon-loaders" label="Loaders" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/select.html" icon="icon-select" label="Select" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/sidebar.html" icon="icon-menu-1" label="Sidebar" app></ins-sidebar-item>
+      <ins-sidebar-item link="/assets/pages/styleguide/tables.html" icon="icon-tables" label="Tables" app></ins-sidebar-item> {% endcomment %}
+
+
+  <ins-sidebar-footer>
+    <ins-sidebar-footer-button icon="icon-logout-1" onclick="logoutUser()"></ins-sidebar-footer-button>
+  </ins-sidebar-footer>
+</ins-sidebar>
+
+<ins-content>
+  {% query_graph 'current_user', result_name: 'g' %}
+  <ins-header>
+    <ins-instances 
+      logo-link="{{'images/admin/logo-1@2x.png' | asset_url }}"
+      instance="Final Sprint">
+    </ins-instances>
+  </ins-header>
+
+  <ins-renderer link="/admin/styleguide/buttons" label="Buttons" app />
+</ins-content>
+
+<ins-notifications>
+  <ins-notifications-item
+    event-type="Task Completed"
+    heading="Heading"
+    duration="5 mins ago"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    link="/"
+    link-label="View Task"
+    icon="icon-check"
+    status="green">
+  </ins-notifications-item>
+
+  <ins-notifications-item
+    event-type="Event Started"
+    heading="Heading"
+    duration="1 hr ago"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    link="/"
+    link-label="View Event"
+    icon="icon-today"
+    status="blue">
+  </ins-notifications-item>
+
+  <ins-notifications-item
+    event-type="Event Started"
+    duration="1 hr ago"
+    icon="icon-settings"
+    status="red">
+  </ins-notifications-item>
+</ins-notifications>
+</ins-admin>
+
+<script>
+
+  function logoutUser(){
+    window.location.assign('/admin/sessions/logout');
+  }
+
+  function toastIt(type, message, options) {
+
+    for (var option in options) {
+      console.log(toastr.options);
+
+      if (toastr.options[option]){
+        toastr.options[option] = options[option];
+      }
+    }
+    toastr[type](message);
+  }
+</script>

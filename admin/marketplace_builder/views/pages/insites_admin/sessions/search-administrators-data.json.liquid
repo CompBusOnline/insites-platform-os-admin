@@ -1,0 +1,31 @@
+---
+slug: api/search-administrators-data.json
+authorization_policies:
+ - only_allowed_by_administrators
+---
+{% assign size = 10 %}
+{% assign page = 1 %}
+{% assign sortBy = "first_name" %}
+{% assign orderBy = "asc" %}
+{% assign keyword = "" %}
+
+{% if params.size %}
+    {% assign size = params.size | plus: 0 %}
+{% endif %} 
+{% if params.page %}
+    {% assign page = params.page | plus: 0 %}
+{% endif %}
+{% if params.sortBy %}
+    {% assign sortBy = params.sortBy | downcase %}
+{% endif %}
+{% if params.orderBy %}
+    {% assign orderBy = params.orderBy | downcase %}
+{% endif %}
+{% if params.keyword %}
+    {% assign keyword = params.keyword | downcase %}
+{% endif %}
+ 
+{% query_graph 'search_administrators_paginated', result_name: 'administrator_list', keyword: keyword, size: size, page: page, sortBy: sortBy, orderBy: orderBy %}
+{{ administrator_list | json }}
+
+

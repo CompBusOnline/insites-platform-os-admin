@@ -1,0 +1,12 @@
+ query get_id_active_user_true ($email: String){
+  people(user: {
+    email: $email
+    is_deleted: false
+  }){
+    total_entries
+    results {
+      id
+    }    
+  }
+  
+}

@@ -1,0 +1,322 @@
+{
+  "namespace": "insites",
+  "fsNamespace": "insites",
+  "loader": "../insites.js",
+  "global": "insites.global.js",
+  "core": "insites.yp7lwfiw.js",
+  "corePolyfilled": "insites.6vepcfkv.js",
+  "components": {
+    "ins-action": {
+      "bundleIds": {
+        "$": "gamn0rni"
+      }
+    },
+    "ins-action-item": {
+      "bundleIds": {
+        "$": "mr8gvixt"
+      },
+      "encapsulation": "shadow"
+    },
+    "ins-admin": {
+      "bundleIds": {
+        "$": "ebvema4l"
+      }
+    },
+    "ins-backdrop": {
+      "bundleIds": {
+        "$": "qkmrncjh"
+      }
+    },
+    "ins-bar-chart": {
+      "bundleIds": {
+        "$": "jei17zid"
+      }
+    },
+    "ins-base-table": {
+      "bundleIds": {
+        "$": "poj26poj"
+      }
+    },
+    "ins-breadcrumbs": {
+      "bundleIds": {
+        "$": "feufo4eh"
+      }
+    },
+    "ins-button": {
+      "bundleIds": {
+        "$": "jmzjypvf"
+      }
+    },
+    "ins-card": {
+      "bundleIds": {
+        "$": "krenva6l"
+      }
+    },
+    "ins-checkbox": {
+      "bundleIds": {
+        "$": "poj26poj"
+      }
+    },
+    "ins-confirm-modal": {
+      "bundleIds": {
+        "$": "jqwmioza"
+      }
+    },
+    "ins-content": {
+      "bundleIds": {
+        "$": "vjqsjghw"
+      }
+    },
+    "ins-datepicker": {
+      "bundleIds": {
+        "$": "xjtnjevi"
+      }
+    },
+    "ins-dropdown": {
+      "bundleIds": {
+        "$": "poj26poj"
+      }
+    },
+    "ins-duration": {
+      "bundleIds": {
+        "$": "vfywtpt5"
+      }
+    },
+    "ins-fav-icon": {
+      "bundleIds": {
+        "$": "3srp2yiz"
+      }
+    },
+    "ins-filter": {
+      "bundleIds": {
+        "$": "ufropgks"
+      }
+    },
+    "ins-filter-item": {
+      "bundleIds": {
+        "$": "ufropgks"
+      }
+    },
+    "ins-form": {
+      "bundleIds": {
+        "$": "h7wkdjyf"
+      }
+    },
+    "ins-header": {
+      "bundleIds": {
+        "$": "zz7mw5uw"
+      }
+    },
+    "ins-header-user": {
+      "bundleIds": {
+        "$": "x8vhcocp"
+      }
+    },
+    "ins-image-picker": {
+      "bundleIds": {
+        "$": "ro1t9flf"
+      }
+    },
+    "ins-input": {
+      "bundleIds": {
+        "$": "gamn0rni"
+      }
+    },
+    "ins-input-tel": {
+      "bundleIds": {
+        "$": "fnhihsoi"
+      }
+    },
+    "ins-instances": {
+      "bundleIds": {
+        "$": "gym7o7hf"
+      }
+    },
+    "ins-instances-item": {
+      "bundleIds": {
+        "$": "4ri5i94y"
+      }
+    },
+    "ins-instances-sub-item": {
+      "bundleIds": {
+        "$": "uvlvuex7"
+      },
+      "encapsulation": "shadow"
+    },
+    "ins-line-chart": {
+      "bundleIds": {
+        "$": "ksh8ews0"
+      }
+    },
+    "ins-loader": {
+      "bundleIds": {
+        "$": "poj26poj"
+      }
+    },
+    "ins-logo": {
+      "bundleIds": {
+        "$": "qcz1kbwr"
+      }
+    },
+    "ins-notifications": {
+      "bundleIds": {
+        "$": "wzb8ryfk"
+      }
+    },
+    "ins-notifications-item": {
+      "bundleIds": {
+        "$": "tisgvssi"
+      }
+    },
+    "ins-open-table": {
+      "bundleIds": {
+        "$": "6k8qcpxd"
+      }
+    },
+    "ins-radio": {
+      "bundleIds": {
+        "$": "so7suitp"
+      }
+    },
+    "ins-renderer": {
+      "bundleIds": {
+        "$": "feufo4eh"
+      }
+    },
+    "ins-searchbar": {
+      "bundleIds": {
+        "$": "wxs9lest"
+      }
+    },
+    "ins-select": {
+      "bundleIds": {
+        "$": "poj26poj"
+      }
+    },
+    "ins-select-option": {
+      "bundleIds": {
+        "$": "poj26poj"
+      }
+    },
+    "ins-select2": {
+      "bundleIds": {
+        "$": "8wqufcuq"
+      }
+    },
+    "ins-sidebar": {
+      "bundleIds": {
+        "$": "uc25of8b"
+      }
+    },
+    "ins-sidebar-footer": {
+      "bundleIds": {
+        "$": "ebsm7l9z"
+      }
+    },
+    "ins-sidebar-footer-button": {
+      "bundleIds": {
+        "$": "jcfue6rn"
+      }
+    },
+    "ins-sidebar-footer-menu": {
+      "bundleIds": {
+        "$": "h485uuad"
+      }
+    },
+    "ins-sidebar-item": {
+      "bundleIds": {
+        "$": "3uuc7exv"
+      }
+    },
+    "ins-sparkline": {
+      "bundleIds": {
+        "$": "0qjf0gyw"
+      }
+    },
+    "ins-styleguide": {
+      "bundleIds": {
+        "$": "7suyrcgh"
+      }
+    },
+    "ins-styleguide-actual": {
+      "bundleIds": {
+        "$": "sodn5xz8"
+      }
+    },
+    "ins-styleguide-code": {
+      "bundleIds": {
+        "$": "gihchhik"
+      }
+    },
+    "ins-table": {
+      "bundleIds": {
+        "$": "gamn0rni"
+      }
+    },
+    "ins-tagging-input": {
+      "bundleIds": {
+        "$": "6smguekc"
+      }
+    },
+    "ins-tags-button": {
+      "bundleIds": {
+        "$": "lmiqk1kq"
+      },
+      "encapsulation": "shadow"
+    },
+    "ins-td": {
+      "bundleIds": {
+        "$": "gamn0rni"
+      }
+    },
+    "ins-td-checkbox": {
+      "bundleIds": {
+        "$": "mr8gvixt"
+      },
+      "encapsulation": "shadow"
+    },
+    "ins-textarea": {
+      "bundleIds": {
+        "$": "jl0tvpqt"
+      }
+    },
+    "ins-th": {
+      "bundleIds": {
+        "$": "mr8gvixt"
+      },
+      "encapsulation": "shadow"
+    },
+    "ins-th-checkbox": {
+      "bundleIds": {
+        "$": "mr8gvixt"
+      },
+      "encapsulation": "shadow"
+    },
+    "ins-timepicker": {
+      "bundleIds": {
+        "$": "d4dg3amt"
+      }
+    },
+    "ins-timezone": {
+      "bundleIds": {
+        "$": "1mpfgsj1"
+      }
+    },
+    "ins-title": {
+      "bundleIds": {
+        "$": "hbkiixu7"
+      }
+    },
+    "ins-toggle-switch": {
+      "bundleIds": {
+        "$": "jx4v3p6d"
+      }
+    },
+    "ins-tr": {
+      "bundleIds": {
+        "$": "mr8gvixt"
+      },
+      "encapsulation": "shadow"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+---
+slug: admin/sessions/my-profile
+format: html
+layout_name: insites_admin/insites_shell
+---
+{%- assign name = 'My Profile' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+{% query_graph 'current_user', result_name: 'g' %}
+
+<div class="grid-container-full">
+  <div class="grid-x">
+    <div class="large-12 cell">
+      <div class="form-wrap">
+        {% render_form 'admin_update_profile' resource_id: @g.current_user.id %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,373 @@
+---
+slug: admin/insites
+format: html
+layout_name: insites_admin/insites_shell
+authorization_policies:
+  - only_allowed_by_administrators
+---
+{%- assign name = 'Insites Admin' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+
+<style>
+  /* DASHBOARD SWAL STYLES */
+  .swal2-container.swal2-shown {
+    background-color: transparent;
+  }
+
+  @media screen and (max-width: 660px) {
+    .ins-searchbar-container {
+      min-width: auto !important;
+    }
+  }
+
+  /* #app {
+    padding-right: 20px;
+  } */
+
+  .swal2-show {
+    box-shadow: 0px 6px 20px #aaa;
+    border-radius: 1px;
+    /* top: -120px;
+    width: 21em; */
+  }
+
+  .swal2-popup #swal2-content {
+    font-size: .85rem;
+    margin-bottom: 20px;
+  }
+
+  .swal2-popup .swal2-actions {
+    margin-top: 0;
+    display: block !important;
+    width: 226px;
+  }
+
+  .swal2-popup .swal2-styled.swal2-cancel,
+  .swal2-popup .swal2-styled.swal2-confirm {
+    background-color: transparent;
+    border: 1px solid #1e86e3 !important;
+    color: #1e86e3;
+    width: auto;
+    height: auto;
+    margin: 0 10px;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    float: left;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .swal2-popup .swal2-styled.swal2-confirm {
+    float: right;
+    background-color: #1e86e3;
+    color: #fff;
+  }
+
+  .swal2-popup .swal2-styled.swal2-cancel:hover {
+    /*,
+  .swal2-popup .swal2-actions:not(.swal2-loading) .swal2-styled:hover {*/
+    background-image: none !important;
+    background-color: #e3eef9;
+  }
+
+  /* ripple sweet alert */
+  .swal2-popup .swal2-styled.swal2-confirm,
+  .swal2-popup .swal2-styled.swal2-cancel {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .swal2-popup .swal2-styled.swal2-confirm:after,
+  .swal2-popup .swal2-styled.swal2-cancel:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #000 10%, transparent 5.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  }
+
+  .swal2-popup .swal2-styled.swal2-confirm:active:after,
+  .swal2-popup .swal2-styled.swal2-cancel:active::after {
+    transform: scale(0, 0);
+    opacity: .2;
+    transition: 0s;
+  }
+
+  .swal2-popup .ins-loader-wrap .ins-loader-title-wrap {
+    margin-top: 18px;
+    color: #2c3148;
+  }
+
+  .swal2-popup .ins-loader-wrap .ins-loader-message-wrap {
+    margin-top: 10px;
+    margin-bottom: 32px;
+    color: #8694a4;
+  }
+
+  /* .swal2-modal.swal2-show {
+    box-shadow: none !important;
+  } */
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item .ins-sidebar-item-label {
+    display: none;
+  }
+
+  /* when minimised the sidebar */
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap {
+    position: relative;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a {
+    border-left: 0px solid transparent;
+    background-color: #e4e6ec;
+  }
+
+  /* not active */
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+    background-color: #e4e6ec;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a .fas {
+    color: unset;
+    width: auto;
+    margin: 0 0 0 16px;
+  }
+
+  ins-admin.mini ins-sidebar:not(.style-guide) .sidebar ins-sidebar-item div.ins-sidebar-item-wrap .fas {
+    margin-left: -3px;
+  }
+
+  /* for active */
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active a .fas {
+    /* color: unset; */
+    margin: 0;
+  }
+
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active,
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap {
+    position: absolute;
+    width: 125px;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a {
+    width: 125px;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a {
+    color: unset;
+  }
+
+  /* not active */
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+    background-color: #e4e6ec;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a .fas {
+    color: unset;
+    width: auto;
+    margin: 0 0 0 37px;
+  }
+
+  /* for active */
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a {
+    border-left: 3px solid transparent;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active>.ins-ripple-button>a:hover {
+    background: #2c3148;
+    color: #fff;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap.active a .fas {
+    color: unset;
+    margin: 0 0 0 37px;
+  }
+
+  ins-admin.mini ins-sidebar-footer.side-bar-footer ins-sidebar-footer-button .ins-sidebar-footer-item-wrap .ins-sfiw-button-icon {
+    margin-left: 0px;
+  }
+
+  ins-sidebar-footer.side-bar-footer ins-sidebar-footer-button .ins-sidebar-footer-item-wrap .ins-sfiw-button-icon {
+    margin-left: 126px;
+  }
+
+  /* .side-bar-footer ins-sidebar-item div.ins-sidebar-item-wrap a .fas{
+    background: #2c3148;
+    color: #fff;
+  } */
+  .hide-render {
+    display: none;
+  }
+
+  .highcharts-container {
+    width: 100%;
+  }
+
+  .displayNoneIpad {
+    display: none;
+  }
+  .ins-loader-wrap .spinner {
+    width: 72px;
+  }
+  .openSans {
+    font-family: 'Open Sans', sans-serif !important;
+  }
+</style>
+
+<ins-admin>
+  <ins-sidebar
+    with-sidebar-actions
+    full-logo="{{ 'insites_admin/images/Insites_logo.svg' | asset_url }}"
+    icon-logo="{{ 'insites_admin/images/insites_logo_icon.svg' | asset_url }}">
+
+    <ins-sidebar-item
+      id="overview"
+      link="#/overview"
+      icon="icon-dashboard"
+      label="Overview"
+      landing-page>
+    </ins-sidebar-item>
+
+    <ins-sidebar-item
+      id="overview"
+      link="#/admin-users"
+      icon="icon-admin-user"
+      label="Admin Users">
+    </ins-sidebar-item>
+
+  <!-- <ins-sidebar-footer>
+    <ins-sidebar-footer-button
+      icon="icon-logout-1"
+      onclick="logoutUser()">
+    </ins-sidebar-footer-button>
+  </ins-sidebar-footer> -->
+
+  <ins-sidebar-footer class="side-bar-footer">
+    <ins-sidebar-item link="/admin/settings" label="Settings" icon="icon-settings-1" app></ins-sidebar-item>
+    <ins-sidebar-footer-button onclick="logoutUser()" icon="icon-logout-1"></ins-sidebar-footer-button>
+  </ins-sidebar-footer>
+
+</ins-sidebar>
+
+<ins-content>
+  
+  {% query_graph 'current_user', result_name: 'g' %}
+  <div class="hide-render">
+    {% render_form 'admin_create_profile' %}
+  </div>
+  
+  <ins-header>
+    <ins-header-user
+      name="{{g.current_user.name}}"
+      logout-link="/admin/sessions/logout"
+      profile-link="#/my-profile">
+    </ins-header-user>
+
+    <ins-instances
+      logo-link="{{'insites_admin/images/logo-1@2x.png' | asset_url }}"
+      instance="Final Sprint">
+    </ins-instances>
+  </ins-header>
+
+  <ins-renderer label="Overview" link="#/overview">
+    <div id="app"></div>
+    <script src="{{ 'insites_admin/insites/js/chunk-vendors.b6904cb5.js' | asset_url }}"></script>
+    <script src="{{ 'insites_admin/insites/js/app.76fab3d8.js' | asset_url }}"></script>
+  </ins-renderer>
+</ins-content>
+
+<ins-notifications>
+  <ins-notifications-item
+    event-type="Task Completed"
+    heading="Heading"
+    duration="5 mins ago"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    link="/"
+    link-label="View Task"
+    icon="icon-check"
+    status="green">
+  </ins-notifications-item>
+
+  <ins-notifications-item
+    event-type="Event Started"
+    heading="Heading"
+    duration="1 hr ago"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    link="/"
+    link-label="View Event"
+    icon="icon-today"
+    status="blue">
+  </ins-notifications-item>
+
+  <ins-notifications-item
+    event-type="Event Started"
+    duration="1 hr ago"
+    icon="icon-settings"
+    status="red">
+  </ins-notifications-item>
+</ins-notifications>
+</ins-admin>
+<script>
+  // var myProfile = document.getElementById('myProfile');
+
+  // setTimeout(() => {
+  //   myProfile.addEventListener('click', function(){
+  //     var isOverview = document.getElementById('app') ? 'overview' : '';
+      
+  //     console.log(isOverview);
+  //   });
+  // }, 1000);
+
+  function logoutUser(){
+    window.location.assign('/admin/sessions/logout');
+  }
+
+  function toastIt(type, message, options) {
+
+    for (var option in options) {
+
+      if (toastr.options[option]) {
+        toastr.options[option] = options[option];
+      }
+    }
+    toastr.options.preventDuplicates = true;
+    toastr[type](message);
+  }
+</script>

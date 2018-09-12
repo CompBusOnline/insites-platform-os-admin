@@ -8,10 +8,9 @@ configuration:
     property_options:
       readonly: true
   name:
+  password:
   first_name:
-    validation: { presence: true }
   last_name:
-    validation: { presence: true }  
   profiles:
     administrator:
       properties:
@@ -47,13 +46,25 @@ authorization_policies:
             <ins-card steady>
               <div class="grid-x grid-padding-x min-height">
                 <div class="large-12 cell">
-                  <label class="form-label" for="userNameField">Name
+                  <label class="form-label" for="userFirstNameField">First Name
                     <span class="red">*</span>
-                    <input type="text" id="userNameField" name="userNameField" autocomplete="off" required
-                      value="{{ g.current_user.name }}" onkeypress="checkKey" />
+                    <input type="text" id="userFirstNameField" name="userFirstNameField" autocomplete="off" required
+                      value="{{ g.current_user.first_name }}" onkeypress="checkKey" />
     
                     <span class="form-error">
-                      Name is required.
+                     First Name is required.
+                    </span>
+                  </label>
+                </div>
+
+                <div class="large-12 cell">
+                  <label class="form-label" for="userLastNameField">Last Name
+                    <span class="red">*</span>
+                    <input type="text" id="userLastNameField" name="userLastNameField" autocomplete="off" required
+                      value="{{ g.current_user.last_name }}" onkeypress="checkKey" />
+    
+                    <span class="form-error">
+                      Last Name is required.
                     </span>
                   </label>
                 </div>
@@ -71,13 +82,13 @@ authorization_policies:
                 </div>
     
                 <div class="large-12 cell phone-content">
-                  <ins-input-tel label="Phone" areacode-value="1300" phonenum-value="12345"></ins-input-tel>
+                  <ins-input-tel label="Phone" areacode-value="{{ g.current_user.contact_number.work_area_code }}" area-code="userDataAreaCode" phonenum-value="{{ g.current_user.contact_number.work_phone_number }}" phone-number="userDataPhoneNumber"></ins-input-tel>
                 </div>
     
                 <div class="large-12 cell">
                   <label class="form-label" for="userCompanyField">Company
                     <input type="text" id="userCompanyField" name="userCompanyField" autocomplete="off"
-                      value="{{ g.current_user.administrator.company }}" />
+                      value="{{ g.current_user.administrator.company_name }}" />
                   </label>
                 </div>
     
@@ -87,7 +98,6 @@ authorization_policies:
             <div class="grid-container-full">
               <div class="grid-x">
                 <div class="large-12 text-right cell submit-btn-wrap inline">
-                  <!-- <input type="submit" id="submitButtonDetails" name="UPDATE" value="UPDATE DETAILS" class="ripple-effects"> -->
                   <button type="submit" id="submitButtonDetails" name="UPDATE" class="ripple-effects margin-top-20">
                     UPDATE DETAILS
                   </button>
@@ -138,7 +148,6 @@ authorization_policies:
             <div class="grid-container-full">
               <div class="grid-x">
                 <div class="large-12 text-right cell submit-btn-wrap inline">
-                  <!-- <input type="submit" id="submitButtonPassword" name="UPDATE" value="UPDATE PASSWORD" class="ripple-effects"> -->
                     <button type="submit" id="submitButtonPassword" name="UPDATE" class="ripple-effects margin-top-20">
                     UPDATE PASSWORD
                   </button>
@@ -151,13 +160,7 @@ authorization_policies:
     </div>
   </div>
 </div>
-<style>
-  .swal2-modal.swal2-show {
-    box-shadow: none;
-  }
-</style>
 <script>
-  // var InsRendereEl = parent.document.querySelector('ins-renderer');
  
   var formConfig = JSON.parse(document.getElementById('formConfig').innerHTML);
   var headers = {
@@ -187,7 +190,6 @@ authorization_policies:
 
   function successHandler(message) {
     enableSubmitButtons();
-    // swal('', 'Your ' + message + ' has been updated.', 'success');
     let ops = {
       closeHtml: '<button><i class="icon-close-1"></i></button>',
       closeButton: true,
@@ -219,12 +221,20 @@ authorization_policies:
       form_configuration_name: 'admin_update_profile',
       form: {
         email: $('#userEmailField').val(),
-        name: $('#userNameField').val(),
+        first_name: $('#userFirstNameField').val(),
+        last_name: $('#userLastNameField').val(),
+        name: $('#userFirstNameField').val() + " " + $('#userLastNameField').val(),
         profiles_attributes: {
           administrator_attributes: {
             properties_attributes: {
               company: $('#userCompanyField').val(),
-              phone: $('#userPhoneField').val()
+            }
+          },
+          contact_number_attributes: {
+            properties_attributes: {
+              work_phone_country_code: $(".phone").intlTelInput("getSelectedCountryData").dialCode,
+              work_phone_area_code: document.getElementsByName("userDataAreaCode")[0].value,
+              work_phone_phone_number: document.getElementsByName("userDataPhoneNumber")[0].value
             }
           }
         }

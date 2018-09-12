@@ -1,0 +1,20 @@
+---
+slug: admin/settings
+format: html
+layout_name: insites_admin/insites_empty
+---
+{%- assign name = 'Settings' -%}
+{%- content_for 'pagetitle' -%}{{ name }}{%- endcontent_for -%}
+<style>
+    body {
+        height: calc(100vh);
+    }
+    .content {
+        overflow: hidden;
+    }
+    .content-wrap {
+        position: absolute;
+        bottom: 0;  
+    }
+</style>
+<h1 class="platform-v">PLATFORM VERSION: V2.0.0</h1>
